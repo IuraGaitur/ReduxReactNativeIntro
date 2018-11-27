@@ -1,14 +1,37 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
 import {connect} from 'react-redux'
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+
 
 class MainScreen extends Component {
 
     render() {
         return (
-            <View>
-                <Text>{this.props.email}</Text>
-            </View>);
+            <Container>
+                <Header>
+                    <Left>
+                        <Button transparent>
+                            <Icon name='menu' />
+                        </Button>
+                    </Left>
+                    <Body>
+                    <Title>Header</Title>
+                    </Body>
+                    <Right />
+                </Header>
+                <Content>
+                    <Text>
+                        {this.props.email}
+                    </Text>
+                </Content>
+                <Footer>
+                    <FooterTab>
+                        <Button full>
+                            <Text>Footer</Text>
+                        </Button>
+                    </FooterTab>
+                </Footer>
+            </Container>);
     }
 }
 
