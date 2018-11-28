@@ -1,5 +1,5 @@
-import {EMAIL_FAIL, PASS_FAIL, LOGIN_SUCCESS} from './../../app/actions'
-import UserRepository from './../../data/database/userRepository';
+import {EMAIL_FAIL, PASS_FAIL, LOGIN_SUCCESS} from '../../app/actions'
+import UserRepository from '../../data/database/userRepository';
 import {Actions} from 'react-native-router-flux';
 
 export const loginRequest = (email, pass) => {
