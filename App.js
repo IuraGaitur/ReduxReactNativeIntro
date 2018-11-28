@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Router, Stack, Scene} from 'react-native-router-flux';
-import LoginScreen from './src/screens/login/loginScreen';
+import AuthenticationScreen from './src/screens/authentication/authenticationScreen';
 import MainScreen from './src/screens/main/mainScreen';
 import store from './src/app/store';
 import {Provider} from "react-redux";
@@ -12,7 +12,7 @@ export default class App extends Component {
             <Provider store={store}>
                 <Router>
                     <Stack key="root">
-                        <Scene key="login" component={LoginScreen} title="Login" initial/>
+                        <Scene key="authentication" component={AuthenticationScreen} title="Authentication" initial hideNavBar/>
                         <Scene key="main" component={MainScreen} title="Main"/>
                     </Stack>
                 </Router>
