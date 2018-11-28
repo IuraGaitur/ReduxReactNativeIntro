@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, StatusBar, TouchableHighlight } from 'react-native';
+import { connect } from 'react-redux'
 
 class LandingScreen extends Component {
 
-    static navigationOptions = {
-        header: null
-    };
+    // static navigationOptions = {
+    //     header: null
+    // };
 
     constructor(props) {
         super(props);
@@ -22,9 +23,9 @@ class LandingScreen extends Component {
                         <Text style={styles.titleStyle}>ROTOLEGENDS</Text>
                         <Text style={styles.subTitleStyle}>FANTASY NEWS</Text>
                     </View>
-                    <View style={{ position: 'absolute', bottom: 0, flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
+                    <View style={styles.bottomViewStyle}>
                         <Text style={styles.loginWithStyle}>Login with</Text>
-                        <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'space-around' }}>
+                        <View style={styles.buttonContainerStyle}>
                             <TouchableHighlight onPress={this._onPressFacebookButton} style={styles.circleContainer} >
                                 <Image
                                     style={styles.imageStyle}
@@ -113,7 +114,19 @@ var styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 30,
         marginTop: 25,
-    }
+    },
+    bottomViewStyle: {
+        flex: 1,
+        position: 'absolute',
+        bottom: 0,
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
+    buttonContainerStyle: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
 });
 
 export default connect()(LandingScreen);

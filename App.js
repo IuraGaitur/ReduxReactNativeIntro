@@ -13,9 +13,9 @@ export default class App extends Component {
             <Provider store={store}>
                 <Router>
                     <Stack key="root">
+                        <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar />
                         <Scene key="login" component={LoginScreen} title="Login" initial />
                         <Scene key="main" component={MainScreen} title="Main" />
-                        <Scene key="landing" component={LandingScreen} title="Landing" />
                     </Stack>
                 </Router>
             </Provider>
