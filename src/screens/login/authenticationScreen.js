@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View, TextInput, Button, ActivityIndicator, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {loginRequest} from './loginAction';
-import LoginView from './../../components/LoginView';
+import {loginRequest} from './authenticationAction';
+import LoginView from '../../components/LoginView';
 
 class LoginScreen extends Component {
 
