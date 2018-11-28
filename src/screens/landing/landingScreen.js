@@ -80,7 +80,7 @@ var styles = StyleSheet.create({
         right: 0
     },
     titleStyle: {
-        fontSize: 54,
+        fontSize: 45,
         fontWeight: 'bold',
         color: 'white',
 
