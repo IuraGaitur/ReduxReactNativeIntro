@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import {Text, View, Image, ActivityIndicator, StyleSheet} from 'react-native';
-import {connect} from 'react-redux'
-import {checkForPrimaryUser} from './splashAction';
+import React, { Component } from 'react';
+import { Text, View, Image, ActivityIndicator, StyleSheet, StatusBar } from 'react-native';
+import { connect } from 'react-redux'
+import { checkForPrimaryUser } from './splashAction';
 
 class SplashScreen extends Component {
 
@@ -14,9 +14,10 @@ class SplashScreen extends Component {
     };
 
     render() {
-        return(
+        return (
             <View style={styles.defaultView} >
-                <Image source={require('./../../../app_image/rugby.jpg')} style={styles.backgroundImage}/>
+                <StatusBar translucent={true} backgroundColor={'transparent'} />
+                <Image source={require('./../../../app_image/rugby.jpg')} style={styles.backgroundImage} />
                 <View style={styles.backgroundCover} />
                 <View style={styles.centerView}>
                     <Text style={styles.title} > ROTOLEGENDS</Text>
@@ -34,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(null, mapDispatchToProps) (SplashScreen);
+export default connect(null, mapDispatchToProps)(SplashScreen);
 
 const styles = StyleSheet.create({
     defaultView: {
@@ -45,8 +46,8 @@ const styles = StyleSheet.create({
 
     },
     backgroundImage: {
-        width:"100%",
-        height:"100%",
+        width: "100%",
+        height: "100%",
     },
     title: {
         textAlign: "center",
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
         color: "white"
     },
     backgroundCover: {
-        width:"100%",
-        height:"100%",
+        width: "100%",
+        height: "100%",
         position: 'absolute',
         backgroundColor: 'rgba(0,0,0,0.3)'
 

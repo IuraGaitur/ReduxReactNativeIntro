@@ -1,6 +1,6 @@
 import UserRepository from './../../data/database/userRepository';
-import {Actions} from 'react-native-router-flux';
-import {IS_LOGGED_IN, NO_USER} from "../../app/actions";
+import { Actions } from 'react-native-router-flux';
+import { IS_LOGGED_IN, NO_USER } from "../../app/actions";
 
 export const checkForPrimaryUser = () => {
     return async (dispatch) => {
@@ -12,11 +12,11 @@ export const checkForPrimaryUser = () => {
 };
 
 const noPrimaryUser = () => {
-    Actions.login();
-    return {type: NO_USER}
+    Actions.landing();
+    return { type: NO_USER }
 };
 
 const hasPrimaryUser = (user) => {
     Actions.main();
-    return {user: user, type: IS_LOGGED_IN};
+    return { user: user, type: IS_LOGGED_IN };
 };
