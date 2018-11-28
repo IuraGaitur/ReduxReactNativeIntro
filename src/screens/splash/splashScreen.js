@@ -5,14 +5,6 @@ import {checkForPrimaryUser} from './splashAction';
 
 class SplashScreen extends Component {
 
-    static navigationOptions = {
-        header: null,
-    };
-
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.checkUserIsLoggedIn();
     }
