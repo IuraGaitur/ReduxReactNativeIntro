@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, TextInput, Button, ActivityIndicator} from 'react-native';
+import {Text, View, TextInput, Button, ActivityIndicator, StyleSheet} from 'react-native';
 import {connect} from 'react-redux'
 import {loginRequest} from './loginAction';
 
@@ -53,3 +53,23 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps) (LoginScreen);
+
+const styles = StyleSheet.create({
+    defaultView: {
+        flex: 1
+    },
+    backgroundImage: {
+        flex: 1
+    },
+    mainView: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
+    topView: {
+
+    },
+    middleView: {
+
+    }
+})
