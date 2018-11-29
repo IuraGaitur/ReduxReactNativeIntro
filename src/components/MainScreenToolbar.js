@@ -28,11 +28,7 @@ export default class MainScreenToolbar extends Component {
         return (
             <Header
                 androidStatusBarColor="#66B2FF"
-                style={{
-                    backgroundColor: "#66B2FF",
-                    color: '#66B2FF'
-                }}
-            >
+                style={{ backgroundColor: "#66B2FF", color: '#66B2FF' }}>
                 <Left>
                     <Button transparent >
                         <Icon style={{ color: "white" }} name="menu" />
@@ -54,7 +50,6 @@ export default class MainScreenToolbar extends Component {
                     <Button transparent onPress={this._actionSearch}>
                         <Icon style={{ color: "white" }} name="search" />
                     </Button>
-
                 </Right>
             </Header >
         );

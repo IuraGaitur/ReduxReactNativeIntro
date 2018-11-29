@@ -17,54 +17,26 @@ export default class BottomNavigationBar extends Component {
         const { activeTab } = this.state;
 
         return (
-            <Tabs
-                tabBarPosition="bottom"
-                onChangeTab={data => this.changeActiveTab(data.i)}
-                tabBarUnderlineStyle={styles.tabBar}
-            >
-                <Tab
-                    heading={
-                        <TabHeading>
-                            <TabBarItem title="NFL News" index={0} isActive={activeTab == 0} />
-                        </TabHeading>
-                    }
-                >
-               
+            <Tabs tabBarPosition="bottom" onChangeTab={data => this.changeActiveTab(data.i)} tabBarUnderlineStyle={styles.tabBar}>
+                <Tab heading={
+                    <TabHeading>
+                        <TabBarItem title="NFL News" index={0} isActive={activeTab == 0} />
+                    </TabHeading>}>
                 </Tab>
-                <Tab
-                    heading={
-                        <TabHeading>
-                            <TabBarItem title="MLB News" index={1} isActive={activeTab == 1} />
-                        </TabHeading>
-                    }
-                >
-                   
+                <Tab heading={
+                    <TabHeading>
+                        <TabBarItem title="MLB News" index={1} isActive={activeTab == 1} />
+                    </TabHeading>}>
                 </Tab>
-                <Tab
-                    heading={
-                        <TabHeading>
-                            <TabBarItem
-                                title="My News"
-                                index={2}
-                                isActive={activeTab == 2}
-                            />
-                        </TabHeading>
-                    }
-                >
-                  
+                <Tab heading={
+                    <TabHeading>
+                        <TabBarItem title="My News" index={2} isActive={activeTab == 2} />
+                    </TabHeading>}>
                 </Tab>
-                <Tab
-                    heading={
+                <Tab heading={
                         <TabHeading>
-                            <TabBarItem
-                                title="Polls"
-                                index={3}
-                                isActive={activeTab == 3}
-                            />
-                        </TabHeading>
-                    }
-                >
-                
+                            <TabBarItem title="Polls" index={3} isActive={activeTab == 3} />
+                        </TabHeading>}>
                 </Tab>
             </Tabs>
         );

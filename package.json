@@ -13,6 +13,7 @@
     "pouchdb-react-native": "^6.4.1",
     "react": "16.6.1",
     "react-native": "0.57.5",
+    "react-native-fbsdk": "^0.8.0",
     "react-native-router-flux": "^4.0.6",
     "react-native-segmented-control-tab": "^3.3.1",
     "react-native-vector-icons": "^6.1.0",

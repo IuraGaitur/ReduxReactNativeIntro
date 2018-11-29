@@ -6,10 +6,7 @@ export default class TabBarItem extends Component {
 
     getTabForPosition(position, isActive) {
         switch (this.props.index) {
-            case 0: return (<Icon
-                name="football"
-                style={styles.image}
-            />)
+            case 0: return (<Icon name="football" style={styles.image} />)
             case 1: return (<Icon name="baseball" style={[styles.image]} />)
             case 2: return (<Icon name="list" style={[styles.image]} />)
             default: return (<Icon name="add" style={[styles.image]} />)
