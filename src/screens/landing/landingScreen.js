@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image, StatusBar, TouchableHighlight } from 'react-native';
+import { Text, View, StyleSheet, Image, StatusBar, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
+import { LoginManager } from 'react-native-fbsdk';
 
 class LandingScreen extends Component {
 
-    // static navigationOptions = {
-    //     header: null
-    // };
-
     constructor(props) {
         super(props);
+    }
+
+    _onPressFacebookButton() {
+        LoginManager.logInWithReadPermissions(['public_profile']).then(function (result) {
+            if (result.isCancelled) {
+                console.log('Login was cancelled');
+            } else {
+                console.log('Login was a success' + result.grantedPermissions.toString());
+            }
+        }, function (error) {
+            console.log('An error occured: ' + error);
+        })
     }
 
     render() {
@@ -20,18 +29,18 @@ class LandingScreen extends Component {
                 <View style={styles.backgroundCover} />
                 <View style={styles.loginForm}>
                     <View style={{ alignItems: 'center', }}>
-                        <Text style={styles.titleStyle}>ROTOLEGENDS</Text>
+                        <Text style={styles.titleStyle} adjustsFontSizeToFit numberOfLines={1}>ROTOLEGENDS</Text>
                         <Text style={styles.subTitleStyle}>FANTASY NEWS</Text>
                     </View>
                     <View style={styles.bottomViewStyle}>
                         <Text style={styles.loginWithStyle}>Login with</Text>
                         <View style={styles.buttonContainerStyle}>
-                            <TouchableHighlight onPress={this._onPressFacebookButton} style={styles.circleContainer} >
+                            <TouchableOpacity onPress={this._onPressFacebookButton} style={styles.circleContainer} >
                                 <Image
                                     style={styles.imageStyle}
                                     source={require('../../assets/facebook.png')}
                                 />
-                            </TouchableHighlight>
+                            </TouchableOpacity>
                             <TouchableHighlight onPress={this._onPressLoginButton} style={styles.circleContainer} >
                                 <Image
                                     style={styles.imageStyle}
@@ -43,10 +52,6 @@ class LandingScreen extends Component {
                 </View>
             </View>
         );
-    }
-
-    _onPressFacebookButton() {
-        // TODO, implement login with Facebook account
     }
 
     _onPressLoginButton() {
