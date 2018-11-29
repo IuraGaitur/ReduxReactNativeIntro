@@ -66,6 +66,10 @@ class LoginScreen extends Component {
                             onTabPress = { this.indexChange }
                         />
                     </View>
+                    <View style = { styles.bottomView }>
+                       { this.state.selectedIndex == 0 && <LoginView actionLogin = { this.login }/>} 
+                       { this.state.selectedIndex == 1 && <RegisterView actionRegister = { this.register }/>}
+                    </View>
                 </View>
             </View>
         );
@@ -140,7 +144,8 @@ const styles = StyleSheet.create({
     },
     middleView: {
         height: 35,
-        width: '70%'
+        width: '70%',
+        marginTop: 30
     },
     defaultTab: {
         backgroundColor: 'transparent',
@@ -159,6 +164,11 @@ const styles = StyleSheet.create({
         height: '100%',
         position: 'absolute',
         backgroundColor: 'rgba(0,0,0, 0.3)'
+    },
+    bottomView: {
+        marginTop: 60,
+        width: '90%',
+        height: 'auto'
     }
 })
 
