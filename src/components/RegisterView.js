@@ -18,6 +18,7 @@ export default class RegsterView extends Component {
                 <TextInput
                     style={style.textField}
                     placeholder="Email"
+                    placeholderFontSize="20"
                     placeholderTextColor="#FFF" 
                     onChangeText={(text) => this.setState({email: text})}
                 />
@@ -26,6 +27,7 @@ export default class RegsterView extends Component {
                     style={style.textField}
                     placeholder="Password"
                     placeholderTextColor="#FFF" 
+                    placeholderFontSize="15"
                     onChangeText={(text) => this.setState({pass: text})}
                 />
                 {/* {this.props.passError && <Text>{this.props.passError}</Text>} */}
@@ -50,6 +52,7 @@ export default class RegsterView extends Component {
 const style = StyleSheet.create({
     textField: {
         height: 45,
+        fontSize: 20,
         borderBottomWidth: 1,
         borderColor: 'white',
         marginBottom: 10,

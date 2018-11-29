@@ -50,6 +50,7 @@ const style = StyleSheet.create({
     textField: {
         height: 45,
         borderBottomWidth: 1,
+        fontSize: 20,
         borderColor: 'white',
         marginBottom: 10,
         color: 'white',
