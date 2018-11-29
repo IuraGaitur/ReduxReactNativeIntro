@@ -1,13 +1,24 @@
+<<<<<<< HEAD
+import React, { Component } from 'react';
+import { Text, View, TextInput, Button, ActivityIndicator } from 'react-native';
+import { connect } from 'react-redux'
+import { loginRequest } from './loginAction';
+=======
 import React, {Component} from 'react';
 import {Text, View, TextInput, Button, ActivityIndicator, StyleSheet} from 'react-native';
 import {connect} from 'react-redux'
 import {loginRequest} from './loginAction';
+>>>>>>> 7024049d9aa70eb04cdb0dae5279e05fc8fd75ed
 
 class LoginScreen extends Component {
 
+    static navigationOptions = {
+        header: null
+    };
+
     constructor(props) {
         super(props);
-        this.state = {email: null, pass: null};
+        this.state = { email: null, pass: null };
     }
 
     login = () => {
@@ -17,21 +28,21 @@ class LoginScreen extends Component {
     };
 
     render() {
-        return(
+        return (
             <View>
                 <TextInput
-                    style={{height: 40}}
+                    style={{ height: 40 }}
                     placeholder="Email"
-                    onChangeText={(text) => this.setState({email: text})}
+                    onChangeText={(text) => this.setState({ email: text })}
                 />
                 {this.props.emailError && <Text>{this.props.emailError}</Text>}
                 <TextInput
-                    style={{height: 40}}
+                    style={{ height: 40 }}
                     placeholder="Pass"
-                    onChangeText={(text) => this.setState({pass: text})}
+                    onChangeText={(text) => this.setState({ pass: text })}
                 />
                 {this.props.passError && <Text>{this.props.passError}</Text>}
-                <Button title="Submit" onPress={() => this.login()}/>
+                <Button title="Submit" onPress={() => this.login()} />
                 {this.props.showLoading && <ActivityIndicator />}
             </View>
         );
@@ -52,24 +63,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
 
-const styles = StyleSheet.create({
-    defaultView: {
-        flex: 1
-    },
-    backgroundImage: {
-        flex: 1
-    },
-    mainView: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center'
-    },
-    topView: {
-
-    },
-    middleView: {
-
-    }
-})
