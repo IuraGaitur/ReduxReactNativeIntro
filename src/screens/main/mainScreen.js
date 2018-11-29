@@ -21,7 +21,7 @@ class MainScreen extends Component {
                 </Header>
                 <Content>
                     <Text>
-                        {this.props.email}
+                        {/* {this.props.email} */}
                     </Text>
                 </Content>
                 <Footer>
@@ -37,7 +37,7 @@ class MainScreen extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        email: state.authentication.user.email
+        // email: state.authentication.user.email
     };
 };
 

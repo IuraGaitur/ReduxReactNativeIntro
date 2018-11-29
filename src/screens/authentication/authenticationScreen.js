@@ -54,7 +54,8 @@ class LoginScreen extends Component {
                     <View style = { styles.mailView }>
                         <Image style = { styles.mailImage } source = { require('./../../../app_image/mail.png') }/>
                     </View>
-
+                    <LoginView actionLogin = {this.login} />
+                    <RegisterView actionRegister = {this.register} />
                     <View style = { styles.middleView }>
                         <SegmentedControlTab
                             tabStyle = { styles.defaultTab }
