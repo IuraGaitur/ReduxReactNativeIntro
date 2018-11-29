@@ -52,6 +52,7 @@ export default class RegsterView extends Component {
 const style = StyleSheet.create({
     textField: {
         height: 45,
+        fontSize: 20,
         borderBottomWidth: 1,
         borderColor: 'white',
         marginBottom: 10,
