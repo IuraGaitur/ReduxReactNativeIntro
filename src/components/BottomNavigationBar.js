@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { TabHeading, Tab, Tabs } from "native-base";
+import { TabHeading, Tab, Tabs} from "native-base";
 import { StyleSheet } from "react-native";
 import TabBarItem from "./TabBarItem";
 
@@ -22,21 +22,26 @@ export default class BottomNavigationBar extends Component {
                     <TabHeading>
                         <TabBarItem title="NFL News" index={0} isActive={activeTab == 0} />
                     </TabHeading>}>
+                    {this.props.nflPage}
                 </Tab>
                 <Tab heading={
                     <TabHeading>
                         <TabBarItem title="MLB News" index={1} isActive={activeTab == 1} />
                     </TabHeading>}>
+                    {this.props.mblPage}
                 </Tab>
                 <Tab heading={
                     <TabHeading>
                         <TabBarItem title="My News" index={2} isActive={activeTab == 2} />
                     </TabHeading>}>
+                    {this.props.myNewsPage}
+
                 </Tab>
                 <Tab heading={
                         <TabHeading>
                             <TabBarItem title="Polls" index={3} isActive={activeTab == 3} />
                         </TabHeading>}>
+                    {this.props.pollsPage}
                 </Tab>
             </Tabs>
         );
@@ -45,7 +50,7 @@ export default class BottomNavigationBar extends Component {
 
 const styles = StyleSheet.create({
     tabBar: {
-        backgroundColor: "#66B2FF",
-        borderTopColor: "#66B2FF"
+        backgroundColor: "transparent",
+        borderTopColor: "transparent"
     }
 });

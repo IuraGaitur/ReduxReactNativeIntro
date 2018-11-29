@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import { Container, View, Text } from 'native-base';
 import MainScreenToolbar from "./../../components/MainScreenToolbar";
 import BottomNavigationBar from "./../../components/BottomNavigationBar";
 
@@ -10,13 +10,21 @@ class MainScreen extends Component {
     render() {
         return (
             <Container>
-                {<MainScreenToolbar />}
-                <Content>
-                    <Text>
-                        {this.props.email}
-                    </Text>
-                </Content>
-                {<BottomNavigationBar />}
+                <MainScreenToolbar />
+                <BottomNavigationBar
+                    nflPage={<View>
+                                <Text>1 page</Text>
+                             </View>}
+                    mblPage={<View>
+                                <Text>2 page</Text>
+                            </View>}
+                    myNewsPage={<View>
+                                <Text>3 page</Text>
+                            </View>}
+                    pollsPage={<View>
+                                <Text>4 page</Text>
+                            </View>}
+                    />
             </Container>);
     }
 }

@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         height: 80,
-        width: 270
+        width: 240
     },
     defaultTab: {
         backgroundColor: 'transparent'
