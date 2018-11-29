@@ -3,6 +3,7 @@ import {AsyncStorage} from 'react-native';
 export default class UserRepository {
 
     PRIMARY_USER_KEY = 'USER_KEY';
+    USER_INFO = 'USER_INFO';
 
     async savePrimaryUser(user) {
         if(!user) return;
@@ -19,5 +20,13 @@ export default class UserRepository {
 
     async removePrimaryUser() {
         return await AsyncStorage.removeItem(this.PRIMARY_USER_KEY);
+    }
+
+    async getUser() {
+        let data = await AsyncStorage.getItem(this.USER_INFO);
+        if (data) {
+            data = JSON.parse(data);
+        }
+        return data;
     }
 }
