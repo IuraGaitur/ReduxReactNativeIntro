@@ -1,5 +1,6 @@
 import {LOGIN_SUCCESS, EMAIL_FAIL, PASS_FAIL, NAME_FAIL, REGISTER_SUCCESS} from './../../app/actions';
 
+
 const defaultState = {
     emailError: null,
     passError: null,
