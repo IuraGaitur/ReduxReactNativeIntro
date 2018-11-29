@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, Button, ActivityIndicator, StyleSheet, Image, Dimensions } from 'react-native';
 import { connect } from 'react-redux'
-import { loginRequest } from './authenticationAction';
+import { loginRequest, registerRequest } from './authenticationAction';
+import LoginView from './../../components/LoginView';
+import RegisterView from './../../components/RegisterView';
 
 class LoginScreen extends Component {
 
@@ -13,16 +15,24 @@ class LoginScreen extends Component {
         this.state = { email: null, pass: null };
     }
 
-    login = () => {
-        const email = this.state.email;
-        const pass = this.state.pass;
+    register = (result) => {
+        console.log(result);
+        const name = result.name;
+        const email = result.email;
+        const pass = result.pass;
+        this.props.onRegister(name, email, pass);
+    };
+
+    login = (result) => {
+        const email = result.userEmail;
+        const pass = result.userPass;
         this.props.onLogin(email, pass);
     };
 
     render() {
         return (
             <View style = { styles.defaultView }>
-                < Image style={ styles.backgroundImage } source = { require('./../../../app_image/rugby.jpg') }/>
+                <Image style={ styles.backgroundImage } source = { require('./../../../app_image/rugby.jpg') }/>
                 <View style={styles.backgroundCover}/>
                 <View style = { styles.mainView }>
                     <View style = { styles.topView }>
@@ -32,8 +42,10 @@ class LoginScreen extends Component {
                     <View style = { styles.mailView }>
                         <Image style = { styles.mailImage } source = { require('./../../../app_image/mail.png') }/>
                     </View>
-                    
-                    
+                    <View style = {styles.userCredentials}>
+                        {/* <LoginView  actionLogin = {this.login} /> */}
+                        <RegisterView actionRegister = {this.register} />
+                    </View>
                 </View>
             </View>
         );
@@ -51,12 +63,17 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onLogin: (email, pass) => { dispatch(loginRequest(email, pass)) },
+        onRegister: (name, email, pass) => {dispatch (registerRequest(name, email, pass))}
     }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
 
 const styles = StyleSheet.create({
+    userCredentials: {
+        width: '90%',
+        margin: 15,
+    },
     defaultView: {
         flex: 1,
         position: 'relative'
@@ -80,7 +97,7 @@ const styles = StyleSheet.create({
     },
     logoTitle: {
         fontWeight: 'bold',
-        fontSize: 45,
+        fontSize: 40,
         color: 'white'
     },
     logoSubtitle: {

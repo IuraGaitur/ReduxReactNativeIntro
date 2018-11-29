@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, TextInput, Button, ActivityIndicator, StyleSheet} from 'react-native';
+import {Text, View, TextInput, Button, ActivityIndicator, StyleSheet, TouchableHighlight} from 'react-native';
   
 export default class RegsterView extends Component {
 
@@ -9,52 +9,62 @@ export default class RegsterView extends Component {
     }
 
     registerAction = () => {
-        this.props.callback(this.state);
+        this.props.actionRegister(this.state);
     }
     
     render() {
         return(
             <View>
                 <TextInput
-                    style={{height: 40}}
+                    style={style.textField}
                     placeholder="Email"
+                    placeholderTextColor="#FFF" 
                     onChangeText={(text) => this.setState({email: text})}
                 />
-                {this.props.emailError && <Text>{this.props.emailError}</Text>}
+                {/* {this.props.emailError && <Text>{this.props.emailError}</Text>} */}
                 <TextInput
-                    style={{height: 40}}
+                    style={style.textField}
                     placeholder="Password"
+                    placeholderTextColor="#FFF" 
                     onChangeText={(text) => this.setState({pass: text})}
                 />
+                {/* {this.props.passError && <Text>{this.props.passError}</Text>} */}
                 <TextInput
-                    style={{height: 40}}
-                    placeholder="Display Name"
-                    onChangeText={(text) => this.setState({pass: text})}
+                    style={style.textField}
+                    placeholder="Your Name"
+                    placeholderTextColor="#FFF" 
+                    onChangeText={(text) => this.setState({name: text})}
                 />
-                {this.props.passError && <Text>{this.props.passError}</Text>}
-                <Button title="Register" onPress={() => this.registerAction()}/>
-                {this.props.showLoading && <ActivityIndicator />}
+                {/* {this.props.passError && <Text>{this.props.passError}</Text>} */}
+                <TouchableHighlight
+                    style = {style.button}
+                    onPress={() => this.registerAction()}
+                >
+                    <Text style = {style.buttonText} >REGISTER</Text>
+                </TouchableHighlight>
             </View>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    defaultView: {
-        flex: 1
+const style = StyleSheet.create({
+    textField: {
+        height: 45,
+        borderBottomWidth: 1,
+        borderColor: 'white',
+        marginBottom: 10,
+        color: 'white',
     },
-    backgroundImage: {
-        flex: 1
+    button: {
+        height: 45,
+        marginVertical: 10,
+        alignItems: 'center',
+        paddingVertical: 'auto',
+        backgroundColor: '#0080FF'
     },
-    mainView: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center'
-    },
-    topView: {
-
-    },
-    middleView: {
-
+    buttonText: {
+        marginVertical: 10,
+        fontSize: 20,
+        color: 'white',
     }
-})
+});

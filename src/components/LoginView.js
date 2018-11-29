@@ -5,11 +5,11 @@ export default class LoginView extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {email: null, pass: null};
+        this.state = {userEmail: null, userPass: null};
     }
 
     loginAction = () => { 
-        this.props.callback(this.state);
+        this.props.actionLogin(this.state);
     }
     
     render() {
@@ -18,18 +18,20 @@ export default class LoginView extends Component {
                 <TextInput
                     style={style.textField}
                     placeholder="Email"
-                    onChangeText={(text) => this.setState({email: text})}
+                    placeholderTextColor="#FFF" 
+                    onChangeText={(text) => this.setState({userEmail: text})}
                 />
-                {/* {this.props.emailError && <Text>{this.props.emailError}</Text>} */}
+                {this.props.emailError && <Text>{this.props.emailError}</Text>}
                 <TextInput
                     style={style.textField}
                     placeholder="Password"
-                    onChangeText={(text) => this.setState({pass: text})}
+                    placeholderTextColor="#FFF" 
+                    onChangeText={(text) => this.setState({userPass: text})}
                 />
-                {/* {this.props.passError && <Text>{this.props.passError}</Text>} */}
+                {this.props.passError && <Text>{this.props.passError}</Text>}
                 <TouchableHighlight
                     style = {style.button}
-                    onPress={this.loginAction()}
+                    onPress={() => this.loginAction()}
                 >
                     <Text style = {style.buttonText} >LOGIN</Text>
                 </TouchableHighlight>
@@ -37,8 +39,8 @@ export default class LoginView extends Component {
                     style = {style.button}
                     title="Submit" 
                     onPress={this.loginAction()}
-                />
-                {this.props.showLoading && <ActivityIndicator />} */}
+                /> */}
+                {this.props.showLoading && <ActivityIndicator />} 
             </View>
         );
     }
@@ -48,16 +50,20 @@ const style = StyleSheet.create({
     textField: {
         height: 45,
         borderBottomWidth: 1,
-        borderColor: 'grey',
+        borderColor: 'white',
         marginBottom: 10,
+        color: 'white',
     },
     button: {
         height: 45,
-        margin: 10,
+        marginVertical: 10,
         alignItems: 'center',
-        backgroundColor: 'blue'
+        paddingVertical: 'auto',
+        backgroundColor: '#0080FF'
     },
     buttonText: {
+        marginVertical: 10,
+        fontSize: 20,
         color: 'white',
     }
 });
