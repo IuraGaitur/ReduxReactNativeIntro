@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button, ActivityIndicator, StyleSheet, Image, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, TouchableHighlight } from 'react-native';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import { connect } from 'react-redux'
 import { loginRequest, registerRequest } from './authenticationAction';
@@ -41,6 +41,10 @@ class LoginScreen extends Component {
         })
     }
 
+    goBackBtnAction = () => {
+
+    }
+
     render() {
         return (
             <View style = { styles.defaultView }>
@@ -66,8 +70,18 @@ class LoginScreen extends Component {
                         />
                     </View>
                     <View style = { styles.bottomView }>
-                       { this.state.selectedIndex == 0 && <LoginView actionLogin = { this.login }/>} 
-                       { this.state.selectedIndex == 1 && <RegisterView actionRegister = { this.register }/>}
+                        { this.state.selectedIndex == 0 && <LoginView actionLogin = { this.login }/>} 
+                        { this.state.selectedIndex == 1 && <RegisterView actionRegister = { this.register }/>}
+                        <View style = { styles.buttonView }>
+                            <View style = { styles.textView }>
+                                <TouchableHighlight
+                                    underlayColor = 'transparent'
+                                    onPress = { this.goBackBtnAction }
+                                >
+                                    <Text style = { styles.backText }>GO BACK</Text>
+                                </TouchableHighlight>
+                            </View>
+                        </View>
                     </View>
                 </View>
             </View>
@@ -149,7 +163,8 @@ const styles = StyleSheet.create({
     defaultTab: {
         backgroundColor: 'transparent',
         height: 35,
-        width: '70%'
+        width: '70%',
+        borderColor: '#3787D9'
     },
     defaultTabText: {
         color: 'white',
@@ -168,6 +183,19 @@ const styles = StyleSheet.create({
         marginTop: 60,
         width: '90%',
         height: 'auto'
+    },
+    buttonView: {
+        height: 'auto'
+    },
+    backText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'white'
+    },
+    textView: {
+        width: '30%',
+        paddingVertical: 15,
+        paddingHorizontal: 5
     }
 })
 
