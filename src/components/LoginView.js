@@ -60,11 +60,12 @@ const style = StyleSheet.create({
         marginVertical: 10,
         alignItems: 'center',
         paddingVertical: 'auto',
-        backgroundColor: '#0080FF'
+        backgroundColor: '#3787D9'
     },
     buttonText: {
         marginVertical: 10,
         fontSize: 20,
         color: 'white',
+        fontWeight: 'bold'
     }
 });
