@@ -23,7 +23,7 @@ class MainScreen extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        email: state.login.user.email
+
     };
 };
 
