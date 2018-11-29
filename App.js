@@ -5,6 +5,8 @@ import MainScreen from './src/screens/main/mainScreen';
 import store from './src/app/store';
 import {Provider} from "react-redux";
 import './config/Reactotron';
+// import MainScreenToolbar from "./../../components/MainScreenToolbar";
+// import BottomNavigationBar from "./../../components/BottomNavigationBar";
 
 export default class App extends Component {
     render() {

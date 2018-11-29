@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import MainScreenToolbar from "./../../components/MainScreenToolbar";
+import BottomNavigationBar from "./../../components/BottomNavigationBar";
 
 
 class MainScreen extends Component {
@@ -8,29 +10,13 @@ class MainScreen extends Component {
     render() {
         return (
             <Container>
-                <Header>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>Header</Title>
-                    </Body>
-                    <Right />
-                </Header>
+                {<MainScreenToolbar />}
                 <Content>
                     <Text>
                         {this.props.email}
                     </Text>
                 </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button full>
-                            <Text>Footer</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
+                {<BottomNavigationBar />}
             </Container>);
     }
 }
