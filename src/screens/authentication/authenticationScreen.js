@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, Button, ActivityIndicator, StyleSheet, Image, Dimensions } from 'react-native';
+import SegmentedControlTab from 'react-native-segmented-control-tab';
 import { connect } from 'react-redux'
 import { loginRequest } from './authenticationAction';
 
@@ -10,7 +11,11 @@ class LoginScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { email: null, pass: null };
+        this.state = { 
+            email: null,
+            pass: null,
+            selectedIndex: 0
+        };
     }
 
     login = () => {
@@ -18,6 +23,13 @@ class LoginScreen extends Component {
         const pass = this.state.pass;
         this.props.onLogin(email, pass);
     };
+
+    indexChange = (index) => {
+        this.setState({
+            ...this.state,
+            selectedIndex: index
+        })
+    }
 
     render() {
         return (
@@ -32,8 +44,16 @@ class LoginScreen extends Component {
                     <View style = { styles.mailView }>
                         <Image style = { styles.mailImage } source = { require('./../../../app_image/mail.png') }/>
                     </View>
-                    
-                    
+                    <View style = { styles.middleView }>
+                        <SegmentedControlTab
+                            tabStyle = { styles.defaultTab }
+                            tabTextStyle = { styles.defaultTabText }
+                            activeTabStyle = { styles.activeTab }
+                            values = {[ 'Login', 'Register' ]}
+                            selectedIndex = { this.state.selectedIndex }
+                            onTabPress = { this.indexChange }
+                        />
+                    </View>
                 </View>
             </View>
         );
@@ -102,7 +122,20 @@ const styles = StyleSheet.create({
         height: 50
     },
     middleView: {
-
+        height: 35,
+        width: '70%'
+    },
+    defaultTab: {
+        backgroundColor: 'transparent',
+        height: 35,
+        width: '70%'
+    },
+    defaultTabText: {
+        color: 'white',
+        fontSize: 15
+    },
+    activeTab: {
+        backgroundColor: '#3787D9'
     },
     backgroundCover: {
         width: '100%',

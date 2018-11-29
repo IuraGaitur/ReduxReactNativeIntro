@@ -1,4 +1,4 @@
-import {LOGIN_SUCCESS, EMAIL_FAIL, PASS_FAIL} from './../../app/actions';
+import {LOGIN_SUCCESS, EMAIL_FAIL, PASS_FAIL} from '../../app/actions';
 
 const defaultState = {
     emailError: null,
