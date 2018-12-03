@@ -6,10 +6,10 @@ export default class TabBarItem extends Component {
 
     getTabForPosition(position, isActive) {
         switch (this.props.index) {
-            case 0: return (<Icon name="football" style={styles.image} />)
+            case 0: return (<Icon name="american-football" style={styles.image} />)
             case 1: return (<Icon name="baseball" style={[styles.image]} />)
-            case 2: return (<Icon name="list" style={[styles.image]} />)
-            default: return (<Icon name="add" style={[styles.image]} />)
+            case 2: return (<Icon name="star" style={[styles.image]} />)
+            default: return (<Icon name="chatbubbles" style={[styles.image]} />)
         }
     }
 
@@ -30,16 +30,18 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#66B2FF'
+        backgroundColor: '#66B2FF',
+        padding: 8
     },
     image: {
-        width: 30,
-        height: 30,
+        width: 24,
+        height: 24,
         color: "white",
     },
     title: {
         fontSize: 15,
         color: "white",
+        paddingTop: 5
     },
     active: {
         backgroundColor: '#3D6A99',
