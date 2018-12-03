@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import { Container, View, Text } from 'native-base';
+import { Container, View, Text, Header, Left, Button, Icon, Body, Title, Right, Content, Footer, FooterTab} from 'native-base';
 import MainScreenToolbar from "./../../components/MainScreenToolbar";
 import BottomNavigationBar from "./../../components/BottomNavigationBar";
 
@@ -10,7 +10,6 @@ class MainScreen extends Component {
     render() {
         return (
             <Container>
-<<<<<<< HEAD
                 <Header>
                     <Left>
                         <Button transparent>
@@ -34,7 +33,6 @@ class MainScreen extends Component {
                         </Button>
                     </FooterTab>
                 </Footer>
-=======
                 <MainScreenToolbar />
                 <BottomNavigationBar
                     nflPage={<View>
@@ -50,18 +48,13 @@ class MainScreen extends Component {
                                 <Text>4 page</Text>
                             </View>}
                     />
->>>>>>> af534b77e15f030ec86e5a60336caf8021b9de7e
             </Container>);
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-<<<<<<< HEAD
         // email: state.authentication.user.email
-=======
-
->>>>>>> af534b77e15f030ec86e5a60336caf8021b9de7e
     };
 };
 
