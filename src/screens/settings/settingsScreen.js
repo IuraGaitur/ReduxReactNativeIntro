@@ -3,6 +3,7 @@ import {Text, View, Image, StyleSheet, TextInput} from 'react-native';
 import {connect} from 'react-redux'
 import SwitchToggle from 'react-native-switch-toggle';
 import {getUser} from "./settingsAction";
+import {registerRequest} from "../authentication/authenticationAction";
 
 class SettingsScreen extends Component {
 
@@ -20,6 +21,13 @@ class SettingsScreen extends Component {
 
     getUser = () => {
         this.props.getUser()
+    };
+
+    update = (result) => {
+        const name = result.name;
+        const email = result.email;
+        const pass = result.pass;
+        this.props.onUpdateUser(name, email, pass);
     };
 
     swichPress = () => {
@@ -96,6 +104,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getUser: () => { dispatch(getUser()) },
+        onUpdateUser: (name, email, pass) => {dispatch (registerRequest(name, email, pass))}
     }
 };
 

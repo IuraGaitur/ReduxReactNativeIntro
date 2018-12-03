@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import loginReducer from './../../screens/login/loginReducer';
 import settingsReducer from "../../screens/settings/settingsReducer";
+import authenticationReducer from './../../screens/authentication/authenticationReducer';
 
 export default combineReducers({
-    login: loginReducer,
-    settings: settingsReducer
+    authentication: authenticationReducer,
+    settings: settingsReducer,
 })

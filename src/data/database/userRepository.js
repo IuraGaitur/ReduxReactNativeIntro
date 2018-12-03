@@ -6,8 +6,8 @@ export default class UserRepository {
     USER_INFO = 'USER_INFO';
 
     async savePrimaryUser(user) {
-        if(!user) return;
-        return await AsyncStorage.setItem(this.PRIMARY_USER_KEY, JSON.stringify(user));
+        if (!user) return;
+        await AsyncStorage.setItem(this.PRIMARY_USER_KEY, JSON.stringify(user));
     }
 
     async getPrimaryUser() {
@@ -23,10 +23,17 @@ export default class UserRepository {
     }
 
     async getUser() {
-        let data = await AsyncStorage.getItem(this.USER_INFO);
+        let data = await AsyncStorage.getItem(this.PRIMARY_USER_KEY);
         if (data) {
             data = JSON.parse(data);
         }
         return data;
+    }
+
+    storeUserData = async (user) => {
+        try {
+            await AsyncStorage.setItem(this.PRIMARY_USER_KEY, JSON.stringify(user));
+        } catch (error) {
+        }
     }
 }
