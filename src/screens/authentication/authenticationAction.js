@@ -6,35 +6,28 @@ import User from './../../data/models/user'
 export const loginRequest = (email, pass) => {
         return async (dispatch) => {
                 console.log("asdfg" + pass);
-                if (!email) return {message: "Empty email", type: EMAIL_FAIL};
-                if (!pass) return {message: "Empty password", type: PASS_FAIL};
+                if (!email) return dispatch({message: "Empty email", type: EMAIL_FAIL});
+                if (!pass) return dispatch({message: "Empty password", type: PASS_FAIL});
                 // const user = new UserRepository().getPrimaryUser();
                 const userRepository = new UserRepository();
                 var user = await userRepository.getPrimaryUser();
-                console.log(user);
                 if (email != user.email) return {message: "Invalid email", type: EMAIL_FAIL};
-                console.log(user.password);
                 if (pass != user.password) return {message: "Invalid password", type: PASS_FAIL};
-                console.log("asdfg" + pass);
                 Actions.main();
-                console.log(user);
-
-                return {user: user, type: LOGIN_SUCCESS};
+                return dispatch({user: user, type: LOGIN_SUCCESS});
         }
 };
 
 export const registerRequest = (name, email, pass) => {
-        if (!email) return {message: "Empty email", type: EMAIL_FAIL};
-        if (!pass) return {message: "Empty password", type: PASS_FAIL};
-        if (!name) return {message: "Empty display name", type: NAME_FAIL};
-        const usr = new User(name, email, pass);
+        return async (dispatch) => {
+                if (!email) return dispatch({message: "Empty email", type: EMAIL_FAIL});
+                if (!pass) return dispatch({message: "Empty password", type: PASS_FAIL});
+                if (!name) return dispatch({message: "Empty display name", type: NAME_FAIL});
+                const user = new User(name, email, pass);
 
-        rep = new UserRepository();
-        rep.storeUserData(usr);
-        let user = rep.retrieveData();
-        // await new UserRepository().savePrimaryUser(usr);
-        // let user = await new UserRepository().getPrimaryUser();
-
-        Actions.main();
-        return {user: user, type: LOGIN_SUCCESS};
+                const repository = new UserRepository();
+                repository.storeUserData(user);
+                Actions.main();
+                return {user: user, type: LOGIN_SUCCESS};
+        }
 }
