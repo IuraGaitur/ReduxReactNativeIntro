@@ -30,4 +30,5 @@ export const registerRequest = (name, email, pass) => {
                 Actions.main();
                 return {user: user, type: LOGIN_SUCCESS};
         }
+
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, Button, ActivityIndicator, StyleSheet, Image, Dimensions, Alert, ScrollView } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, TouchableHighlight, ScrollView } from 'react-native';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import { connect } from 'react-redux'
 import { loginRequest, registerRequest } from './authenticationAction';
@@ -39,6 +39,10 @@ class AuthenticationScreen extends Component {
             ...this.state,
             selectedIndex: index
         })
+    }
+
+    goBackBtnAction = () => {
+
     }
 
     render() {
@@ -159,7 +163,8 @@ const styles = StyleSheet.create({
     defaultTab: {
         backgroundColor: 'transparent',
         height: 35,
-        width: '70%'
+        width: '70%',
+        borderColor: '#3787D9'
     },
     defaultTabText: {
         color: 'white',
@@ -178,5 +183,18 @@ const styles = StyleSheet.create({
         marginTop: 60,
         width: '90%',
         height: 'auto'
+    },
+    buttonView: {
+        height: 'auto'
+    },
+    backText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'white'
+    },
+    textView: {
+        width: '30%',
+        paddingVertical: 15,
+        paddingHorizontal: 5
     }
 })
