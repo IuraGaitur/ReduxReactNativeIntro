@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, Dimensions, TouchableHighlight, ScrollView } from 'react-native';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import { connect } from 'react-redux'
+import {Button} from 'native-base';
 import { loginRequest, registerRequest } from './authenticationAction';
 import LoginView from './../../components/LoginView';
 import RegisterView from './../../components/RegisterView';
-import { EMAIL_FAIL } from '../../app/actions';
+import {Actions} from 'react-native-router-flux';
 
 class AuthenticationScreen extends Component {
 
     title = 'ROTOLEGENDS';
-    subtitle = 'FANTASY NEWS'
+    subtitle = 'FANTASY NEWS';
 
     constructor(props) {
         super(props);
@@ -39,11 +40,11 @@ class AuthenticationScreen extends Component {
             ...this.state,
             selectedIndex: index
         })
-    }
+    };
 
     goBackBtnAction = () => {
-
-    }
+        Actions.pop();
+    };
 
     render() {
         const {emailError, passError, nameError} = this.props;
@@ -76,6 +77,9 @@ class AuthenticationScreen extends Component {
                             { this.state.selectedIndex == 0 && <LoginView actionLogin = { this.login } emailError={emailError} passError={passError}/>} 
                             { this.state.selectedIndex == 1 && <RegisterView actionRegister = { this.register } emailError={emailError} passError={passError} nameError={nameError}/>}
                             </View>
+                            <Button transparent onPress={() => this.goBackBtnAction()}>
+                                <Text style={styles.backText}>Go Back</Text>
+                            </Button>
                         </View>
                     </ScrollView>
                 </View>
@@ -189,7 +193,8 @@ const styles = StyleSheet.create({
     backText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
+        marginLeft: 20
     },
     textView: {
         width: '30%',

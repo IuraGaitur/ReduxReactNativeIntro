@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import { Container, View, Text } from 'native-base';
+import { Container, View, Text, Header, Right, Button, Footer, FooterTab, Left, Icon, Body, Title, Content } from 'native-base';
 import MainScreenToolbar from "./../../components/MainScreenToolbar";
 import BottomNavigationBar from "./../../components/BottomNavigationBar";
 
@@ -10,31 +10,6 @@ class MainScreen extends Component {
     render() {
         return (
             <Container>
-<<<<<<< HEAD
-                <Header>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                    <Title>Header</Title>
-                    </Body>
-                    <Right />
-                </Header>
-                <Content>
-                    <Text>
-                        {/* {this.props.email} */}
-                    </Text>
-                </Content>
-                <Footer>
-                    <FooterTab>
-                        <Button full>
-                            <Text>Footer</Text>
-                        </Button>
-                    </FooterTab>
-                </Footer>
-=======
                 <MainScreenToolbar />
                 <BottomNavigationBar
                     nflPage={<View>
@@ -50,18 +25,12 @@ class MainScreen extends Component {
                                 <Text>4 page</Text>
                             </View>}
                     />
->>>>>>> af534b77e15f030ec86e5a60336caf8021b9de7e
             </Container>);
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-<<<<<<< HEAD
-        // email: state.authentication.user.email
-=======
-
->>>>>>> af534b77e15f030ec86e5a60336caf8021b9de7e
     };
 };
 
