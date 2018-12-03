@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image, Dimensions, TouchableHighlight } from 'react-native';
+import { Text, View, StyleSheet, Image, Dimensions, TouchableHighlight, ScrollView } from 'react-native';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import { connect } from 'react-redux'
+import {Button} from 'native-base';
 import { loginRequest, registerRequest } from './authenticationAction';
 import LoginView from './../../components/LoginView';
 import RegisterView from './../../components/RegisterView';
+import {Actions} from 'react-native-router-flux';
 
-class LoginScreen extends Component {
+class AuthenticationScreen extends Component {
 
     title = 'ROTOLEGENDS';
-    subtitle = 'FANTASY NEWS'
+    subtitle = 'FANTASY NEWS';
 
     constructor(props) {
         super(props);
@@ -21,7 +23,6 @@ class LoginScreen extends Component {
     }
 
     register = (result) => {
-        console.log(result);
         const name = result.name;
         const email = result.email;
         const pass = result.pass;
@@ -39,49 +40,48 @@ class LoginScreen extends Component {
             ...this.state,
             selectedIndex: index
         })
-    }
+    };
 
     goBackBtnAction = () => {
-
-    }
+        Actions.pop();
+    };
 
     render() {
+        const {emailError, passError, nameError} = this.props;
+
         return (
             <View style = { styles.defaultView }>
                 <Image style={ styles.backgroundImage } source = { require('./../../../app_image/rugby.jpg') }/>
                 <View style={styles.backgroundCover}/>
                 <View style = { styles.mainView }>
-                    <View style = { styles.topView }>
-                        <Text style = { styles.logoTitle }>{ this.title }</Text>
-                        <Text style = { styles.logoSubtitle }>{ this.subtitle }</Text>
-                    </View>
-                    <View style = { styles.mailView }>
-                        <Image style = { styles.mailImage } source = { require('./../../../app_image/mail.png') }/>
-                    </View>
-                    <View style = { styles.middleView }>
-                        <SegmentedControlTab
-                            tabStyle = { styles.defaultTab }
-                            tabTextStyle = { styles.defaultTabText }
-                            activeTabStyle = { styles.activeTab }
-                            values = {[ 'Login', 'Register' ]}
-                            selectedIndex = { this.state.selectedIndex }
-                            onTabPress = { this.indexChange }
-                        />
-                    </View>
-                    <View style = { styles.bottomView }>
-                        { this.state.selectedIndex == 0 && <LoginView actionLogin = { this.login }/>} 
-                        { this.state.selectedIndex == 1 && <RegisterView actionRegister = { this.register }/>}
-                        <View style = { styles.buttonView }>
-                            <View style = { styles.textView }>
-                                <TouchableHighlight
-                                    underlayColor = 'transparent'
-                                    onPress = { this.goBackBtnAction }
-                                >
-                                    <Text style = { styles.backText }>GO BACK</Text>
-                                </TouchableHighlight>
+                    <ScrollView>
+                        <View style = {styles.scrollViewContainer}>
+                            <View style = { styles.topView }>
+                                <Text style = { styles.logoTitle }>{ this.title }</Text>
+                                <Text style = { styles.logoSubtitle }>{ this.subtitle }</Text>
                             </View>
+                            <View style = { styles.mailView }>
+                                <Image style = { styles.mailImage } source = { require('./../../../app_image/mail.png') }/>
+                            </View>
+                            <View style = { styles.middleView }>
+                                <SegmentedControlTab
+                                    tabStyle = { styles.defaultTab }
+                                    tabTextStyle = { styles.defaultTabText }
+                                    activeTabStyle = { styles.activeTab }
+                                    values = {[ 'Login', 'Register' ]}
+                                    selectedIndex = { this.state.selectedIndex }
+                                    onTabPress = { this.indexChange }
+                                />
+                            </View>
+                            <View style = { styles.bottomView }>
+                            { this.state.selectedIndex == 0 && <LoginView actionLogin = { this.login } emailError={emailError} passError={passError}/>} 
+                            { this.state.selectedIndex == 1 && <RegisterView actionRegister = { this.register } emailError={emailError} passError={passError} nameError={nameError}/>}
+                            </View>
+                            <Button transparent onPress={() => this.goBackBtnAction()}>
+                                <Text style={styles.backText}>Go Back</Text>
+                            </Button>
                         </View>
-                    </View>
+                    </ScrollView>
                 </View>
             </View>
         );
@@ -92,6 +92,7 @@ const mapStateToProps = (state) => {
     return {
         passError: state.authentication.passError,
         emailError: state.authentication.emailError,
+        nameError: state.authentication.nameError,
         showLoading: state.authentication.showLoading,
     };
 };
@@ -103,7 +104,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthenticationScreen);
 
 const styles = StyleSheet.create({
     userCredentials: {
@@ -124,7 +125,6 @@ const styles = StyleSheet.create({
         flex: 1,
         position: 'absolute',
         flexDirection: 'column',
-        alignItems: 'center',
         backgroundColor: 'transparent'
     },
     topView: {
@@ -139,6 +139,10 @@ const styles = StyleSheet.create({
     logoSubtitle: {
         fontSize: 15,
         color: 'white'
+    },
+    scrollViewContainer: {
+        flexGrow : 1,
+        alignItems: 'center',
     },
     mailView: {
         width: 100,
@@ -189,7 +193,8 @@ const styles = StyleSheet.create({
     backText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
+        marginLeft: 20
     },
     textView: {
         width: '30%',
@@ -197,19 +202,3 @@ const styles = StyleSheet.create({
         paddingHorizontal: 5
     }
 })
-
-
-{/* <TextInput
-style={{height: 40}}
-placeholder="Email"
-onChangeText={(text) => this.setState({email: text})}
-/>
-{this.props.emailError && <Text>{this.props.emailError}</Text>}
-<TextInput
-style={{height: 40}}
-placeholder="Pass"
-onChangeText={(text) => this.setState({pass: text})}
-/>
-{this.props.passError && <Text>{this.props.passError}</Text>}
-<Button title="Submit" onPress={() => this.login()}/>
-{this.props.showLoading && <ActivityIndicator />} */}

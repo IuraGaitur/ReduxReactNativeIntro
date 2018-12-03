@@ -25,7 +25,6 @@ export default class UserRepository {
         try {
             await AsyncStorage.setItem(this.PRIMARY_USER_KEY, JSON.stringify(user));
         } catch (error) {
-            // Error saving data
         }
     }
 }
