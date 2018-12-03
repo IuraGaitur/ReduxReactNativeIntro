@@ -27,14 +27,9 @@ export const registerRequest = (name, email, pass) => {
         if (!email) return {message: "Empty email", type: EMAIL_FAIL};
         if (!pass) return {message: "Empty password", type: PASS_FAIL};
         if (!name) return {message: "Empty display name", type: NAME_FAIL};
-        const usr = new User(name, email, pass);
-
-        rep = new UserRepository();
-        rep.storeUserData(usr);
-        let user = rep.retrieveData();
-        // await new UserRepository().savePrimaryUser(usr);
-        // let user = await new UserRepository().getPrimaryUser();
-
+        const user = new User(name, email, pass);
+        var repository = new UserRepository();
+        repository.storeUserData(user);
         Actions.main();
         return {user: user, type: LOGIN_SUCCESS};
 }
