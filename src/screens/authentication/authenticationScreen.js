@@ -47,7 +47,6 @@ class AuthenticationScreen extends Component {
 
     render() {
         const {emailError, passError, nameError} = this.props;
-        console.log(nameError + 'asdfghjkl');
 
         return (
             <View style = { styles.defaultView }>

@@ -5,10 +5,8 @@ import User from './../../data/models/user'
 
 export const loginRequest = (email, pass) => {
         return async (dispatch) => {
-                console.log("asdfg" + pass);
                 if (!email) return dispatch({message: "Empty email", type: EMAIL_FAIL});
                 if (!pass) return dispatch({message: "Empty password", type: PASS_FAIL});
-                // const user = new UserRepository().getPrimaryUser();
                 const userRepository = new UserRepository();
                 var user = await userRepository.getPrimaryUser();
                 if (email != user.email) return {message: "Invalid email", type: EMAIL_FAIL};
