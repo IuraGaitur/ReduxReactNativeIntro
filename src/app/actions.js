@@ -8,3 +8,6 @@ export const NAME_FAIL = 'NAME_FAIL';
 //Splash Actions
 export const IS_LOGGED_IN = "IS_LOGGED_IN";
 export const NO_USER = "NO_USER";
+
+// Find Players Actions
+export const LOAD_PLAYERS = "LOAD_PLAYERS"

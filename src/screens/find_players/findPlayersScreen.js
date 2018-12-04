@@ -17,68 +17,26 @@ import {
   Button,
   Body
 } from "native-base";
+import { connect } from "react-redux";
 import FindPlayersListItem from "../../components/FindPlayersListItem";
+import { getAllPlayers } from "./findPlayersAction";
 
-export default class FindPlayersScreen extends Component {
+class FindPlayersScreen extends Component {
   constructor() {
     super();
     this.state = {
-      playersList: []
+      renderedListData: []
     };
   }
 
-  componentDidMount() {
-    data = [
-      {
-        logo: {
-          uri:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Y-fCVDkx7gkRD3NPPkdVgHd3elPFt2CZWFXHcHNQdiK59-FAdQ"
-        },
-        player: "Devin",
-        playerPosition: "SS",
-        isFavorite: true
-      },
-      {
-        logo: {
-          uri:
-            "https://i.pinimg.com/236x/44/5a/c3/445ac389828217249120369782413174--rugby-logos-sport-logos.jpg"
-        },
-        player: "Jackson",
-        playerPosition: "QB",
-        isFavorite: false
-      },
-      {
-        logo: {
-          uri:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2v73Pn2Lmh4RdxEiu1jrM6xD3A6CKqGiW7Aw-b3biC_aI1wQw"
-        },
-        player: "James",
-        playerPosition: "CB",
-        isFavorite: true
-      },
-      {
-        logo: {
-          uri:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Y-fCVDkx7gkRD3NPPkdVgHd3elPFt2CZWFXHcHNQdiK59-FAdQ"
-        },
-        player: "Johel",
-        playerPosition: "LB",
-        isFavorite: false
-      },
-      {
-        logo: {
-          uri:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbDYb6ACs84ZnyA2yV2g4lrbxHULyl6x65r09g4317pllFtP7o"
-        },
-        player: "John",
-        playerPosition: "LB",
-        isFavorite: true
-      }
-    ];
-    this.setState({
-      playersList: data,
-      renderedListData: data
-    });
+  async componentDidMount() {
+    this.props.getPlayers();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.players != this.state.renderedListData) {
+      this.setState({ renderedListData: newProps.players });
+    }
   }
 
   _onChangeSearchText = searchText => {
@@ -86,7 +44,7 @@ export default class FindPlayersScreen extends Component {
     let text = searchText.toLowerCase();
 
     if (searchText.length >= 2) {
-      let playersList = this.state.playersList;
+      let playersList = this.props.players;
       filteredList = playersList.filter(item => {
         if (item.player.toLowerCase().match(text)) {
           return item;
@@ -95,10 +53,10 @@ export default class FindPlayersScreen extends Component {
     }
     if (!text || text === "") {
       this.setState({
-        renderedListData: this.state.playersList,
+        renderedListData: this.props.players,
         noData: false
       });
-    } else if (!filteredList.length) {
+    } else if (!filteredList.length && searchText.length > 2) {
       this.setState({
         noData: true
       });
@@ -131,21 +89,45 @@ export default class FindPlayersScreen extends Component {
             />
           </Item>
         </Header>
-        <View style={styles.mainContainer}>
-          <FlatList
-            data={this.state.renderedListData}
-            renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => this._onItemPress(item.player)}>
-                <FindPlayersListItem item={item} />
-              </TouchableOpacity>
-            )}
-          />
+        <View>
+          {!this.state.noData && (
+            <FlatList
+              data={this.state.renderedListData}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  onPress={() => this._onItemPress(item.player)}
+                >
+                  <FindPlayersListItem item={item} />
+                </TouchableOpacity>
+              )}
+            />
+          )}
+          {this.state.noData && (
+            <View style={{ alignItems: "center", marginTop: 20 }}>
+              <Text style={{fontSize:20}}>Not Found</Text>
+            </View>
+          )}
         </View>
       </Container>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  mainContainer: {}
-});
+const mapStateToProps = state => {
+  return {
+    players: state.findPlayers.players
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getPlayers: () => {
+      dispatch(getAllPlayers());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FindPlayersScreen);

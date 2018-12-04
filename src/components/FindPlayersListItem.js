@@ -3,12 +3,9 @@ import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { ListItem, CheckBox, Text, Icon, Body } from "native-base";
 
 export default class FindPlayersListItem extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isFavorite: false
-    };
-  }
+  state = {
+    isFavorite: this.props.item.isFavorite
+  };
 
   onStarPress = () => {
     this.setState({ isFavorite: !this.state.isFavorite });
@@ -21,7 +18,9 @@ export default class FindPlayersListItem extends Component {
           <Image source={this.props.item.logo} style={styles.imageLogo} />
           <View style={styles.textBody}>
             <Text style={styles.playerName}>{this.props.item.player} </Text>
-            <Text style={styles.playerPosition}>{this.props.item.playerPosition} </Text>
+            <Text style={styles.playerPosition}>
+              {this.props.item.playerPosition}{" "}
+            </Text>
           </View>
           <TouchableOpacity onPress={() => this.onStarPress()}>
             <Image
@@ -59,11 +58,11 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
-    marginStart:20,
+    marginStart: 20
   },
   playerName: {
     fontSize: 22,
-    color: '#4f4f4f'
+    color: "#4f4f4f"
   },
   playerPosition: {
     fontSize: 16,
