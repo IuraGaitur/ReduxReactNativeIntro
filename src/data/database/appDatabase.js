@@ -4,3 +4,4 @@ PouchDB.plugin(require('pouchdb-find'));
 const AppDatabase = new PouchDB('Sporter', {adapter: 'asyncstorage'});
 
 export default AppDatabase;
+
