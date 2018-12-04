@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { TabHeading, Tab, Tabs} from "native-base";
 import { StyleSheet } from "react-native";
 import TabBarItem from "./TabBarItem";
+import {Actions} from 'react-native-router-flux';
 
 export default class BottomNavigationBar extends Component {
     constructor(props) {
@@ -11,6 +12,9 @@ export default class BottomNavigationBar extends Component {
 
     changeActiveTab = position => {
         this.setState({ activeTab: position });
+        if (position === 3) {
+            Actions.polls();
+        }
     };
 
     render() {

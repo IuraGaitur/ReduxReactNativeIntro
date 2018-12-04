@@ -15,20 +15,11 @@ export default class App extends Component {
             <Provider store={store}>
                 <Router>
                     <Stack key="root">
-<<<<<<< HEAD
-                        <Scene key="splash" component={SplashScreen} title="Splash" hideNavBar initial />
-                        <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar />
-                        <Scene key="login" component={LoginScreen} title="Login" />
-                        <Scene key="main" component={MainScreen} title="Main" hideNavBar />
-                        <Scene key="polls" component={PollsMainScreen} title="PollsScreen" hideNavBar />
-=======
-
-                        <Scene key="main" component={MainScreen} title="Main"/>
-                        <Scene key="splash" component={SplashScreen} title="Splash"  hideNavBar initial/>
+                        <Scene key="splash" component={SplashScreen} title="Splash"  hideNavBar />
                         <Scene key="authentication" component={AuthenticationScreen} title="Authentication" hideNavBar/>
                         <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar />
-                        <Scene key="main" component={MainScreen} title="Main" hideNavBar/>
->>>>>>> 8a343df0d60adc53529482a2506f1595f26f1583
+                        <Scene key="main" component={MainScreen} title="Main" hideNavBar initial/>
+                        <Scene key="polls" component={PollsMainScreen} title="PollsScreen" hideNavBar />
                     </Stack>
                 </Router>
             </Provider>

@@ -4,7 +4,7 @@ import { Container, View, Text } from 'native-base';
 import { ToastAndroid, TouchableHighlight, StyleSheet } from "react-native";
 import MainScreenToolbar from "./../../components/MainScreenToolbar";
 import BottomNavigationBar from "./../../components/BottomNavigationBar";
-
+import PollsMainScreen from './../polls/pollsMainScreen';
 
 class MainScreen extends Component {
 
@@ -17,7 +17,6 @@ class MainScreen extends Component {
     componentDidMount() {}
 
     measureToolbar = (e) => {
-        console.log("data", e.nativeEvent.layout.height);
         this.setState({headerHeight: e.nativeEvent.layout.height})
     }
 
@@ -36,7 +35,7 @@ class MainScreen extends Component {
                                     <Text>3 page</Text>
                                 </View>}
                         pollsPage={<View>
-                                    <Text>4 page</Text>
+                                    <View />
                                 </View>}
                         />
                 </View>
