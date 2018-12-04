@@ -5,6 +5,6 @@ import findPlayersReducer from './../../screens/find_players/findPlayersReducer'
 
 export default combineReducers({
     authentication: authenticationReducer,
-    findPlayers: findPlayersReducer
-    settings: settingsReducer,
+    findPlayers: findPlayersReducer,
+    settings: settingsReducer
 })
