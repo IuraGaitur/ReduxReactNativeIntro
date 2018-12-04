@@ -1,9 +1,9 @@
 
 import React, { Component } from 'react';
 import { View, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
-import NFLitem from './components/nflItem';
+import NFLitem from '../nflNews/components/nflItem';
 
-export default class NFLScreen extends Component {
+export default class MLBScreen extends Component {
 
     currentPage = 0;
     pageSize = 20;

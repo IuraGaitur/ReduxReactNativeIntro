@@ -3,7 +3,8 @@ import {connect} from 'react-redux'
 import { Container, View, Text, Header, Right, Button, Footer, FooterTab, Left, Icon, Body, Title, Content } from 'native-base';
 import MainScreenToolbar from "./../../components/MainScreenToolbar";
 import BottomNavigationBar from "./../../components/BottomNavigationBar";
-
+import NFLScreen from '../nflNews/nflScreen';
+import MLBScreen from '../mlbNews/mlbScreen';
 
 class MainScreen extends Component {
 
@@ -12,12 +13,8 @@ class MainScreen extends Component {
             <Container>
                 <MainScreenToolbar />
                 <BottomNavigationBar
-                    nflPage={<View>
-                                <Text>1 page</Text>
-                             </View>}
-                    mblPage={<View>
-                                <Text>2 page</Text>
-                            </View>}
+                    nflPage={ <NFLScreen></NFLScreen> }
+                    mblPage={ <MLBScreen></MLBScreen> }
                     myNewsPage={<View>
                                 <Text>3 page</Text>
                             </View>}
