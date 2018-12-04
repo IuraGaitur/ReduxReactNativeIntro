@@ -12,3 +12,6 @@ export const NO_USER = "NO_USER";
 //Settings
 export const SAVE_SETTINGS = "SAVE_SETTINGS";
 export const INFO_USER = "INFO_USER";
+
+// Find Players Actions
+export const LOAD_PLAYERS = "LOAD_PLAYERS"
