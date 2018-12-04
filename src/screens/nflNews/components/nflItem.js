@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
         height: 150,
         backgroundColor: 'white',
         flexDirection: 'row',
-        //margin: 10,
         paddingHorizontal: 20,
         justifyContent: 'center',
 
@@ -63,7 +62,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     titleView: {
-        flexDirection: 'row'
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     titleBlack: {
         fontSize: 18,
@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
     titleBlue: {
         fontSize: 15,
         fontWeight: 'bold',
-        color: 'blue'
+        color: '#66B2FF',
+        marginLeft: 5
     },
     descriptionView: {
         flexDirection: 'column',

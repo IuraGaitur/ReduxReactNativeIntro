@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { ToastAndroid, Text, TouchableHighlight, StyleSheet } from "react-native";
-import { Header, Title, Button, Left, Right, Body, Icon, View } from "native-base";
+import { ToastAndroid, Text, TouchableHighlight, StyleSheet, Animated } from "react-native";
+import { Header, Title, Button, Left, Right, Body, Icon, View, List, ListItem } from "native-base";
 import SegmentedControlTab from 'react-native-segmented-control-tab';
+import Collapsible from "react-native-collapsible";
+import { Actions } from "react-native-router-flux";
 
 export default class MainScreenToolbar extends Component {
 
@@ -9,7 +11,8 @@ export default class MainScreenToolbar extends Component {
         super(props);
         this.state = {
             pressStatus: false,
-            selectedIndex: 0
+            selectedIndex: 0,
+            menuIsVisible: true
         };
     }
 
@@ -24,34 +27,67 @@ export default class MainScreenToolbar extends Component {
         })
     }
 
+    openMenu = () => {
+        this.setState({menuIsVisible: !this.state.menuIsVisible});
+    }
+
+    goToFindPlayers= () =>{
+        Actions.findPlayers()
+    }
     render() {
+        const {menuIsVisible} = this.state;
         return (
-            <Header
-                androidStatusBarColor="#66B2FF"
-                style={{ backgroundColor: "#66B2FF", color: '#66B2FF' }}>
-                <Left>
-                    <Button transparent >
-                        <Icon style={{ color: "white" }} name="menu" />
-                    </Button>
-                </Left>
-                <Body>
-                    <View style={styles.middleView}>
-                        <SegmentedControlTab
-                            tabStyle={styles.defaultTab}
-                            tabTextStyle={styles.defaultTabText}
-                            activeTabStyle={styles.activeTab}
-                            values={['NFL', 'MLB']}
-                            selectedIndex={this.state.selectedIndex}
-                            onTabPress={this.indexChange}
-                        />
+            <View>
+                <Header
+                    androidStatusBarColor="#66B2FF"
+                    style={{ backgroundColor: "#66B2FF", color: '#66B2FF' }}
+                    onLayout={(e) => this.props.actionOnMeasure(e)}>
+                    <Left>
+                        <Button transparent
+                            onPress={() => this.openMenu()}>
+                            <Icon style={{ color: "white" }} name="menu" />
+                        </Button>
+                    </Left>
+                    <Body>
+                        <View style={styles.middleView}>
+                            <SegmentedControlTab
+                                tabStyle={styles.defaultTab}
+                                tabTextStyle={styles.defaultTabText}
+                                activeTabStyle={styles.activeTab}
+                                values={['NFL', 'MLB']}
+                                selectedIndex={this.state.selectedIndex}
+                                onTabPress={this.indexChange}
+                            />
+                        </View>
+                    </Body>
+                    <Right>
+                        <Button transparent onPress={this._actionSearch}>
+                            <Icon style={{ color: "white" }} name="search" />
+                        </Button>
+                    </Right>
+                </Header >
+                <Collapsible collapsed={menuIsVisible} duration={300}>
+                    <View style={{backgroundColor: "#66B2FF", width: '100%', position: 'relative', zIndex: 999}}>
+                        <List itemDivider={false} >
+                            <ListItem noBorder>
+                                <Text style={styles.menuItem}>News</Text>
+                            </ListItem>
+                            <ListItem noBorder>
+                                <Text style={styles.menuItem}>My News</Text>
+                            </ListItem>
+                            <ListItem noBorder
+                                button onPress={() => {this.goToFindPlayers()}}
+                            >
+                                <Text style={styles.menuItem}>Find Players</Text>
+                            </ListItem>
+                            <ListItem noBorder>
+                                <Text style={styles.menuItem}>Settings</Text>
+                            </ListItem>
+                        </List>
                     </View>
-                </Body>
-                <Right>
-                    <Button transparent onPress={this._actionSearch}>
-                        <Icon style={{ color: "white" }} name="search" />
-                    </Button>
-                </Right>
-            </Header >
+                </Collapsible>
+                
+            </View>
         );
     }
 }
@@ -77,5 +113,11 @@ const styles = StyleSheet.create({
     },
     activeTab: {
         backgroundColor: '#3787D9'
+    },
+    menuItem: {
+        flex: 1,
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 24
     }
 });
