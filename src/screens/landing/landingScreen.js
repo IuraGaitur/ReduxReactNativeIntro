@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image, StatusBar, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
 import { LoginManager } from 'react-native-fbsdk';
+import { Actions } from 'react-native-router-flux';
 
 class LandingScreen extends Component {
 
@@ -55,7 +56,7 @@ class LandingScreen extends Component {
     }
 
     _onPressLoginButton() {
-        // TODO, show login screen
+        Actions.authentication();
     }
 }
 
