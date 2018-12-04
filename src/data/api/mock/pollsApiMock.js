@@ -1,7 +1,7 @@
-import players from './../../../assets/mocks/players/success.json';
+import polls from './../../../assets/mocks/polls/success.json';
 
-export default class PlayerApiMock {
+export default class PollsApiMock {
     getAll() {
-        return players;
+        return polls;
     }
 }

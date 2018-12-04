@@ -12,8 +12,8 @@ class PollsScreen extends Component {
   }
 
   async componentDidMount() {
-    let polls = await new PollsApi().instance().getAllPolls();
-    this.setState(polls)
+    let polls = await new PollsApi().instance().getAll();
+    this.setState({polls: polls})
   }
 
   _actionComments() {
