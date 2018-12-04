@@ -24,7 +24,7 @@ class MainScreen extends Component {
     render() {
         return (
             <Container>
-                <View style={{height: '90%', position: 'absolute', zIndex: -1, marginTop: this.state.headerHeight}}>
+                <View style={{height: '100%', position: 'absolute', zIndex: -1, paddingTop: this.state.headerHeight}}>
                     <BottomNavigationBar
                         nflPage={<View>
                                     <Text>1 page</Text>
