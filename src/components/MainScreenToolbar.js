@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ToastAndroid, Text, TouchableHighlight, StyleSheet, Animated } from "react-native";
 import { Header, Title, Button, Left, Right, Body, Icon, View, List, ListItem } from "native-base";
 import SegmentedControlTab from 'react-native-segmented-control-tab';
+import Collapsible from "react-native-collapsible";
 
 export default class MainScreenToolbar extends Component {
 
@@ -10,10 +11,7 @@ export default class MainScreenToolbar extends Component {
         this.state = {
             pressStatus: false,
             selectedIndex: 0,
-            animation   : new Animated.Value(0),
-            maxHeight: 200,
-            minHeight: 0,
-            menuIsVisible: false
+            menuIsVisible: true
         };
     }
 
@@ -22,49 +20,24 @@ export default class MainScreenToolbar extends Component {
     }
 
     indexChange = (index) => {
-        console.log(index);
         this.setState({
             ...this.state,
             selectedIndex: index
         })
     }
 
-    toggle(){
-        //Step 1
-        let initialValue    = this.state.menuIsVisible? this.state.maxHeight + this.state.minHeight : this.state.minHeight,
-            finalValue      = this.state.menuIsVisible? this.state.minHeight : this.state.maxHeight + this.state.minHeight;
-        console.log(this.state.menuIsVisible, initialValue, finalValue);
-        this.setState({menuIsVisible: !this.state.menuIsVisible});
-        this.state.animation.setValue(initialValue);
-        Animated.spring(this.state.animation,{toValue: finalValue}).start();
-    }
-
-    _setMaxHeight(event) {
-        //console.log(event.nativeEvent.layout.height, "max")
-        this.setState({
-            maxHeight  : event.nativeEvent.layout.height
-        });
-    }
-    
-    _setMinHeight(event){
-        //console.log(event.nativeEvent.layout.height, "min")
-        this.setState({
-            minHeight   : event.nativeEvent.layout.height
-        });
-    }
-
-
     openMenu = () => {
-        this.toggle()
+        this.setState({menuIsVisible: !this.state.menuIsVisible});
     }
 
     render() {
-        const {menuIsVisible} = this.props;
+        const {menuIsVisible} = this.state;
         return (
             <View>
                 <Header
                     androidStatusBarColor="#66B2FF"
-                    style={{ backgroundColor: "#66B2FF", color: '#66B2FF' }}>
+                    style={{ backgroundColor: "#66B2FF", color: '#66B2FF' }}
+                    onLayout={(e) => this.props.actionOnMeasure(e)}>
                     <Left>
                         <Button transparent
                             onPress={() => this.openMenu()}>
@@ -88,25 +61,25 @@ export default class MainScreenToolbar extends Component {
                             <Icon style={{ color: "white" }} name="search" />
                         </Button>
                     </Right>
-                </Header > 
-                <Animated.View style={{overflow:'hidden', position: 'absolute', marginTop: 56, zIndex: 9999, width: '100%', height: this.state.animation, backgroundColor: '#3787D9'}}>
-                    <View style={{flexDirection: 'row', height: 200, width: '100%'}} onLayout={this._setMaxHeight.bind(this)}>
-                        <List >
-                            <ListItem>
-                                <Text>News</Text>
+                </Header >
+                <Collapsible collapsed={menuIsVisible} duration={300}>
+                    <View style={{backgroundColor: "#66B2FF", width: '100%', position: 'relative', zIndex: 999}}>
+                        <List itemDivider={false} >
+                            <ListItem noBorder>
+                                <Text style={styles.menuItem}>News</Text>
                             </ListItem>
-                            <ListItem>
-                                <Text>My News</Text>
+                            <ListItem noBorder>
+                                <Text style={styles.menuItem}>My News</Text>
                             </ListItem>
-                            <ListItem>
-                                <Text>Players</Text>
+                            <ListItem noBorder>
+                                <Text style={styles.menuItem}>Find Players</Text>
                             </ListItem>
-                            <ListItem>
-                                <Text>Settings</Text>
+                            <ListItem noBorder>
+                                <Text style={styles.menuItem}>Settings</Text>
                             </ListItem>
                         </List>
                     </View>
-                </Animated.View>
+                </Collapsible>
                 
             </View>
         );
@@ -134,5 +107,11 @@ const styles = StyleSheet.create({
     },
     activeTab: {
         backgroundColor: '#3787D9'
+    },
+    menuItem: {
+        flex: 1,
+        textAlign: 'center',
+        color: 'white',
+        fontSize: 24
     }
 });
