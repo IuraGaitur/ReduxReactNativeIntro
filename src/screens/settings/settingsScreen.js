@@ -3,7 +3,7 @@ import {Text, View, Image, StyleSheet, TextInput} from 'react-native';
 import {connect} from 'react-redux'
 import SwitchToggle from 'react-native-switch-toggle';
 import {getUser, updateUser} from "./settingsAction";
-import {Body, Button, Header, Right} from "native-base";
+import {Body, Button, Header, Right, Label, Item, Input} from "native-base";
 
 class SettingsScreen extends Component {
 
@@ -20,20 +20,20 @@ class SettingsScreen extends Component {
     }
 
     getUser = () => {
-        this.props.getUser()
+        this.props.getUser();
     };
 
     update = () => {
         this.props.onUpdateUser(this.state.user);
     };
 
-    swichPress = () => {
+    switchNotification = () => {
         this.setState({switchOn: !this.state.switchOn});
         this.setState({ user: { notification: this.state.switchOn} })
     }
 
     render() {
-        const {emailError, passError, nameError} = this.props;
+        const {emailError, passError, nameError, user} = this.props;
 
         return (
             <View style={styles.defaultView}>
@@ -67,20 +67,19 @@ class SettingsScreen extends Component {
                 </View>
                 <View style={styles.bottomView}>
                     <View style={styles.sectionView}>
-                        <Text style={styles.section}> Account Information </Text>
-                        <Text style={styles.title}> Email Address </Text>
-                        <TextInput
-                            placeholder="Email"
-                            placeholderTextColor="grey"
-                            onChangeText={(text) => this.setState({user: {email: { text}}})}
-                            style={styles.subtitle}> {this.props.user.email} </TextInput>
-                        <Text style={styles.title}> Password </Text>
-                        <TextInput
-                            secureTextEntry={true}
-                            placeholder="Password"
-                            placeholderTextColor="grey"
-                            onChangeText={(text) => this.setState({user: {pass: { text}}})}
-                            style={styles.subtitle}/>
+                        <Text style={styles.section}>Account Information </Text>
+                        <Item stackedLabel>
+                            <Label>Email</Label>
+                            <Input onChangeText={(text) => this.setState({user: {...user, email: text}})}>
+                                {this.props.user.email}
+                            </Input>
+                        </Item>
+                        <Item stackedLabel>
+                            <Label>Password</Label>
+                            <Input onChangeText={(text) => this.setState({user: {...user, pass: text}})}>
+                                {this.props.user.pass}
+                            </Input>
+                        </Item>
                     </View>
                     <View style={styles.sectionView}>
                         <Text style={styles.section}> Notification Settings </Text>
@@ -102,7 +101,7 @@ class SettingsScreen extends Component {
                                     backgroundColor: '#3787D9', // rgb(102,134,205)
                                 }}
                                 switchOn={this.state.switchOn}
-                                onPress={this.swichPress}
+                                onPress={this.switchNotification}
                                 circleColorOff='#3787D9'
                                 circleColorOn='white'
                                 duration={500}
@@ -127,12 +126,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUser: () => {
-            dispatch(getUser())
-        },
-        onUpdateUser: (user) => {
-            dispatch(updateUser(user))
-        }
+        getUser: () => {dispatch(getUser())},
+        onUpdateUser: (user) => {dispatch(updateUser(user))}
     }
 };
 

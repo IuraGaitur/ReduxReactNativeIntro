@@ -10,7 +10,8 @@ const defaultState = {
 
 export default function reducer(state = defaultState, action) {
     switch (action.type) {
-        case INFO_USER: case NO_USER:
+        case INFO_USER:
+        case NO_USER:
             return {...state, user: action.user};
         case EMAIL_FAIL:
             return {...state, emailError: action.message, passError: null, nameError: null};

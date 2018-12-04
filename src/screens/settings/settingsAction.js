@@ -11,22 +11,19 @@ export const getUser = () => {
 };
 
 export const updateUser = (user) => {
-
     return async (dispatch) => {
         if (!user.email) return dispatch({message: "Empty email", type: EMAIL_FAIL});
         if (!user.pass) return dispatch({message: "Empty password", type: PASS_FAIL});
         if (!user.name) return dispatch({message: "Empty display name", type: NAME_FAIL});
         await new UserRepository().storeUserData(user);
-        return {user: user, type: SAVE_SETTINGS};
+        return dispatch({user: user, type: SAVE_SETTINGS});
     }
 }
 
 const infoUser = (user) => {
-    console.log(' infoUser ')
     return { user: user, type: INFO_USER }
 };
 
 const noExistUser = () => {
-    console.log(' noExistUser ')
     return {user: {}, type: NO_USER };
 };
