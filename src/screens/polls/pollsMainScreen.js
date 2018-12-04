@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Container, View, Text } from 'native-base';
+import { Container, Text } from 'native-base';
 import PollsBottomNavigationBar from './../../components/PollsBottomNavigationBar';
 import PollsScreen from './pollsScreen';
-import PollsScreenToolbar from '../../components/PollsScreenToolbar';
+import NewsCategoryToolbar from '../../components/NewsCategoryToolbar';
 
 class PollsMainScreen extends Component {
 
   render() {
     return (
       <Container>
-        <PollsScreenToolbar />
+        <NewsCategoryToolbar />
         <PollsBottomNavigationBar
           myPollsPage={<PollsScreen />}
-          favPollsPage={<View>
-            <Text>Favorite Polls</Text>
-          </View>}
+          favPollsPage={<Text>Favorite polls here</Text>}
         />
       </Container>);
   }
 }
 
 const mapStateToProps = (state) => {
-  return {
-
-  };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
