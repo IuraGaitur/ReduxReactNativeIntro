@@ -6,7 +6,7 @@ export default class UserRepository {
 
     async savePrimaryUser(user) {
         if(!user) return;
-        return await AsyncStorage.setItem(this.PRIMARY_USER_KEY, JSON.stringify(user));
+        await AsyncStorage.setItem(this.PRIMARY_USER_KEY, JSON.stringify(user));
     }
 
     async getPrimaryUser() {
@@ -19,5 +19,12 @@ export default class UserRepository {
 
     async removePrimaryUser() {
         return await AsyncStorage.removeItem(this.PRIMARY_USER_KEY);
+    }
+
+    storeUserData = async (user) => {
+        try {
+            await AsyncStorage.setItem(this.PRIMARY_USER_KEY, JSON.stringify(user));
+        } catch (error) {
+        }
     }
 }
