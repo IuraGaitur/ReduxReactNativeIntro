@@ -35,6 +35,8 @@ class SettingsScreen extends Component {
     }
 
     render() {
+        const {emailError, passError, nameError} = this.props;
+
         return (
             <View style={styles.defaultView}>
                 <View style={styles.topView}>
@@ -81,7 +83,7 @@ class SettingsScreen extends Component {
                                     backgroundColor: '#3787D9', // rgb(102,134,205)
                                 }}
                                 switchOn={this.state.switchOn}
-                                onPress={this.swichPress}
+                                onPress={this.update}
                                 circleColorOff='#3787D9'
                                 circleColorOn='white'
                                 duration={500}
