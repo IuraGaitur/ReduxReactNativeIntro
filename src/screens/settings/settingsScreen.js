@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Text, View, Image, StyleSheet, TextInput} from 'react-native';
 import {connect} from 'react-redux'
 import SwitchToggle from 'react-native-switch-toggle';
-import {getUser} from "./settingsAction";
-import {registerRequest} from "../authentication/authenticationAction";
+import {getUser, updateUser} from "./settingsAction";
+import {Body, Button, Header, Right} from "native-base";
 
 class SettingsScreen extends Component {
 
@@ -15,23 +15,25 @@ class SettingsScreen extends Component {
         super(props);
         this.state = {
             switchOn4: false,
-            email: null
+            user: {}
         };
     }
 
     getUser = () => {
         this.props.getUser()
+        // this.props.name = this.props.user.name
+        // this.props.email = this.props.user.email
+        // this.props.pass = this.props.user.password
+
     };
 
-    update = (result) => {
-        const name = result.name;
-        const email = result.email;
-        const pass = result.pass;
-        this.props.onUpdateUser(name, email, pass);
+    update = () => {
+        this.props.onUpdateUser(this.state.user);
     };
 
     swichPress = () => {
-        this.setState({ switchOn: !this.state.switchOn });
+        this.setState({switchOn: !this.state.switchOn});
+        this.setState({ user: { notification: this.state.switchOn} })
     }
 
     render() {
@@ -39,13 +41,32 @@ class SettingsScreen extends Component {
 
         return (
             <View style={styles.defaultView}>
+                <Header
+                    androidStatusBarColor="#66B2FF"
+                    style={{ backgroundColor: "#66B2FF", color: '#66B2FF' }}
+                    >
+                    <Body>
+                    <View style={styles.centerTitleView}>
+                        <Text style={styles.textBtn}> SETTINGS </Text>
+                    </View>
+                    </Body>
+                    <Right>
+                        <Button transparent onPress={this.update} >
+                            <Text style={styles.textBtn}> UPDATE </Text>
+                        </Button>
+                    </Right>
+                </Header >
                 <View style={styles.topView}>
                     <View style={styles.leftTopView}>
                         <Image source={require('./../../../app_image/rugby.jpg')} style={styles.userProfileImg}/>
                     </View>
                     <View style={styles.rightTopView}>
                         <Text style={styles.title}> Display Name </Text>
-                        <Text style={styles.subtitle}> { this.props.user.name } </Text>
+                        <TextInput style={styles.subtitle}
+                                   placeholder="Name"
+                                   placeholderTextColor="grey"
+                                   onChangeText={(text) => this.setState({user: {name: {text}}})}
+                                   style={styles.subtitle}> {this.props.user.name} </TextInput>
                     </View>
                 </View>
                 <View style={styles.bottomView}>
@@ -55,13 +76,15 @@ class SettingsScreen extends Component {
                         <TextInput
                             placeholder="Email"
                             placeholderTextColor="grey"
-                            style={styles.subtitle}> { this.props.user.email } </TextInput>
+                            onChangeText={(text) => this.setState({user: {email: { text}}})}
+                            style={styles.subtitle}> {this.props.user.email} </TextInput>
                         <Text style={styles.title}> Password </Text>
                         <TextInput
                             secureTextEntry={true}
                             placeholder="Password"
                             placeholderTextColor="grey"
-                            style={styles.subtitle}>  </TextInput>
+                            onChangeText={(text) => this.setState({user: {pass: { text}}})}
+                            style={styles.subtitle}/>
                     </View>
                     <View style={styles.sectionView}>
                         <Text style={styles.section}> Notification Settings </Text>
@@ -83,7 +106,7 @@ class SettingsScreen extends Component {
                                     backgroundColor: '#3787D9', // rgb(102,134,205)
                                 }}
                                 switchOn={this.state.switchOn}
-                                onPress={this.update}
+                                onPress={this.swichPress}
                                 circleColorOff='#3787D9'
                                 circleColorOn='white'
                                 duration={500}
@@ -99,14 +122,21 @@ class SettingsScreen extends Component {
 
 const mapStateToProps = (state) => {
     return {
-         user: state.settings.user
+        user: state.settings.user,
+        passError: state.settings.passError,
+        emailError: state.settings.emailError,
+        nameError: state.settings.nameError
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUser: () => { dispatch(getUser()) },
-        onUpdateUser: (name, email, pass) => {dispatch (registerRequest(name, email, pass))}
+        getUser: () => {
+            dispatch(getUser())
+        },
+        onUpdateUser: (user) => {
+            dispatch(updateUser(user))
+        }
     }
 };
 
@@ -164,6 +194,12 @@ const styles = StyleSheet.create({
         fontWeight: "normal",
         color: "grey"
     },
+    textBtn: {
+        textAlign: "center",
+        fontSize: 15,
+        fontWeight: "normal",
+        color: "black"
+    },
     pushTitle: {
         textAlign: "left",
         fontSize: 20,
@@ -208,8 +244,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.3)'
 
     },
-    centerView: {
-        position: 'absolute',
-        alignContent: "center"
+    centerTitleView: {
+        textAlign: "center",
+        fontSize: 25,
+        marginBottom: 20,
+        marginTop: 5,
+        color: "black"
     },
 })

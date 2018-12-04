@@ -2,6 +2,9 @@ import {EMAIL_FAIL, INFO_USER, NAME_FAIL, NO_USER, PASS_FAIL, REGISTER_SUCCESS, 
 
 const defaultState = {
     checkedForUser: false,
+    emailError: null,
+    passError: null,
+    nameError: null,
     user: {},
 };
 

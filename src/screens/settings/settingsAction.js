@@ -8,19 +8,20 @@ export const getUser = () => {
         let user = await new UserRepository().getUser();
         setTimeout(async function () {
             return dispatch(user ? infoUser(user) : noExistUser())
-        }, 2000);
+        }, 100);
     }
 };
 
-export const updateRequest = (name, email, pass) => {
-    return async (dispatch) => {
-        if (!email) return dispatch({message: "Empty email", type: EMAIL_FAIL});
-        if (!pass) return dispatch({message: "Empty password", type: PASS_FAIL});
-        if (!name) return dispatch({message: "Empty display name", type: NAME_FAIL});
-        const user = new User(name, email, pass);
+export const updateUser = (user) => {
 
+    return async (dispatch) => {
+        console.log(user.name);
+        console.log(user.email);
+        console.log(user.pass);
+        if (!user.email) return dispatch({message: "Empty email", type: EMAIL_FAIL});
+        if (!user.pass) return dispatch({message: "Empty password", type: PASS_FAIL});
+        if (!user.name) return dispatch({message: "Empty display name", type: NAME_FAIL});
         await new UserRepository().storeUserData(user);
-        Actions.main();
         return {user: user, type: SAVE_SETTINGS};
     }
 }
