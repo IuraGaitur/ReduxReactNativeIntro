@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
+import PollsApi from '../../data/api/pollsApi';
 
 class PollsScreen extends Component {
 
-  state = {
-    polls: []
+
+  constructor(props) {
+    super(props);
+    this.state = { polls: [] }
   }
 
   async componentDidMount() {
-    //const polls = await ajax.fetchPolls();
-    //this.setState({polls});
+    let polls = await new PollsApi().instance().getAllPolls();
+    this.setState(polls)
   }
 
   _actionComments() {
@@ -21,31 +24,23 @@ class PollsScreen extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-          data={[{ pollsPercentage: "25% | 75%", pollsVotes: '130 VOTES', pollsComments: '100 COMMENTS' },
-          { pollsPercentage: "25% | 75%", pollsVotes: '130 VOTES', pollsComments: '100 COMMENTS' },
-          { pollsPercentage: "25% | 75%", pollsVotes: '130 VOTES', pollsComments: '100 COMMENTS' },
-          { pollsPercentage: "25% | 75%", pollsVotes: '130 VOTES', pollsComments: '100 COMMENTS' },
-          { pollsPercentage: "25% | 75%", pollsVotes: '130 VOTES', pollsComments: '100 COMMENTS' },
-          { pollsPercentage: "25% | 75%", pollsVotes: '130 VOTES', pollsComments: '100 COMMENTS' },
-          { pollsPercentage: "25% | 75%", pollsVotes: '130 VOTES', pollsComments: '100 COMMENTS' },
-          { pollsPercentage: "25% | 75%", pollsVotes: '130 VOTES', pollsComments: '100 COMMENTS' },
-          { pollsPercentage: "25% | 75%", pollsVotes: '130 VOTES', pollsComments: '100 COMMENTS' }]}
+          data={this.state.polls}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) =>
-            <View style={{ flex: 1, flexDirection: 'row', marginTop: 18 }}>
-              <Image source={require('../../assets/rugby.jpg')} style={styles.pollsListImageStyle} />
-              <View style={{ flexDirection: 'column', marginStart: 12, justifyContent: "center" }}>
-                <Text style={styles.pollsPercentageStyle}>{item.pollsPercentage}</Text>
+            <View style={styles.secondContainer}>
+              <Image source={{ uri: item.imageUrl }} style={styles.pollsListImageStyle} />
+              <View style={styles.textItems}>
+                <Text style={styles.pollsPercentageStyle}>{item.answer1 + " | " + item.answer2}</Text>
                 <View style={{ flexDirection: 'row', }}>
-                  <Text style={styles.pollsVotesCommentsStyle}>{item.pollsVotes + " • "}</Text>
+                  <Text style={styles.pollsVotesCommentsStyle}>{item.votes + " VOTES" + " • "}</Text>
                   <TouchableOpacity onPress={this._actionComments}>
-                    <Text style={styles.pollsVotesCommentsStyle}>{item.pollsComments}</Text>
+                    <Text style={styles.pollsVotesCommentsStyle}>{item.comments + " COMMENTS"}</Text>
                   </TouchableOpacity>
                 </View>
               </View>
             </View>
           }
-          keyExtractor={item => item.email}
+          keyExtractor={item => item.keyExtractor}
         />
       </View>
     );
@@ -59,6 +54,16 @@ const styles = StyleSheet.create({
     paddingEnd: 12,
     paddingBottom: 10,
     backgroundColor: 'white',
+  },
+  secondContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 18
+  },
+  textItems: {
+    flexDirection: 'column',
+    marginStart: 12,
+    justifyContent: "center"
   },
   flatview: {
     justifyContent: 'center',

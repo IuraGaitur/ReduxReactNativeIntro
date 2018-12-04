@@ -22,7 +22,7 @@ class SplashScreen extends Component {
                 <View style={styles.centerView}>
                     <Text style={styles.title} > ROTOLEGENDS</Text>
                     <Text style={styles.subtitle} > FANTASY  NEWS</Text>
-                    <ActivityIndicator size={60} color="#3787D9" />
+                    <ActivityIndicator size="large" color="#3787D9" />
                 </View>
             </View>
         );
