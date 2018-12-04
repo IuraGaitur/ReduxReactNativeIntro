@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import { Container, View, Text } from 'native-base';
+import { Container, View, Text, Header, Right, Button, Footer, FooterTab, Left, Icon, Body, Title, Content } from 'native-base';
 import MainScreenToolbar from "./../../components/MainScreenToolbar";
 import BottomNavigationBar from "./../../components/BottomNavigationBar";
 
@@ -31,7 +31,6 @@ class MainScreen extends Component {
 
 const mapStateToProps = (state) => {
     return {
-
     };
 };
 
