@@ -21,10 +21,6 @@ class SettingsScreen extends Component {
 
     getUser = () => {
         this.props.getUser()
-        // this.props.name = this.props.user.name
-        // this.props.email = this.props.user.email
-        // this.props.pass = this.props.user.password
-
     };
 
     update = () => {
