@@ -9,6 +9,6 @@ export default combineReducers({
     authentication: authenticationReducer,
     findPlayers: findPlayersReducer,
     nflNews: nflNewsReducer,
-    mlbNews: mlbNewsReducer
+    mlbNews: mlbNewsReducer,
     settings: settingsReducer
 })
