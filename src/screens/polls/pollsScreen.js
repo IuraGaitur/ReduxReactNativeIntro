@@ -5,15 +5,19 @@ import PollsApi from '../../data/api/pollsApi';
 
 class PollsScreen extends Component {
 
-
   constructor(props) {
     super(props);
     this.state = { polls: [] }
   }
 
   async componentDidMount() {
+<<<<<<< HEAD
     let polls = await new PollsApi().instance().getAllPolls();
-    this.setState(polls)
+    this.setState({ polls: polls })
+=======
+    let polls = await new PollsApi().instance().getAll();
+    this.setState({polls: polls})
+>>>>>>> 216e31744921fe70ab82749153dc870e6369f21e
   }
 
   _actionComments() {

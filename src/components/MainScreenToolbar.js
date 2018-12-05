@@ -3,6 +3,7 @@ import { ToastAndroid, Text, TouchableHighlight, StyleSheet, Animated } from "re
 import { Header, Title, Button, Left, Right, Body, Icon, View, List, ListItem } from "native-base";
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import Collapsible from "react-native-collapsible";
+import { Actions } from "react-native-router-flux";
 
 export default class MainScreenToolbar extends Component {
 
@@ -30,6 +31,9 @@ export default class MainScreenToolbar extends Component {
         this.setState({menuIsVisible: !this.state.menuIsVisible});
     }
 
+    goToFindPlayers= () =>{
+        Actions.findPlayers()
+    }
     render() {
         const {menuIsVisible} = this.state;
         return (
@@ -71,7 +75,9 @@ export default class MainScreenToolbar extends Component {
                             <ListItem noBorder>
                                 <Text style={styles.menuItem}>My News</Text>
                             </ListItem>
-                            <ListItem noBorder>
+                            <ListItem noBorder
+                                button onPress={() => {this.goToFindPlayers()}}
+                            >
                                 <Text style={styles.menuItem}>Find Players</Text>
                             </ListItem>
                             <ListItem noBorder>
