@@ -7,6 +7,7 @@ import BottomNavigationBar from "./../../components/BottomNavigationBar";
 import NFLScreen from '../nflNews/nflScreen';
 import MLBScreen from '../mlbNews/mlbScreen';
 import PollsMainScreen from './../polls/pollsMainScreen';
+import MyNewsScreen from '../myNews/myNewsScreen';
 
 class MainScreen extends Component {
 
@@ -27,11 +28,9 @@ class MainScreen extends Component {
             <Container>
                 <View style={{ height: '100%', position: 'absolute', zIndex: -1, paddingTop: this.state.headerHeight }}>
                     <BottomNavigationBar
-                        nflPage={ <NFLScreen></NFLScreen> }
-                        mblPage={ <MLBScreen></MLBScreen> }
-                        myNewsPage={<View>
-                            <Text>3 page</Text>
-                        </View>}
+                        nflPage={<NFLScreen></NFLScreen>}
+                        mblPage={<MLBScreen></MLBScreen>}
+                        myNewsPage={<MyNewsScreen></MyNewsScreen>}
                         pollsPage={<View>
                             <View />
                         </View>}
