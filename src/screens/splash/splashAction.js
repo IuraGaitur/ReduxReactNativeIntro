@@ -4,7 +4,7 @@ import { IS_LOGGED_IN, NO_USER } from "../../app/actions";
 
 export const checkForPrimaryUser = () => {
     return async (dispatch) => {
-        let primaryUser = await new UserRepository().getPrimaryUser();
+        let primaryUser = await new UserRepository().getUser();
         setTimeout(async function () {
             return dispatch(primaryUser ? hasPrimaryUser(primaryUser) : noPrimaryUser())
         }, 2000);

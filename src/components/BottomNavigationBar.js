@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { TabHeading, Tab, Tabs} from "native-base";
+import { TabHeading, Tab, Tabs } from "native-base";
 import { StyleSheet } from "react-native";
 import TabBarItem from "./TabBarItem";
-import {Actions} from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 
 export default class BottomNavigationBar extends Component {
     constructor(props) {
@@ -42,9 +42,9 @@ export default class BottomNavigationBar extends Component {
 
                 </Tab>
                 <Tab heading={
-                        <TabHeading>
-                            <TabBarItem title="Polls" index={3} isActive={activeTab == 3} />
-                        </TabHeading>}>
+                    <TabHeading>
+                        <TabBarItem title="Polls" index={3} isActive={activeTab == 3} />
+                    </TabHeading>}>
                     {this.props.pollsPage}
                 </Tab>
             </Tabs>
