@@ -7,6 +7,7 @@ import BottomNavigationBar from "./../../components/BottomNavigationBar";
 import NFLScreen from '../nflNews/nflScreen';
 import MLBScreen from '../mlbNews/mlbScreen';
 import PollsMainScreen from './../polls/pollsMainScreen';
+import MyNewsScreen from '../myNews/myNewsScreen';
 
 class MainScreen extends Component {
 
@@ -25,16 +26,16 @@ class MainScreen extends Component {
     changeActiveTab = (position) => {
         switch (position) {
             case 0:
-                this.setState({showTitle: true, title: "NFL News" })
+                this.setState({ showTitle: true, title: "NFL News" })
                 break;
             case 1:
-                this.setState({showTitle: true, title: "MLB News" })
+                this.setState({ showTitle: true, title: "MLB News" })
                 break;
             case 2:
-                this.setState({showTitle: false })
+                this.setState({ showTitle: false })
                 break;
             default:
-                this.setState({showTitle: true, title: "News" })
+                this.setState({ showTitle: true, title: "News" })
                 break;
         }
     }
@@ -44,12 +45,9 @@ class MainScreen extends Component {
             <Container>
                 <View style={{ height: '100%', position: 'absolute', zIndex: -1, paddingTop: this.state.headerHeight }}>
                     <BottomNavigationBar
-                        changeActiveTab={(pos) => this.changeActiveTab(pos)}
-                        nflPage={ <NFLScreen /> }
-                        mblPage={ <MLBScreen /> }
-                        myNewsPage={<View>
-                            <Text>3 page</Text>
-                        </View>}
+                        nflPage={<NFLScreen></NFLScreen>}
+                        mblPage={<MLBScreen></MLBScreen>}
+                        myNewsPage={<MyNewsScreen></MyNewsScreen>}
                         pollsPage={<View>
                             <View />
                         </View>}
@@ -57,8 +55,8 @@ class MainScreen extends Component {
                 </View>
                 <View style={{ flex: 0 }} >
                     <MainScreenToolbar showTitle={this.state.showTitle}
-                                       title={this.state.title}
-                                       actionOnMeasure={this.measureToolbar} />
+                        title={this.state.title}
+                        actionOnMeasure={this.measureToolbar} />
                 </View>
             </Container>);
     }

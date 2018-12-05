@@ -4,11 +4,13 @@ import authenticationReducer from './../../screens/authentication/authentication
 import findPlayersReducer from './../../screens/find_players/findPlayersReducer';
 import nflNewsReducer from './../../screens/nflNews/nflReducer';
 import mlbNewsReducer from './../../screens/mlbNews/mlbReducer';
+import myNewsReducer from './../../screens/myNews/myNewsReducer';
 
 export default combineReducers({
     authentication: authenticationReducer,
     findPlayers: findPlayersReducer,
     nflNews: nflNewsReducer,
     mlbNews: mlbNewsReducer,
-    settings: settingsReducer
+    settings: settingsReducer,
+    myNews: myNewsReducer
 })
