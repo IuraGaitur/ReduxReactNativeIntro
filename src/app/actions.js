@@ -9,5 +9,9 @@ export const NAME_FAIL = 'NAME_FAIL';
 export const IS_LOGGED_IN = "IS_LOGGED_IN";
 export const NO_USER = "NO_USER";
 
+//Settings
+export const SAVE_SETTINGS = "SAVE_SETTINGS";
+export const INFO_USER = "INFO_USER";
+
 // Find Players Actions
 export const LOAD_PLAYERS = "LOAD_PLAYERS"

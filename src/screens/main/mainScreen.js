@@ -45,7 +45,6 @@ class MainScreen extends Component {
 
 const mapStateToProps = (state) => {
     return {
-
     };
 };
 

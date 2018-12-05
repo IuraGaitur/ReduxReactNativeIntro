@@ -5,7 +5,6 @@ import PollsApi from '../../data/api/pollsApi';
 
 class PollsScreen extends Component {
 
-
   constructor(props) {
     super(props);
     this.state = { polls: [] }
@@ -13,7 +12,7 @@ class PollsScreen extends Component {
 
   async componentDidMount() {
     let polls = await new PollsApi().instance().getAllPolls();
-    this.setState(polls)
+    this.setState({ polls: polls })
   }
 
   _actionComments() {
