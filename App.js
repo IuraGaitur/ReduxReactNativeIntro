@@ -24,13 +24,14 @@ export default class App extends Component {
                         <Scene key="splash" component={SplashScreen} title="Splash" hideNavBar initial/>
                         <Scene key="authentication" component={AuthenticationScreen} title="Authentication" hideNavBar />
                         <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar />
-                        <Scene key="main" component={MainScreen} title="Main" hideNavBar />
+                        <Scene key="main" component={MainScreen} title="Main" hideNavBar/>
                         <Scene key="polls" component={PollsMainScreen} title="PollsScreen" hideNavBar />
                         <Scene key="findPlayers" component={FindPlayersScreen} title="FindPlayers" hideNavBar />
                         <Scene key="settings" component={SettingsScreen} title="Settings" hideNavBar />
                         <Scene key="newsCategory" component={NewsCategoryScreen} title="News" hideNavBar />
                         <Scene key="pollsUser" component={PollsUserScreen} title="PollsUserScreen" hideNavBar />
-                        <Scene key="newsDetails" component={NewsDetailsScreen} title="NewsDetails" hideNavBar initial />
+                        <Scene key="newsDetails" component={NewsDetailsScreen} title="NewsDetails" hideNavBar />
+                        <Scene key="addPolls" component={AddPollsScreen} title="AddPolls" hideNavBar />
                     </Stack>
                 </Router>
             </Provider>
