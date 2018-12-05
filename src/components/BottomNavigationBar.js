@@ -10,10 +10,11 @@ export default class BottomNavigationBar extends Component {
         this.state = { activeTab: 0 };
     }
 
-    changeActiveTab = position => {
+    changeActiveTab = (position) => {
         this.setState({ activeTab: position });
+        this.props.changeActiveTab(position);
         if (position === 3) {
-            Actions.polls();
+            Actions.pollsUser();
         }
     };
 

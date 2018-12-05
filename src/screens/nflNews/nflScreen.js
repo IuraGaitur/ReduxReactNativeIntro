@@ -1,9 +1,9 @@
-
 import React, { Component } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import NFLitem from './components/nflItem';
 import { connect } from "react-redux";
 import { getAllNews, addMoreNews } from "./nflAction";
+import {Actions} from 'react-native-router-flux';
 
 class NFLScreen extends Component {
 
@@ -13,7 +13,11 @@ class NFLScreen extends Component {
 
     loadMore = () => {
         this.props.addMoreNews();
-    }
+    };
+
+    showCategoryItems = () => {
+        Actions.newsCategory();
+    };
 
     render() {
         return (
@@ -22,7 +26,7 @@ class NFLScreen extends Component {
                     <FlatList 
                         keyExtractor = { (item, index) => { return index.toString() }}
                         data = { this.props.news }
-                        renderItem = { ({ item }) => <NFLitem item = { item }/> }
+                        renderItem = { ({ item }) => <NFLitem item = { item } onPress={() => this.showCategoryItems(item)}/> }
                         onEndReached={ () => this.loadMore()}
                     />
                 </View>

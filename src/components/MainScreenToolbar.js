@@ -16,10 +16,6 @@ export default class MainScreenToolbar extends Component {
         };
     }
 
-    _actionSearch() {
-        ToastAndroid.show("Search button clicked!", ToastAndroid.SHORT);
-    }
-
     indexChange = (index) => {
         this.setState({
             ...this.state,
@@ -46,6 +42,10 @@ export default class MainScreenToolbar extends Component {
         Actions.settings();
     };
 
+    hideNavBar = () => {
+        this.openMenu();
+    };
+
     render() {
         const { menuIsVisible } = this.state;
         return (
@@ -62,26 +62,25 @@ export default class MainScreenToolbar extends Component {
                     </Left>
                     <Body>
                         <View style={styles.middleView}>
-                            <SegmentedControlTab
+                            {this.props.showTitle && <Title style={{color: 'white'}}>{this.props.title}</Title>}
+                            {!this.props.showTitle && <SegmentedControlTab
                                 tabStyle={styles.defaultTab}
                                 tabTextStyle={styles.defaultTabText}
                                 activeTabStyle={styles.activeTab}
                                 values={['NFL', 'MLB']}
                                 selectedIndex={this.state.selectedIndex}
                                 onTabPress={this.indexChange}
-                            />
+                            />}
                         </View>
                     </Body>
                     <Right>
-                        <Button transparent onPress={this._actionSearch}>
-                            <Icon style={{ color: "white" }} name="search" />
-                        </Button>
+                        <View/>
                     </Right>
                 </Header >
                 <Collapsible collapsed={menuIsVisible} duration={300}>
                     <View style={{ backgroundColor: "#66B2FF", width: '100%', position: 'relative', zIndex: 999 }}>
                         <List itemDivider={false} >
-                            <ListItem noBorder>
+                            <ListItem noBorder button onPress={() => { this.hideNavBar()}}>
                                 <Text style={styles.menuItem}>News</Text>
                             </ListItem>
                             <ListItem noBorder button onPress={() => { this._actionMyPolls() }}>
