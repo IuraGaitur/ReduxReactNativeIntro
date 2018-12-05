@@ -10,6 +10,7 @@ import store from './src/app/store';
 import { Provider } from "react-redux";
 import './config/Reactotron';
 import PollsMainScreen from './src/screens/polls/pollsMainScreen';
+import PollsUserScreen from './src/screens/pollsUser/pollsUserScreen';
 import NewsCategoryScreen from './src/screens/newsCategoryList/newsCategoryScreen';
 
 export default class App extends Component {
@@ -26,6 +27,7 @@ export default class App extends Component {
                         <Scene key="findPlayers" component={FindPlayersScreen} title="FindPlayers" hideNavBar/>
                         <Scene key="settings" component={SettingsScreen} title="Settings" hideNavBar />
                         <Scene key="news" component={NewsCategoryScreen} title="News" hideNavBar />
+                        <Scene key="pollsUser" component={PollsUserScreen} title="PollsUserScreen" hideNavBar />
                     </Stack>
                 </Router>
             </Provider>
