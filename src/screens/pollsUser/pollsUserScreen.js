@@ -15,10 +15,6 @@ class PollsUserScreen extends Component {
     }
   }
 
-  static navigationOptions = {
-    header: null
-  }
-
   async componentDidMount() {
     let questions = await new QuestionsApi().instance().getAllQuestions();
     this.setState(questions)
@@ -30,9 +26,9 @@ class PollsUserScreen extends Component {
     this.setState(state => ({ questions: [...state.questions, ...questions], loading: false }));
   };
 
-  loadMore = () => {
-    this.fetchData()
-  }
+  loadMore = async() => {
+    await this.fetchData()
+  };
 
   render() {
     return (
