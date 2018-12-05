@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { View, StyleSheet, TextInput, Image } from "react-native";
 import { Container, Button, Text } from "native-base";
 import { connect } from "react-redux";
-import QuestionsApi from "../../data/api/questionsApi";
 
 class AddPollsScreen extends Component {
   constructor(props) {
