@@ -45,9 +45,10 @@ class MainScreen extends Component {
             <Container>
                 <View style={{ height: '100%', position: 'absolute', zIndex: -1, paddingTop: this.state.headerHeight }}>
                     <BottomNavigationBar
-                        nflPage={<NFLScreen></NFLScreen>}
-                        mblPage={<MLBScreen></MLBScreen>}
-                        myNewsPage={<MyNewsScreen></MyNewsScreen>}
+                        changeActiveTab={(pos) => this.changeActiveTab(pos)}
+                        nflPage={<NFLScreen />}
+                        mblPage={<MLBScreen />}
+                        myNewsPage={<MyNewsScreen />}
                         pollsPage={<View>
                             <View />
                         </View>}
@@ -56,7 +57,7 @@ class MainScreen extends Component {
                 <View style={{ flex: 0 }} >
                     <MainScreenToolbar showTitle={this.state.showTitle}
                         title={this.state.title}
-                        actionOnMeasure={this.measureToolbar} />
+                        actionOnMeasure={this.measureToolbar}/>
                 </View>
             </Container>);
     }
