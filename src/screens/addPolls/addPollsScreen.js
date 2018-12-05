@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, StyleSheet, TextInput, Image } from "react-native";
-import { Container, Button, Text } from "native-base";
+import { Container, Button, Text, Content } from "native-base";
 import { connect } from "react-redux";
 
 class AddPollsScreen extends Component {
@@ -12,31 +12,33 @@ class AddPollsScreen extends Component {
   render() {
     return (
       <Container>
-        <View style={styles.container}>
-          <TextInput
-            style={styles.pollsQuestionStyle}
-            placeholder="Your question... "
-            onChangeText={value => this.setState({ questions: value })}
-            value={this.state.questions}
-          />
-          <View style={{ flexDirection: "row" }}>
-            <View style={styles.squareBody}>
-              <Image
-                style={styles.image}
-                source={require("./../../assets/camera.png")}
-              />
-            </View>
-            <View style={styles.squareBody}>
-              <Image
-                style={styles.image}
-                source={require("./../../assets/camera.png")}
-              />
+        <Content>
+          <View style={styles.container}>
+            <TextInput
+              style={styles.pollsQuestionStyle}
+              placeholder="Ask a question"
+              onChangeText={value => this.setState({ questions: value })}
+              value={this.state.questions}
+            />
+            <View style={{ flexDirection: "row" }}>
+              <View style={styles.squareBody}>
+                <Image
+                  style={styles.image}
+                  source={require("./../../assets/camera.png")}
+                />
+              </View>
+              <View style={styles.squareBody}>
+                <Image
+                  style={styles.image}
+                  source={require("./../../assets/camera.png")}
+                />
+              </View>
             </View>
           </View>
-        </View>
-        <Button full style={styles.buttonDone}>
-          <Text style={{ fontSize: 30, color: "#69a5e396" }}>Primary</Text>
-        </Button>
+          <Button full style={styles.buttonDone}>
+            <Text style={styles.buttonText}>DONE</Text>
+          </Button>
+        </Content>
       </Container>
     );
   }
@@ -62,15 +64,24 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingBottom: 50,
     marginStart: 20,
-    marginEnd: 20
+    marginEnd: 20,
+    textAlign: "center",
+    fontFamily: "notoserif"
   },
   image: {
     width: 80,
     height: 80
   },
   buttonDone: {
-    padding: 5,
-    backgroundColor: "#66B2FF"
+    height: 60,
+    backgroundColor: "#66B2FF",
+    marginTop: 50
+  },
+  buttonText: {
+    fontSize: 30,
+    color: "#b9d5f3",
+    fontWeight: "bold",
+    fontFamily: "notoserif"
   }
 });
 
