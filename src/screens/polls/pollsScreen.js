@@ -74,12 +74,12 @@ const styles = StyleSheet.create({
     width: 100,
   },
   pollsPercentageStyle: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     color: 'black'
   },
   pollsVotesCommentsStyle: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: 'bold',
     color: 'gray',
     marginTop: 6
