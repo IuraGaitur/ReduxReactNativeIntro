@@ -3,23 +3,16 @@ import React, { Component } from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import NFLitem from '../nflNews/components/nflItem';
 import { connect } from 'react-redux';
-import { getAllNews } from './mlbAction';
+import { getAllNews, addMoreNews } from './mlbAction';
 
 class MLBScreen extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = { news: [] }
-    }
 
     async componentDidMount() {
         this.props.getNews();
     }
 
-    componentWillReceiveProps(newProps) {
-        if (newProps.news != this.state.news) {
-            this.setState({ news: newProps.news });
-        }
+    loadMore = () => {
+        this.props.addMoreNews();
     }
 
     render() {
@@ -28,8 +21,9 @@ class MLBScreen extends Component {
                 <View style = { styles.container }> 
                     <FlatList 
                         keyExtractor = { (item, index) => { return index.toString() }}
-                        data = { this.state.news }
+                        data = { this.props.news }
                         renderItem = { ({ item }) => <NFLitem item = { item }/> }
+                        onEndReached = { () => this.loadMore() }
                     />
                 </View>
             </View>
@@ -55,13 +49,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getNews: () => {
-            dispatch(getAllNews());
-        }
+        getNews: () => { dispatch(getAllNews()) },
+        addMoreNews: () => { dispatch(addMoreNews()) }
     }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MLBScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(MLBScreen)
