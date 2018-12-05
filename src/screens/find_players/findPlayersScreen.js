@@ -20,12 +20,14 @@ import {
 import { connect } from "react-redux";
 import FindPlayersListItem from "../../components/FindPlayersListItem";
 import { getAllPlayers } from "./findPlayersAction";
+import HeaderMenu from "../../components/HeaderMenu";
 
 class FindPlayersScreen extends Component {
   constructor() {
     super();
     this.state = {
-      renderedListData: []
+      renderedListData: [],
+      headerHeight: 88
     };
   }
 
@@ -72,23 +74,30 @@ class FindPlayersScreen extends Component {
     ToastAndroid.show(item, ToastAndroid.SHORT);
   };
 
+  measureToolbar = (e) => {
+      this.setState({ headerHeight: e.nativeEvent.layout.height })
+  }
+
   render() {
     return (
       <Container>
-        <Header
-          style={{ backgroundColor: "#ddd" }}
-          searchBar
-          rounded
-          autoCorrect={false}
-        >
-          <Item style={{ borderRadius: 6 }}>
-            <Icon name="ios-search" />
-            <Input
-              onChangeText={text => this._onChangeSearchText(text)}
-              placeholder="Search"
-            />
-          </Item>
-        </Header>
+          <HeaderMenu title="Settings" right={<View/>} actionOnMeasure={this.measureToolbar}/>
+        <View style={{backgroundColor:"#ddd", padding: 8}}>
+          <View
+            style={{ backgroundColor: "white", marginHorizontal: 14, marginVertical: 8, borderRadius: 8, paddingHorizontal: 8  }}
+            searchBar
+            rounded
+            autoCorrect={false}
+          >
+            <Item style={{ borderRadius: 6 }}>
+              <Icon name="ios-search" />
+              <Input
+                onChangeText={text => this._onChangeSearchText(text)}
+                placeholder="Search"
+              />
+            </Item>
+          </View>
+        </View>
         <View>
           {!this.state.noData && (
             <FlatList
@@ -127,7 +136,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FindPlayersScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(FindPlayersScreen);
