@@ -13,7 +13,7 @@ class MainScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { headerHeight: 88 }
+        this.state = { headerHeight: 88, showTitle: true, title: "NFL News" }
         this.props.navigation.state.key = 'mainScreen';
     }
 
@@ -21,6 +21,23 @@ class MainScreen extends Component {
 
     measureToolbar = (e) => {
         this.setState({ headerHeight: e.nativeEvent.layout.height })
+    };
+
+    changeActiveTab = (position) => {
+        switch (position) {
+            case 0:
+                this.setState({ showTitle: true, title: "NFL News" })
+                break;
+            case 1:
+                this.setState({ showTitle: true, title: "MLB News" })
+                break;
+            case 2:
+                this.setState({ showTitle: false })
+                break;
+            default:
+                this.setState({ showTitle: true, title: "News" })
+                break;
+        }
     }
 
     render() {
@@ -37,7 +54,9 @@ class MainScreen extends Component {
                     />
                 </View>
                 <View style={{ flex: 0 }} >
-                    <MainScreenToolbar actionOnMeasure={this.measureToolbar} />
+                    <MainScreenToolbar showTitle={this.state.showTitle}
+                        title={this.state.title}
+                        actionOnMeasure={this.measureToolbar} />
                 </View>
             </Container>);
     }
