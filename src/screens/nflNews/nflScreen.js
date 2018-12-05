@@ -1,24 +1,18 @@
 
 import React, { Component } from 'react';
-import { View, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import NFLitem from './components/nflItem';
+import { connect } from "react-redux";
+import { getAllNews, addMoreNews } from "./nflAction";
 
-export default class NFLScreen extends Component {
+class NFLScreen extends Component {
 
-    currentPage = 0;
-    pageSize = 20;
-
-    constructor(props) {
-        super(props);
-        this.state = { news: ['test', 'test', 'test', 'test', 'asd', 'adssad', 'asda'], isRefreshing: false };
+    async componentDidMount() {
+        this.props.getNews();
     }
 
-    showActivityIndicator = () => {
-        return ( <ActivityIndicator size = 'large' color = 'gray' />)
-    }
-
-    loadMoreData = (page, pageSize) => {
-
+    loadMore = () => {
+        this.props.addMoreNews();
     }
 
     render() {
@@ -27,15 +21,9 @@ export default class NFLScreen extends Component {
                 <View style = { styles.container }> 
                     <FlatList 
                         keyExtractor = { (item, index) => { return index.toString() }}
-                        ListFooterComponent = { this.showActivityIndicator() }
-                        onRefresh = { this.actionRefresh }
-                        refreshing = { this.state.isRefreshing }
-                        onEndReachedThreshold = { 1 }
-                        onEndReached = { ({ distanceFromEnd }) => {
-                            this.loadMoreData(this.page, this.pageSize)
-                        }}
-                        data = { this.state.news }
-                        renderItem = { ({ item }) => <NFLitem /> }
+                        data = { this.props.news }
+                        renderItem = { ({ item }) => <NFLitem item = { item }/> }
+                        onEndReached={ () => this.loadMore()}
                     />
                 </View>
             </View>
@@ -52,3 +40,18 @@ const styles = StyleSheet.create({
         paddingTop: 10
     }
 })
+
+const mapStateToProps = (state) => {
+    return {
+        news: state.nflNews.news
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getNews: () => { dispatch(getAllNews()) },
+        addMoreNews: () => { dispatch(addMoreNews()) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NFLScreen)

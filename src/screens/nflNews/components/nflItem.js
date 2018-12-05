@@ -5,61 +5,65 @@ import { View, Image, Text, StyleSheet, TouchableHighlight } from 'react-native'
 export default class NFLitem extends Component {
 
     render() {
-
-        let picture = { uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' }
-
         return (
-            <View style = { styles.mainView }>
-                <Image 
-                    style = { styles.image }
-                    source = { picture }
-                />
-                <View style = { styles.rightView }>
-                    <View style = { styles.titleView }>
-                        <Text style = { styles.titleBlack }>Geno Smith</Text>
-                        <Text style = { styles.titleBlue }>GB</Text>
+            <View style={styles.columnView}>
+                <View style = { styles.mainView }>
+                    <Image 
+                        style = { styles.image }
+                        source = { this.props.item.logo }
+                    />
+                    <View style = { styles.rightView }>
+                        <View style = { styles.titleView }>
+                            <Text style = { styles.titleBlack }>{ this.props.item.title }</Text>
+                            <Text style = { styles.titleBlue }>{ this.props.item.subtitle }</Text>
+                        </View>
+                        <View style = { styles.descriptionView }>
+                            <Text style = { styles.descriptionText }>{ this.props.item.description }</Text>
+                            <Text style = { styles.dateText }>{ this.props.item.date }</Text>
+                        </View>
                     </View>
-                    <View style = { styles.descriptionView }>
-                        <Text style = { styles.descriptionText }>adasdasdasd adsasd asd asd asd asd asdasdasda asd asd as d</Text>
-                        <Text style = { styles.dateText }>12:30 45/01/2018</Text>
-                    </View>
+                    
                 </View>
-                <View style = { styles.bottomBorder } ></View>
+                <View style = { styles.bottomBorder } />
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    columnView: {
+        flex: 1,
+        flexDirection: 'column'
+    },
     mainView: {
-        height: 150,
         backgroundColor: 'white',
         flexDirection: 'row',
         paddingHorizontal: 20,
-        justifyContent: 'center',
+        // justifyContent: 'center',
+        flex: 1,
+        paddingVertical: 16,
+        width: "100%"
 
     },
     bottomBorder: {
-        backgroundColor: 'gray',
+        backgroundColor: '#ccc',
         height: 1,
-        width: '100%',
-        position: 'absolute',
-        bottom: 0
+        marginTop: 14,
+        flex: 1,
+        bottom: 0,
+        marginHorizontal: 20
+        
     },
     image: {
         width: '30%',
-        height: '80%',
+        height: 70,
         marginRight: 10,
-        marginTop: 'auto',
-        marginBottom: 'auto',
-        resizeMode: 'stretch'
+        resizeMode: 'contain',
+        flex: 1 
     },
     rightView: {
-        width: '65%',
-        height: '80%',
-        marginTop: 'auto',
-        marginBottom: 'auto',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: '80%'
     },
     titleView: {
         flexDirection: 'row',
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
     },
     descriptionView: {
         flexDirection: 'column',
-        marginTop: 10
+        marginTop: 6
     },
     descriptionText: {
         fontSize: 15,

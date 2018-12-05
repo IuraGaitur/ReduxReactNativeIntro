@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Header, Title, Button, Left, Body } from "native-base";
+import { Header, Title, Button, Left, Body, Right } from "native-base";
 
 export default class NewsCategoryToolbar extends Component {
 
@@ -20,6 +20,7 @@ export default class NewsCategoryToolbar extends Component {
         <Body style={styles.titleContainer}>
           <Title style={styles.title}>NFL News</Title>
         </Body>
+        <Right></Right>
       </Header>
     )
   }
@@ -36,12 +37,12 @@ const styles = StyleSheet.create({
   titleContainer: {
     flex: 1,
     alignItems: 'center',
-    marginStart: -120,
   },
   title: {
     fontSize: 20,
     color: "white",
-    fontWeight: '400'
+    fontWeight: '400',
+    textAlign: 'center'
   },
   backButtonStyle: {
     fontSize: 16,
