@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Router, Stack, Scene } from 'react-native-router-flux';
-import SplashScreen from './src/screens/splash/splashScreen';
 import AuthenticationScreen from './src/screens/authentication/authenticationScreen';
+import SplashScreen from './src/screens/splash/splashScreen';
 import MainScreen from './src/screens/main/mainScreen';
 import FindPlayersScreen from './src/screens/find_players/findPlayersScreen';
+import NewsDetailsScreen from './src/screens/newsDetails/newsDetailsScreen';
 import SettingsScreen from './src/screens/settings/settingsScreen'
 import LandingScreen from './src/screens/landing/landingScreen'
 import store from './src/app/store';
@@ -29,7 +30,7 @@ export default class App extends Component {
                         <Scene key="settings" component={SettingsScreen} title="Settings" hideNavBar />
                         <Scene key="newsCategory" component={NewsCategoryScreen} title="News" hideNavBar />
                         <Scene key="pollsUser" component={PollsUserScreen} title="PollsUserScreen" hideNavBar />
-                        <Scene key="addPolls" component={AddPollsScreen} title="AddPolls" hideNavBar />
+                        <Scene key="newsDetails" component={NewsDetailsScreen} title="NewsDetails" hideNavBar initial />
                     </Stack>
                 </Router>
             </Provider>
