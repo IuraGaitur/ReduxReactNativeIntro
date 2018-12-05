@@ -4,16 +4,18 @@ import { Container, Text } from 'native-base';
 import PollsBottomNavigationBar from './../../components/PollsBottomNavigationBar';
 import PollsScreen from './pollsScreen';
 import NewsCategoryToolbar from '../../components/NewsCategoryToolbar';
+import PollsFavoriteScreen from './pollsFavoriteScreen';
 
 class PollsMainScreen extends Component {
 
   render() {
     return (
       <Container>
-        <NewsCategoryToolbar />
+        <NewsCategoryToolbar
+          navigation={this.props.navigation} />
         <PollsBottomNavigationBar
           myPollsPage={<PollsScreen />}
-          favPollsPage={<Text>Favorite polls here</Text>}
+          favPollsPage={<PollsFavoriteScreen />}
         />
       </Container>);
   }

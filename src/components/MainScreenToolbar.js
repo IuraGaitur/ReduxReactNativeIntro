@@ -28,14 +28,19 @@ export default class MainScreenToolbar extends Component {
     }
 
     openMenu = () => {
-        this.setState({menuIsVisible: !this.state.menuIsVisible});
+        this.setState({ menuIsVisible: !this.state.menuIsVisible });
     }
 
-    goToFindPlayers= () =>{
+    _actionMyPolls = () => {
+        Actions.polls();
+    }
+
+    goToFindPlayers = () => {
         Actions.findPlayers()
     }
+
     render() {
-        const {menuIsVisible} = this.state;
+        const { menuIsVisible } = this.state;
         return (
             <View>
                 <Header
@@ -67,16 +72,16 @@ export default class MainScreenToolbar extends Component {
                     </Right>
                 </Header >
                 <Collapsible collapsed={menuIsVisible} duration={300}>
-                    <View style={{backgroundColor: "#66B2FF", width: '100%', position: 'relative', zIndex: 999}}>
+                    <View style={{ backgroundColor: "#66B2FF", width: '100%', position: 'relative', zIndex: 999 }}>
                         <List itemDivider={false} >
                             <ListItem noBorder>
                                 <Text style={styles.menuItem}>News</Text>
                             </ListItem>
-                            <ListItem noBorder>
-                                <Text style={styles.menuItem}>My News</Text>
+                            <ListItem noBorder button onPress={() => { this._actionMyPolls() }}>
+                                <Text style={styles.menuItem}>My polls</Text>
                             </ListItem>
                             <ListItem noBorder
-                                button onPress={() => {this.goToFindPlayers()}}
+                                button onPress={() => { this.goToFindPlayers() }}
                             >
                                 <Text style={styles.menuItem}>Find Players</Text>
                             </ListItem>
@@ -86,7 +91,7 @@ export default class MainScreenToolbar extends Component {
                         </List>
                     </View>
                 </Collapsible>
-                
+
             </View>
         );
     }
