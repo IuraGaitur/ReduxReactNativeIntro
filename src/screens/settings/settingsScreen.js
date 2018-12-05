@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import SwitchToggle from 'react-native-switch-toggle';
 import {getUser, updateUser} from "./settingsAction";
 import {Body, Button, Header, Right, Label, Item, Input} from "native-base";
+import HeaderMenu from "../../components/HeaderMenu";
 
 class SettingsScreen extends Component {
 
@@ -15,7 +16,8 @@ class SettingsScreen extends Component {
         super(props);
         this.state = {
             switchOn4: false,
-            user: {}
+            user: {},
+            headerHeight: 88
         };
     }
 
@@ -32,26 +34,20 @@ class SettingsScreen extends Component {
         this.setState({ user: { notification: this.state.switchOn} })
     }
 
+    measureToolbar = (e) => {
+        this.setState({ headerHeight: e.nativeEvent.layout.height })
+    }
+
     render() {
         const {emailError, passError, nameError, user} = this.props;
 
         return (
             <View style={styles.defaultView}>
-                <Header
-                    androidStatusBarColor="#66B2FF"
-                    style={{ backgroundColor: "#66B2FF", color: '#66B2FF' }}
-                    >
-                    <Body>
-                    <View style={styles.centerTitleView}>
-                        <Text style={styles.textBtn}> SETTINGS </Text>
-                    </View>
-                    </Body>
-                    <Right>
-                        <Button transparent onPress={this.update} >
-                            <Text style={styles.textBtn}> UPDATE </Text>
-                        </Button>
-                    </Right>
-                </Header >
+                <HeaderMenu title="Settings" right={
+                    <Button transparent onPress={this.update} >
+                        <Text style={styles.textBtn}> UPDATE </Text>
+                    </Button>
+                } actionOnMeasure={this.measureToolbar}/>
                 <View style={styles.topView}>
                     <View style={styles.leftTopView}>
                         <Image source={require('./../../../app_image/rugby.jpg')} style={styles.userProfileImg}/>
@@ -187,9 +183,9 @@ const styles = StyleSheet.create({
     },
     textBtn: {
         textAlign: "center",
-        fontSize: 15,
-        fontWeight: "normal",
-        color: "black"
+        fontSize: 14,
+        fontWeight: "bold",
+        color: "white"
     },
     pushTitle: {
         textAlign: "left",

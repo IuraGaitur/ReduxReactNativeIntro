@@ -27,7 +27,7 @@ export default class App extends Component {
                         <Scene key="polls" component={PollsMainScreen} title="PollsScreen" hideNavBar />
                         <Scene key="findPlayers" component={FindPlayersScreen} title="FindPlayers" hideNavBar />
                         <Scene key="settings" component={SettingsScreen} title="Settings" hideNavBar />
-                        <Scene key="news" component={NewsCategoryScreen} title="News" hideNavBar />
+                        <Scene key="newsCategory" component={NewsCategoryScreen} title="News" hideNavBar />
                         <Scene key="pollsUser" component={PollsUserScreen} title="PollsUserScreen" hideNavBar />
                         <Scene key="addPolls" component={AddPollsScreen} title="AddPolls" hideNavBar />
                     </Stack>

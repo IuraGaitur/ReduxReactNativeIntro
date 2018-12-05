@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { ToastAndroid, Text, TouchableHighlight, StyleSheet, Animated } from "react-native";
+import { Text, StyleSheet } from "react-native";
 import { Header, Title, Button, Left, Right, Body, Icon, View, List, ListItem } from "native-base";
-import SegmentedControlTab from 'react-native-segmented-control-tab';
 import Collapsible from "react-native-collapsible";
 import { Actions } from "react-native-router-flux";
 
-export default class MainScreenToolbar extends Component {
+export default class HeaderMenu extends Component {
 
     constructor(props) {
         super(props);
@@ -42,10 +41,6 @@ export default class MainScreenToolbar extends Component {
         Actions.settings();
     };
 
-    hideNavBar = () => {
-        this.openMenu();
-    };
-
     render() {
         const { menuIsVisible } = this.state;
         return (
@@ -56,38 +51,28 @@ export default class MainScreenToolbar extends Component {
                     onLayout={(e) => this.props.actionOnMeasure(e)}>
                     <Left>
                         <Button transparent
-                            onPress={() => this.openMenu()}>
+                                onPress={() => this.openMenu()}>
                             <Icon style={{ color: "white" }} name="menu" />
                         </Button>
                     </Left>
                     <Body>
-                        <View style={styles.middleView}>
-                            {this.props.showTitle && <Title style={{color: 'white'}}>{this.props.title}</Title>}
-                            {!this.props.showTitle && <SegmentedControlTab
-                                tabStyle={styles.defaultTab}
-                                tabTextStyle={styles.defaultTabText}
-                                activeTabStyle={styles.activeTab}
-                                values={['NFL', 'MLB']}
-                                selectedIndex={this.state.selectedIndex}
-                                onTabPress={this.indexChange}
-                            />}
-                        </View>
+                        <Title style={styles.title}>{this.props.title}</Title>
                     </Body>
                     <Right>
-                        <View/>
+                        {this.props.right}
                     </Right>
                 </Header >
                 <Collapsible collapsed={menuIsVisible} duration={300}>
                     <View style={{ backgroundColor: "#66B2FF", width: '100%', position: 'relative', zIndex: 999 }}>
                         <List itemDivider={false} >
-                            <ListItem noBorder button onPress={() => { this.hideNavBar()}}>
+                            <ListItem noBorder>
                                 <Text style={styles.menuItem}>News</Text>
                             </ListItem>
                             <ListItem noBorder button onPress={() => { this._actionMyPolls() }}>
                                 <Text style={styles.menuItem}>My polls</Text>
                             </ListItem>
                             <ListItem noBorder
-                                button onPress={() => { this.goToFindPlayers() }}
+                                      button onPress={() => { this.goToFindPlayers() }}
                             >
                                 <Text style={styles.menuItem}>Find Players</Text>
                             </ListItem>
@@ -109,6 +94,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#F5FCFF"
+    },
+    title: {
+        fontSize: 20,
+        color: "white",
+        fontWeight: '400',
+        textAlign: 'center'
     },
     middleView: {
         justifyContent: "center",

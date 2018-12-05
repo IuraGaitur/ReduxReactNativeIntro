@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Header, Title, Button, Left, Body, Right } from "native-base";
+import {Actions} from 'react-native-router-flux';
 
 export default class NewsCategoryToolbar extends Component {
 
@@ -13,12 +14,12 @@ export default class NewsCategoryToolbar extends Component {
       <Header androidStatusBarColor="#66B2FF"
         style={{ backgroundColor: "#66B2FF", color: '#66B2FF' }}>
         <Left>
-          <Button transparent onPress={() => this.props.navigation.goBack()}>
+          <Button transparent onPress={() => Actions.pop()}>
             <Text style={styles.backButtonStyle}>BACK</Text>
           </Button>
         </Left>
         <Body style={styles.titleContainer}>
-          <Title style={styles.title}>NFL News</Title>
+          <Title style={styles.title}>News</Title>
         </Body>
         <Right></Right>
       </Header>
