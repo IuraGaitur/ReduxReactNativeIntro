@@ -8,6 +8,7 @@ import store from './src/app/store';
 import { Provider } from "react-redux";
 import './config/Reactotron';
 import PollsMainScreen from './src/screens/polls/pollsMainScreen';
+import PollsUserScreen from './src/screens/pollsUser/pollsUserScreen';
 
 export default class App extends Component {
     render() {
@@ -15,11 +16,12 @@ export default class App extends Component {
             <Provider store={store}>
                 <Router>
                     <Stack key="root">
-                        <Scene key="splash" component={SplashScreen} title="Splash"  hideNavBar />
-                        <Scene key="authentication" component={AuthenticationScreen} title="Authentication" hideNavBar/>
+                        <Scene key="splash" component={SplashScreen} title="Splash" hideNavBar />
+                        <Scene key="authentication" component={AuthenticationScreen} title="Authentication" hideNavBar />
                         <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar />
-                        <Scene key="main" component={MainScreen} title="Main" hideNavBar initial/>
+                        <Scene key="main" component={MainScreen} title="Main" hideNavBar initial />
                         <Scene key="polls" component={PollsMainScreen} title="PollsScreen" hideNavBar />
+                        <Scene key="pollsUser" component={PollsUserScreen} title="PollsUserScreen" hideNavBar initial />
                     </Stack>
                 </Router>
             </Provider>
