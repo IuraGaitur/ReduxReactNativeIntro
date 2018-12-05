@@ -4,6 +4,8 @@ import { Container, View, Text } from 'native-base';
 import { ToastAndroid, TouchableHighlight, StyleSheet } from "react-native";
 import MainScreenToolbar from "./../../components/MainScreenToolbar";
 import BottomNavigationBar from "./../../components/BottomNavigationBar";
+import NFLScreen from '../nflNews/nflScreen';
+import MLBScreen from '../mlbNews/mlbScreen';
 import PollsMainScreen from './../polls/pollsMainScreen';
 
 class MainScreen extends Component {
@@ -25,12 +27,8 @@ class MainScreen extends Component {
             <Container>
                 <View style={{ height: '100%', position: 'absolute', zIndex: -1, paddingTop: this.state.headerHeight }}>
                     <BottomNavigationBar
-                        nflPage={<View>
-                            <Text>1 page</Text>
-                        </View>}
-                        mblPage={<View>
-                            <Text>2 page</Text>
-                        </View>}
+                        nflPage={ <NFLScreen></NFLScreen> }
+                        mblPage={ <MLBScreen></MLBScreen> }
                         myNewsPage={<View>
                             <Text>3 page</Text>
                         </View>}
