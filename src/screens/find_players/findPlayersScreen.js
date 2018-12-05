@@ -81,7 +81,7 @@ class FindPlayersScreen extends Component {
   render() {
     return (
       <Container>
-          <HeaderMenu title="Settings" right={<View/>} actionOnMeasure={this.measureToolbar}/>
+          <HeaderMenu title="Find Players" right={<View/>} actionOnMeasure={this.measureToolbar}/>
         <View style={{backgroundColor:"#ddd", padding: 8}}>
           <View
             style={{ backgroundColor: "white", marginHorizontal: 14, marginVertical: 8, borderRadius: 8, paddingHorizontal: 8  }}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { ToastAndroid, StyleSheet } from "react-native";
 import { Header, Button, Left, Right, Body, Icon, View } from "native-base";
 import SegmentedControlTab from 'react-native-segmented-control-tab';
+import {Actions} from 'react-native-router-flux';
 
 export default class PollsScreenToolbar extends Component {
 
@@ -14,7 +15,7 @@ export default class PollsScreenToolbar extends Component {
   }
 
   _actionAdd() {
-    ToastAndroid.show("Search button clicked!", ToastAndroid.SHORT);
+    Actions.addPolls();
   }
 
   indexChange = (index) => {
