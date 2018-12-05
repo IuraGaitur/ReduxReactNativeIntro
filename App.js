@@ -20,7 +20,7 @@ export default class App extends Component {
             <Provider store={store}>
                 <Router>
                     <Stack key="root">
-                        <Scene key="splash" component={SplashScreen} title="Splash" hideNavBar/>
+                        <Scene key="splash" component={SplashScreen} title="Splash" hideNavBar initial/>
                         <Scene key="authentication" component={AuthenticationScreen} title="Authentication" hideNavBar />
                         <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar />
                         <Scene key="main" component={MainScreen} title="Main" hideNavBar />
@@ -29,7 +29,7 @@ export default class App extends Component {
                         <Scene key="settings" component={SettingsScreen} title="Settings" hideNavBar />
                         <Scene key="news" component={NewsCategoryScreen} title="News" hideNavBar />
                         <Scene key="pollsUser" component={PollsUserScreen} title="PollsUserScreen" hideNavBar />
-                        <Scene key="addPolls" component={AddPollsScreen} title="AddPolls" hideNavBar initial/>
+                        <Scene key="addPolls" component={AddPollsScreen} title="AddPolls" hideNavBar />
                     </Stack>
                 </Router>
             </Provider>
