@@ -6,57 +6,64 @@ export default class NFLitem extends Component {
 
     render() {
         return (
-            <View style = { styles.mainView }>
-                <Image 
-                    style = { styles.image }
-                    source = { this.props.item.logo }
-                />
-                <View style = { styles.rightView }>
-                    <View style = { styles.titleView }>
-                        <Text style = { styles.titleBlack }>{ this.props.item.title }</Text>
-                        <Text style = { styles.titleBlue }>{ this.props.item.subtitle }</Text>
+            <View style={styles.columnView}>
+                <View style = { styles.mainView }>
+                    <Image 
+                        style = { styles.image }
+                        source = { this.props.item.logo }
+                    />
+                    <View style = { styles.rightView }>
+                        <View style = { styles.titleView }>
+                            <Text style = { styles.titleBlack }>{ this.props.item.title }</Text>
+                            <Text style = { styles.titleBlue }>{ this.props.item.subtitle }</Text>
+                        </View>
+                        <View style = { styles.descriptionView }>
+                            <Text style = { styles.descriptionText }>{ this.props.item.description }</Text>
+                            <Text style = { styles.dateText }>{ this.props.item.date }</Text>
+                        </View>
                     </View>
-                    <View style = { styles.descriptionView }>
-                        <Text style = { styles.descriptionText }>{ this.props.item.description }</Text>
-                        <Text style = { styles.dateText }>{ this.props.item.date }</Text>
-                    </View>
+                    
                 </View>
-                <View style = { styles.bottomBorder } ></View>
+                <View style = { styles.bottomBorder } />
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    columnView: {
+        flex: 1,
+        flexDirection: 'column'
+    },
     mainView: {
-        height: 150,
         backgroundColor: 'white',
         flexDirection: 'row',
         paddingHorizontal: 20,
-        justifyContent: 'center',
+        // justifyContent: 'center',
+        flex: 1,
+        paddingVertical: 16,
+        width: "100%"
 
     },
     bottomBorder: {
-        backgroundColor: 'gray',
+        backgroundColor: '#ccc',
         height: 1,
-        width: '100%',
-        position: 'absolute',
-        bottom: 0
+        marginTop: 14,
+        flex: 1,
+        bottom: 0,
+        marginHorizontal: 20
+        
     },
     image: {
         width: '30%',
-        height: '50%',
+        height: 70,
         marginRight: 10,
-        marginTop: 'auto',
-        marginBottom: 'auto',
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        flex: 1 
     },
     rightView: {
-        width: '65%',
-        height: '80%',
-        marginTop: 'auto',
-        marginBottom: 'auto',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        width: '80%'
     },
     titleView: {
         flexDirection: 'row',

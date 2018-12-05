@@ -19,3 +19,5 @@ export const LOAD_PLAYERS = "LOAD_PLAYERS"
 //News
 export const LOAD_NFL_NEWS = 'LOAD_NFL_NEWS'
 export const LOAD_MLB_NEWS = 'LOAD_MLB_NEWS'
+export const ADD_NFL_NEWS = 'ADD_NFL_NEWS'
+export const ADD_MLB_NEWS = 'ADD_MLB_NEWS'
