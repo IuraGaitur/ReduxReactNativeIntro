@@ -5,23 +5,20 @@ import { View, Image, Text, StyleSheet, TouchableHighlight } from 'react-native'
 export default class NFLitem extends Component {
 
     render() {
-
-        let picture = { uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg' }
-
         return (
             <View style = { styles.mainView }>
                 <Image 
                     style = { styles.image }
-                    source = { picture }
+                    source = { this.props.item.logo }
                 />
                 <View style = { styles.rightView }>
                     <View style = { styles.titleView }>
-                        <Text style = { styles.titleBlack }>Geno Smith</Text>
-                        <Text style = { styles.titleBlue }>GB</Text>
+                        <Text style = { styles.titleBlack }>{ this.props.item.title }</Text>
+                        <Text style = { styles.titleBlue }>{ this.props.item.subtitle }</Text>
                     </View>
                     <View style = { styles.descriptionView }>
-                        <Text style = { styles.descriptionText }>adasdasdasd adsasd asd asd asd asd asdasdasda asd asd as d</Text>
-                        <Text style = { styles.dateText }>12:30 45/01/2018</Text>
+                        <Text style = { styles.descriptionText }>{ this.props.item.description }</Text>
+                        <Text style = { styles.dateText }>{ this.props.item.date }</Text>
                     </View>
                 </View>
                 <View style = { styles.bottomBorder } ></View>
@@ -48,11 +45,11 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '30%',
-        height: '80%',
+        height: '50%',
         marginRight: 10,
         marginTop: 'auto',
         marginBottom: 'auto',
-        resizeMode: 'stretch'
+        resizeMode: 'contain'
     },
     rightView: {
         width: '65%',
@@ -77,7 +74,7 @@ const styles = StyleSheet.create({
     },
     descriptionView: {
         flexDirection: 'column',
-        marginTop: 10
+        marginTop: 6
     },
     descriptionText: {
         fontSize: 15,

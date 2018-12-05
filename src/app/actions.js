@@ -11,3 +11,7 @@ export const NO_USER = "NO_USER";
 
 // Find Players Actions
 export const LOAD_PLAYERS = "LOAD_PLAYERS"
+
+//News
+export const LOAD_NFL_NEWS = 'LOAD_NFL_NEWS'
+export const LOAD_MLB_NEWS = 'LOAD_MLB_NEWS'

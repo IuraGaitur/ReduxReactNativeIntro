@@ -1,24 +1,25 @@
 
 import React, { Component } from 'react';
-import { View, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import NFLitem from '../nflNews/components/nflItem';
+import { connect } from 'react-redux';
+import { getAllNews } from './mlbAction';
 
-export default class MLBScreen extends Component {
-
-    currentPage = 0;
-    pageSize = 20;
+class MLBScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { news: ['test', 'test', 'test', 'test', 'asd', 'adssad', 'asda'], isRefreshing: false };
+        this.state = { news: [] }
     }
 
-    showActivityIndicator = () => {
-        return ( <ActivityIndicator size = 'large' color = 'gray' />)
+    async componentDidMount() {
+        this.props.getNews();
     }
 
-    loadMoreData = (page, pageSize) => {
-
+    componentWillReceiveProps(newProps) {
+        if (newProps.news != this.state.news) {
+            this.setState({ news: newProps.news });
+        }
     }
 
     render() {
@@ -27,15 +28,8 @@ export default class MLBScreen extends Component {
                 <View style = { styles.container }> 
                     <FlatList 
                         keyExtractor = { (item, index) => { return index.toString() }}
-                        ListFooterComponent = { this.showActivityIndicator() }
-                        onRefresh = { this.actionRefresh }
-                        refreshing = { this.state.isRefreshing }
-                        onEndReachedThreshold = { 1 }
-                        onEndReached = { ({ distanceFromEnd }) => {
-                            this.loadMoreData(this.page, this.pageSize)
-                        }}
                         data = { this.state.news }
-                        renderItem = { ({ item }) => <NFLitem /> }
+                        renderItem = { ({ item }) => <NFLitem item = { item }/> }
                     />
                 </View>
             </View>
@@ -52,3 +46,22 @@ const styles = StyleSheet.create({
         paddingTop: 10
     }
 })
+
+const mapStateToProps = state => {
+    return {
+        news: state.mlbNews.news
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getNews: () => {
+            dispatch(getAllNews());
+        }
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MLBScreen)
