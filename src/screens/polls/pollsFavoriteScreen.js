@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux'
-import PollsApi from '../../data/api/pollsApi';
+import PollsFavoritesApi from '../../data/api/pollsFavoritesApi';
 
-class PollsScreen extends Component {
+class PollsFavoriteScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { polls: [] }
+    this.state = { fav_polls: [] }
   }
 
   async componentDidMount() {
-    let polls = await new PollsApi().instance().getAll();
-    this.setState({ polls: polls })
+    let fav_polls = await new PollsFavoritesApi().instance().getAll();
+    this.setState({ fav_polls: fav_polls })
   }
 
   _actionComments() {
@@ -23,7 +23,7 @@ class PollsScreen extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-          data={this.state.polls}
+          data={this.state.fav_polls}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) =>
             <View style={styles.secondContainer}>
@@ -74,16 +74,16 @@ const styles = StyleSheet.create({
     width: 100,
   },
   pollsPercentageStyle: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
     color: 'black'
   },
   pollsVotesCommentsStyle: {
-    fontSize: 14,
+    fontSize: 18,
     fontWeight: 'bold',
     color: 'gray',
     marginTop: 6
   },
 })
 
-export default connect()(PollsScreen);
+export default connect()(PollsFavoriteScreen);
