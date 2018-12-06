@@ -13,7 +13,7 @@ export default class CommentItem extends Component {
             <View style={styles.secondContainer}>
                 <View style={styles.topView}>
                     <View style={styles.userProfileContainer}>
-                        <Image source={require('./../../../assets/rugby.jpg')}
+                        <Image source={{uri: "https://i.pinimg.com/236x/44/5a/c3/445ac389828217249120369782413174--rugby-logos-sport-logos.jpg"}}
                                 style={styles.userProfileImg}/>
                         <Text style={styles.name}> {this.props.name} </Text>
                     </View>

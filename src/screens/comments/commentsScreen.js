@@ -3,6 +3,7 @@ import {Text, View, StyleSheet, FlatList, Image, TouchableOpacity, Button, TextI
 import {connect} from 'react-redux';
 import {Body, Header, Left, Right} from "native-base";
 import CommentItem from './components/CommentItem';
+import {Actions} from 'react-native-router-flux';
 
 class CommentsScreen extends Component {
 
@@ -42,8 +43,8 @@ class CommentsScreen extends Component {
                     style={{ backgroundColor: "#66B2FF", color: '#66B2FF' }}>
                     <Left>
                         <Button 
-                            transparent title={"BACK"}
-                            style = { styles.headerBackButton }>
+                            transparent title={"BACK"} color="white"
+                            style = { styles.headerBackButton } onPress={() => {Actions.pop()}}>
                         </Button>
                     </Left>
                     <Body>
@@ -60,14 +61,12 @@ class CommentsScreen extends Component {
                     showsVerticalScrollIndicator={false}
                     renderItem={({item}) =>
                         <CommentItem name = {item.name} date = {item.date} comment = {item.comment} image = {item.profileImage}/>
-
                     }
                     keyExtractor={item => item.keyExtractor}
                 />
                 <View style={styles.bottomView}>
                     <TextInput placeholder="Write a comment..."
                                placeholderTextColor="#BFBFBF"
-                        // onChangeText={(text) => this.setState({user: {name: {text}}})}
                                style={styles.searchTxt}></TextInput>
                     <TouchableOpacity
                         style={styles.addBtn}

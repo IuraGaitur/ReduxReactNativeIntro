@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, FlatList, Image, ActivityIndicator, TouchableWithoutFeedback } from 'react-native';
-import { Container } from 'native-base';
+import {
+    Text,
+    View,
+    StyleSheet,
+    FlatList,
+    Image,
+    ActivityIndicator,
+    TouchableWithoutFeedback,
+    TouchableOpacity
+} from 'react-native';
 import { connect } from 'react-redux'
-import QuestionsApi from '../../data/api/questionsApi';
-import PollsScreenToolbar from '../../components/PollsScreenToolbar';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import {Actions} from 'react-native-router-flux';
+
 
 class PollsUserItem extends Component {
 
@@ -18,6 +26,10 @@ class PollsUserItem extends Component {
   _actionPollProgress = () => {
     this.setState({ isShown: !this.state.isShown })
   }
+
+  showComments = () => {
+    Actions.comments();
+  };
 
   render() {
     const { item } = this.props;
@@ -78,7 +90,11 @@ class PollsUserItem extends Component {
 
         <View style={{ flex: 1, flexDirection: "row", justifyContent: 'space-between', paddingHorizontal: 8, paddingTop: 14 }}>
           <Text style={{ fontSize: 15, color: "silver"}}>{item.votes + " VOTES"}</Text>
-          <Text style={{ fontSize: 15, color: "silver"}}>{item.comments + " COMMENTS"}</Text>
+            <TouchableOpacity
+                onPress={() => this.showComments()}
+            >
+              <Text style={{ fontSize: 15, color: "silver"}}>{item.comments + " COMMENTS"}</Text>
+            </TouchableOpacity>
         </View>
         <View style={{width: '100%', height: 1, backgroundColor: '#ccc', marginTop: 16}}/>
       </View >
