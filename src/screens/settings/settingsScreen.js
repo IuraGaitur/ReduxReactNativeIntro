@@ -31,11 +31,11 @@ class SettingsScreen extends Component {
 
     switchNotification = () => {
         this.setState({switchOn: !this.state.switchOn});
-        this.setState({ user: { notification: this.state.switchOn} })
+        this.setState({user: {notification: this.state.switchOn}})
     }
 
     measureToolbar = (e) => {
-        this.setState({ headerHeight: e.nativeEvent.layout.height })
+        this.setState({headerHeight: e.nativeEvent.layout.height})
     }
 
     render() {
@@ -44,64 +44,66 @@ class SettingsScreen extends Component {
         return (
             <View style={styles.defaultView}>
                 <HeaderMenu title="Settings" right={
-                    <Button transparent onPress={this.update} >
+                    <Button transparent onPress={this.update}>
                         <Text style={styles.textBtn}> UPDATE </Text>
                     </Button>
                 } actionOnMeasure={this.measureToolbar}/>
-                <View style={styles.topView}>
-                    <View style={styles.leftTopView}>
-                        <Image source={require('./../../../app_image/rugby.jpg')} style={styles.userProfileImg}/>
+                <View style={{ height: '100%', position: 'absolute', zIndex: -1, paddingTop: this.state.headerHeight }}>
+                    <View style={styles.topView}>
+                        <View style={styles.leftTopView}>
+                            <Image source={require('./../../../app_image/rugby.jpg')} style={styles.userProfileImg}/>
+                        </View>
+                        <View style={styles.rightTopView}>
+                            <Text style={styles.title}> Display Name </Text>
+                            <TextInput style={styles.subtitle}
+                                       placeholder="Name"
+                                       placeholderTextColor="grey"
+                                       onChangeText={(text) => this.setState({user: {name: {text}}})}
+                                       style={styles.subtitle}> {this.props.user.name} </TextInput>
+                        </View>
                     </View>
-                    <View style={styles.rightTopView}>
-                        <Text style={styles.title}> Display Name </Text>
-                        <TextInput style={styles.subtitle}
-                                   placeholder="Name"
-                                   placeholderTextColor="grey"
-                                   onChangeText={(text) => this.setState({user: {name: {text}}})}
-                                   style={styles.subtitle}> {this.props.user.name} </TextInput>
-                    </View>
-                </View>
-                <View style={styles.bottomView}>
-                    <View style={styles.sectionView}>
-                        <Text style={styles.section}>Account Information </Text>
-                        <Item stackedLabel>
-                            <Label>Email</Label>
-                            <Input onChangeText={(text) => this.setState({user: {...user, email: text}})}>
-                                {this.props.user.email}
-                            </Input>
-                        </Item>
-                        <Item stackedLabel>
-                            <Label>Password</Label>
-                            <Input onChangeText={(text) => this.setState({user: {...user, pass: text}})}>
-                                {this.props.user.pass}
-                            </Input>
-                        </Item>
-                    </View>
-                    <View style={styles.sectionView}>
-                        <Text style={styles.section}> Notification Settings </Text>
-                        <View style={styles.pushStack}>
-                            <Text style={styles.pushTitle}>Push Notification </Text>
-                            <SwitchToggle
-                                containerStyle={{
-                                    width: 60,
-                                    height: 35,
-                                    borderRadius: 17.5,
-                                    padding: 4,
-                                }}
-                                backgroundColorOn='#3787D9'
-                                backgroundColorOff='#e5e1e0'
-                                circleStyle={{
-                                    width: 32,
-                                    height: 32,
-                                    borderRadius: 16,
-                                    backgroundColor: '#3787D9', // rgb(102,134,205)
-                                }}
-                                switchOn={this.state.switchOn}
-                                onPress={this.switchNotification}
-                                circleColorOff='#3787D9'
-                                circleColorOn='white'
-                                duration={500}
-                            />
+                    <View style={styles.bottomView}>
+                        <View style={styles.sectionView}>
+                            <Text style={styles.section}>Account Information </Text>
+                            <Item stackedLabel>
+                                <Label>Email</Label>
+                                <Input onChangeText={(text) => this.setState({user: {...user, email: text}})}>
+                                    {this.props.user.email}
+                                </Input>
+                            </Item>
+                            <Item stackedLabel>
+                                <Label>Password</Label>
+                                <Input onChangeText={(text) => this.setState({user: {...user, pass: text}})}>
+                                    {this.props.user.pass}
+                                </Input>
+                            </Item>
+                        </View>
+                        <View style={styles.sectionView}>
+                            <Text style={styles.section}> Notification Settings </Text>
+                            <View style={styles.pushStack}>
+                                <Text style={styles.pushTitle}>Push Notification </Text>
+                                <SwitchToggle
+                                    containerStyle={{
+                                        width: 60,
+                                        height: 35,
+                                        borderRadius: 17.5,
+                                        padding: 4,
+                                    }}
+                                    backgroundColorOn='#3787D9'
+                                    backgroundColorOff='#e5e1e0'
+                                    circleStyle={{
+                                        width: 32,
+                                        height: 32,
+                                        borderRadius: 16,
+                                        backgroundColor: '#3787D9', // rgb(102,134,205)
+                                    }}
+                                    switchOn={this.state.switchOn}
+                                    onPress={this.switchNotification}
+                                    circleColorOff='#3787D9'
+                                    circleColorOn='white'
+                                    duration={500}
+                                />
+                            </View>
                         </View>
                     </View>
                 </View>
@@ -122,8 +124,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getUser: () => {dispatch(getUser())},
-        onUpdateUser: (user) => {dispatch(updateUser(user))}
+        getUser: () => {
+            dispatch(getUser())
+        },
+        onUpdateUser: (user) => {
+            dispatch(updateUser(user))
+        }
     }
 };
 

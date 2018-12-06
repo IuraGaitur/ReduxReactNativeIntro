@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { View, StyleSheet, TextInput, Image } from "react-native";
 import { Container, Button, Text, Content } from "native-base";
 import { connect } from "react-redux";
+import NewsCategoryToolbar from "../../components/NewsCategoryToolbar";
+import {Actions} from 'react-native-router-flux';
 
 class AddPollsScreen extends Component {
   constructor(props) {
@@ -9,10 +11,15 @@ class AddPollsScreen extends Component {
     this.state = { questions: "" };
   }
 
+  actionBack = () => {
+    Actions.pop();
+  };
+
   render() {
     return (
       <Container>
-        <Content>
+        <NewsCategoryToolbar showTitle={false} backTitle={"Cancel"}/>
+        <View style={{flex: 1}}>
           <View style={styles.container}>
             <TextInput
               style={styles.pollsQuestionStyle}
@@ -35,10 +42,10 @@ class AddPollsScreen extends Component {
               </View>
             </View>
           </View>
-          <Button full style={styles.buttonDone}>
+          <Button full style={styles.buttonDone} onPress={() => this.actionBack()}>
             <Text style={styles.buttonText}>DONE</Text>
           </Button>
-        </Content>
+        </View>
       </Container>
     );
   }
@@ -66,7 +73,6 @@ const styles = StyleSheet.create({
     marginStart: 20,
     marginEnd: 20,
     textAlign: "center",
-    fontFamily: "notoserif"
   },
   image: {
     width: 80,
@@ -81,7 +87,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#b9d5f3",
     fontWeight: "bold",
-    fontFamily: "notoserif"
   }
 });
 

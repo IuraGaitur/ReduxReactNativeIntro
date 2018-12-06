@@ -3,7 +3,7 @@ import { ToastAndroid, Text, TouchableHighlight, StyleSheet, Animated } from "re
 import { Header, Title, Button, Left, Right, Body, Icon, View, List, ListItem } from "native-base";
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import Collapsible from "react-native-collapsible";
-import { Actions } from "react-native-router-flux";
+import {ActionConst, Actions} from "react-native-router-flux";
 
 export default class MainScreenToolbar extends Component {
 
@@ -42,6 +42,11 @@ export default class MainScreenToolbar extends Component {
         Actions.settings();
     };
 
+    gotoNewsList = () => {
+        this.hideNavBar();
+        Actions.main({type: ActionConst.RESET})
+    };
+
     hideNavBar = () => {
         this.openMenu();
     };
@@ -74,13 +79,13 @@ export default class MainScreenToolbar extends Component {
                         </View>
                     </Body>
                     <Right>
-                        <View/>
+                        {this.props.rightActions != null ? this.props.rightActions: <View/>}
                     </Right>
                 </Header >
                 <Collapsible collapsed={menuIsVisible} duration={300}>
                     <View style={{ backgroundColor: "#66B2FF", width: '100%', position: 'relative', zIndex: 999 }}>
                         <List itemDivider={false} >
-                            <ListItem noBorder button onPress={() => { this.hideNavBar()}}>
+                            <ListItem noBorder button onPress={() => { this.gotoNewsList()}}>
                                 <Text style={styles.menuItem}>News</Text>
                             </ListItem>
                             <ListItem noBorder button onPress={() => { this._actionMyPolls() }}>
