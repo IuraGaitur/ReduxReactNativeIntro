@@ -5,26 +5,30 @@ export default class MyNewsItem extends Component {
 
     render() {
         return (
-            <View style={styles.columnView}>
-                <View style={styles.mainView}>
-                    <Image
-                        style={styles.image}
-                        source={this.props.item.logo}
-                    />
-                    <View style={styles.rightView}>
-                        <View style={styles.titleView}>
-                            <Text style={styles.titleBlack}>{this.props.item.title}</Text>
-                            <Text style={styles.titleBlue}>{this.props.item.subtitle}</Text>
-                            <Image source={require('../../../assets/my_news_star.png')} style={styles.startStyle} />
-                        </View>
-                        <View style={styles.descriptionView}>
-                            <Text style={styles.descriptionText}>{this.props.item.description}</Text>
-                            <Text style={styles.dateText}>{this.props.item.date}</Text>
-                        </View>
-                    </View>
+            <View>
+                <TouchableHighlight onPress={this.props.onPress}>
+                    <View style={styles.columnView}>
+                        <View style={styles.mainView}>
+                            <Image
+                                style={styles.image}
+                                source={this.props.item.logo}
+                            />
+                            <View style={styles.rightView}>
+                                <View style={styles.titleView}>
+                                    <Text style={styles.titleBlack}>{this.props.item.title}</Text>
+                                    <Text style={styles.titleBlue}>{this.props.item.subtitle}</Text>
+                                    <Image source={require('../../../assets/my_news_star.png')} style={styles.startStyle} />
+                                </View>
+                                <View style={styles.descriptionView}>
+                                    <Text style={styles.descriptionText}>{this.props.item.description}</Text>
+                                    <Text style={styles.dateText}>{this.props.item.date}</Text>
+                                </View>
+                            </View>
 
-                </View>
-                <View style={styles.bottomBorder} />
+                        </View>
+                        <View style={styles.bottomBorder} />
+                    </View>
+                </TouchableHighlight>
             </View>
         )
     }

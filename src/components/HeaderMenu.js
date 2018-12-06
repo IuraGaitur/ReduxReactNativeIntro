@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text, StyleSheet } from "react-native";
 import { Header, Title, Button, Left, Right, Body, Icon, View, List, ListItem } from "native-base";
 import Collapsible from "react-native-collapsible";
-import { Actions } from "react-native-router-flux";
+import { ActionConst, Actions } from "react-native-router-flux";
 
 export default class HeaderMenu extends Component {
 
@@ -41,6 +41,11 @@ export default class HeaderMenu extends Component {
         Actions.settings();
     };
 
+    gotoMainScreen = () => {
+        this.openMenu();
+        Actions.main({type: ActionConst.RESET});
+    };
+
     render() {
         const { menuIsVisible } = this.state;
         return (
@@ -65,7 +70,7 @@ export default class HeaderMenu extends Component {
                 <Collapsible collapsed={menuIsVisible} duration={300}>
                     <View style={{ backgroundColor: "#66B2FF", width: '100%', position: 'relative', zIndex: 999 }}>
                         <List itemDivider={false} >
-                            <ListItem noBorder>
+                            <ListItem noBorder button onPress={() => { this.gotoMainScreen() }}>
                                 <Text style={styles.menuItem}>News</Text>
                             </ListItem>
                             <ListItem noBorder button onPress={() => { this._actionMyPolls() }}>

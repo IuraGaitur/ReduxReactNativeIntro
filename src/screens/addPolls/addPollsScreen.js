@@ -3,6 +3,8 @@ import { View, StyleSheet, TextInput, Image } from "react-native";
 import { Container, Button, Text, Content, Root } from "native-base";
 import { connect } from "react-redux";
 import BottomDialog from "./components/BottomDialog";
+import NewsCategoryToolbar from "../../components/NewsCategoryToolbar";
+import {Actions} from 'react-native-router-flux';
 
 class AddPollsScreen extends Component {
   constructor(props) {
@@ -10,46 +12,43 @@ class AddPollsScreen extends Component {
     this.state = { questions: "" };
   }
 
-  onPressButtonDone = () => {};
+  actionBack = () => {
+    Actions.pop();
+  };
 
   render() {
     return (
-      <Root>
-        <Container>
-          <Content>
-            <View style={styles.container}>
-              <TextInput
-                style={styles.pollsQuestionStyle}
-                placeholder="Ask a question"
-                onChangeText={value => this.setState({ questions: value })}
-                value={this.state.questions}
-              />
-              <View style={{ flexDirection: "row" }}>
-                <View style={styles.squareBody}>
-                  <Image
-                    style={styles.image}
-                    source={require("./../../assets/camera.png")}
-                  />
-                </View>
-                <View style={styles.squareBody}>
-                  <Image
-                    style={styles.image}
-                    source={require("./../../assets/camera.png")}
-                  />
-                </View>
+      <Container>
+        <NewsCategoryToolbar showTitle={false} backTitle={"Cancel"}/>
+        <View style={{flex: 1}}>
+          <View style={styles.container}>
+            <TextInput
+              style={styles.pollsQuestionStyle}
+              placeholder="Ask a question"
+              onChangeText={value => this.setState({ questions: value })}
+              value={this.state.questions}
+            />
+            <View style={{ flexDirection: "row" }}>
+              <View style={styles.squareBody}>
+                <Image
+                  style={styles.image}
+                  source={require("./../../assets/camera.png")}
+                />
+              </View>
+              <View style={styles.squareBody}>
+                <Image
+                  style={styles.image}
+                  source={require("./../../assets/camera.png")}
+                />
               </View>
             </View>
-            <Button
-              full
-              style={styles.buttonDone}
-              onPress={this.onPressButtonDone}
-            >
-              <Text style={styles.buttonText}>DONE</Text>
-            </Button>
-            <BottomDialog />
-          </Content>
-        </Container>
-      </Root>
+          </View>
+          <Button full style={styles.buttonDone} onPress={() => this.actionBack()}>
+            <Text style={styles.buttonText}>DONE</Text>
+          </Button>
+         <BottomDialog />
+        </View>
+      </Container>
     );
   }
 }
@@ -76,7 +75,6 @@ const styles = StyleSheet.create({
     marginStart: 20,
     marginEnd: 20,
     textAlign: "center",
-    fontFamily: "notoserif"
   },
   image: {
     width: 80,
@@ -91,7 +89,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#b9d5f3",
     fontWeight: "bold",
-    fontFamily: "notoserif"
   }
 });
 

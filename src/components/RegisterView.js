@@ -6,12 +6,16 @@ export default class RegsterView extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {email: null, pass: null, name: null};
+        this.state = {email: null, pass: null, name: null, isSecure: true};
     }
 
     registerAction = () => {
         this.props.actionRegister(this.state);
-    }
+    };
+
+    changeVisibility = () => {
+        this.setState({isSecure: !this.state.isSecure});
+    };
     
     render() {
         return(
@@ -19,8 +23,9 @@ export default class RegsterView extends Component {
                 <Item floatingLabel>
                     <Label style={style.textInputLabel}>Email</Label>
                     <Input style={style.textField}
-                        placeholderTextColor="#FFF" 
-                        onChangeText={(text) => this.setState({email: text})}
+                        placeholderTextColor="#FFF"
+                           autoCapitalize='none'
+                           onChangeText={(text) => this.setState({email: text})}
                     />
                 </Item>
                 {this.props.emailError && <Text style={{color: 'red'}}>{this.props.emailError}</Text>}
@@ -28,15 +33,21 @@ export default class RegsterView extends Component {
                 <Item floatingLabel style={style.inputItem}>
                     <Label style={style.textInputLabel} >Password</Label>
                     <Input style={style.textField}
+                            autoCorrect={false}
+                            autoCapitalize='none'
+                            secureTextEntry={this.state.isSecure}
                             placeholderTextColor="#FFF" 
                             onChangeText={(text) => this.setState({pass: text})}
                     />
+                    <Icon active name={this.state.isSecure ? 'eye-off': 'eye'}
+                                       onPress={() => this.changeVisibility()} style={{ color: "white" }}/>
                 </Item>
                 {this.props.passError && <Text style={{color: 'red'}}>{this.props.passError}</Text>}
 
                 <Item floatingLabel style={style.inputItem}>
                     <Label style={style.textInputLabel} >Name</Label>
                     <Input style={style.textField}
+                            autoCorrect={false}
                             placeholderTextColor="#FFF" 
                             onChangeText={(text) => this.setState({name: text})}
                     />

@@ -12,7 +12,7 @@ class PollsMainScreen extends Component {
     return (
       <Container>
         <NewsCategoryToolbar
-          navigation={this.props.navigation} />
+          navigation={this.props.navigation} showTitle={true} title={"Polls"}/>
         <PollsBottomNavigationBar
           myPollsPage={<PollsScreen />}
           favPollsPage={<PollsFavoriteScreen />}

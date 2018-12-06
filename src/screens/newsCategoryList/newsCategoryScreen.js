@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
 import NewsApi from '../../data/api/newsApi';
 import NewsCategoryToolbar from "../../components/NewsCategoryToolbar";
+import {Actions} from 'react-native-router-flux';
 
 export default class NewsCategoryScreen extends Component {
 
@@ -33,7 +34,7 @@ export default class NewsCategoryScreen extends Component {
     }
 
     _actionNesDetails() {
-        // TODO, add news details screen
+        Actions.newsDetails();
     }
 
     renderHeader = () => {
@@ -45,7 +46,7 @@ export default class NewsCategoryScreen extends Component {
                 alignItems: 'center',
                 justifyContent: 'space-between'
             }}>
-                <Image source={require('../../assets/rugby.jpg')} style={styles.newsCategoryLogo}/>
+                <Image source={{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Y-fCVDkx7gkRD3NPPkdVgHd3elPFt2CZWFXHcHNQdiK59-FAdQ"}} style={styles.newsCategoryLogo}/>
                 <Text style={styles.newsCategoryTitle}>DeMarco Murray RB</Text>
                 <TouchableOpacity onPress={this._actionFavorite}>
                     <Image source={require('../../assets/news_star_icon.png')} style={styles.newsFavoriteIcon}/>
@@ -56,11 +57,12 @@ export default class NewsCategoryScreen extends Component {
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'column'}}>
-                <NewsCategoryToolbar/>
+                <NewsCategoryToolbar showTitle={true} title={"News"}/>
                 <View style={styles.container}>
                     <FlatList
                         data={this.state.news}
                         showsVerticalScrollIndicator={false}
+                        keyExtractor = { (item, index) => { return index.toString() }}
                         renderItem={({item}) =>
                             <TouchableWithoutFeedback onPress={this._actionNesDetails}>
                                 <View style={styles.secondContainer}>
@@ -72,7 +74,6 @@ export default class NewsCategoryScreen extends Component {
                         }
                         ItemSeparatorComponent={this.renderSeparator}
                         ListHeaderComponent={this.renderHeader}
-                        keyExtractor={(item) => item.id}
                     />
                 </View>
             </View>

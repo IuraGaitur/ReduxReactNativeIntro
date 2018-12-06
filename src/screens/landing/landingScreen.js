@@ -11,6 +11,7 @@ class LandingScreen extends Component {
     }
 
     _onPressFacebookButton() {
+        LoginManager.logOut();
         LoginManager.logInWithReadPermissions(['public_profile']).then(function (result) {
             if (result.isCancelled) {
                 console.log('Login was cancelled');
