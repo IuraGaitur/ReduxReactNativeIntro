@@ -20,7 +20,7 @@ export default class App extends Component {
             <Provider store={store}>
                 <Router>
                     <Stack key="root">
-                        <Scene key="splash" component={SplashScreen} title="Splash" hideNavBar initial/>
+                        <Scene key="splash" component={SplashScreen} title="Splash" hideNavBar initial />
                         <Scene key="authentication" component={AuthenticationScreen} title="Authentication" hideNavBar />
                         <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar />
                         <Scene key="main" component={MainScreen} title="Main" hideNavBar />
