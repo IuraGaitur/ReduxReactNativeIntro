@@ -23,9 +23,9 @@ export default class App extends Component {
             <Provider store={store}>
                 <Router>
                     <Stack key="root">
-                        <Scene key="splash" component={SplashScreen} title="Splash" hideNavBar initial />
-                        <Scene key="authentication" component={AuthenticationScreen} title="Authentication" hideNavBar />
-                        <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar />
+                        <Scene key="splash" component={SplashScreen} title="Splash" hideNavBar />
+                        <Scene key="authentication" component={AuthenticationScreen} title="Authentication" hideNavBar  />
+                        <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar initial   />
                         <Scene key="main" component={MainScreen} title="Main" hideNavBar />
                         <Scene key="polls" component={PollsMainScreen} title="PollsScreen" hideNavBar />
                         <Scene key="findPlayers" component={FindPlayersScreen} title="FindPlayers" hideNavBar />
