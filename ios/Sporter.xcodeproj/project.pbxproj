@@ -51,11 +51,13 @@
 		2DCD954D1E0B4F2C00145EB5 /* SporterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SporterTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		45F67F98010140E1ADCE83BF /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09FC021C8F9F4FFAA4A036B7 /* EvilIcons.ttf */; };
+		4958D6AAAB9742F3AC37B739 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BC4F40739AF4EE6B0405E79 /* libRCTFBSDK.a */; };
 		4EFF111D1B9C468982B017D8 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC0D79C2E0844A779C3B3AA8 /* SimpleLineIcons.ttf */; };
 		6E87F47DEEBB45E390FB2EA9 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC23B27536F9421BBE940D34 /* MaterialIcons.ttf */; };
 		7F2DB4E7C40349318597E53A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 355E9E4B11874C7EA92880F7 /* FontAwesome.ttf */; };
 		8079D114A41E4ED78C41EA91 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7323379ADB444362AC88B3F2 /* MaterialCommunityIcons.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		8EF5D274FB374976ADEF41C3 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8F603B75F0451091435609 /* libRNSVG.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		C04E2D488D794DC28CEC5055 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD210AFD54FA46EFB6F10BAF /* Roboto.ttf */; };
 		D0F6E9F668074B968B257D0D /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15F04973CD304BDCA4369BC9 /* Zocial.ttf */; };
@@ -108,6 +110,7 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = Sporter;
 		};
+
 		1353DD9021B929C5006B5706 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2F8A87897B0E4438A3DDAA53 /* RCTFBSDK.xcodeproj */;
@@ -122,6 +125,15 @@
 			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
 			remoteInfo = RNSVG;
 		};
+
+		047B0F2421B94F2900CF7A73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F220EDE70F734827A1A5EB68 /* RNSVG.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 94DDAC5C1F3D024300EED511;
+			remoteInfo = "RNSVG-tvOS";
+		};
+
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */;
@@ -529,6 +541,15 @@
 				00E356F11AD99517003FC87E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		047B0F1E21B94F2900CF7A73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				047B0F2321B94F2900CF7A73 /* libRNSVG.a */,
+				047B0F2521B94F2900CF7A73 /* libRNSVG-tvOS.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		048FC44E21B57D1D00A8425F /* Recovered References */ = {
