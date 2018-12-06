@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { View, StyleSheet, TextInput, Image } from "react-native";
-import { Container, Button, Text, Content } from "native-base";
+import { Container, Button, Text, Content, Root } from "native-base";
 import { connect } from "react-redux";
+import BottomDialog from "./components/BottomDialog";
 
 class AddPollsScreen extends Component {
   constructor(props) {
@@ -9,37 +10,46 @@ class AddPollsScreen extends Component {
     this.state = { questions: "" };
   }
 
+  onPressButtonDone = () => {};
+
   render() {
     return (
-      <Container>
-        <Content>
-          <View style={styles.container}>
-            <TextInput
-              style={styles.pollsQuestionStyle}
-              placeholder="Ask a question"
-              onChangeText={value => this.setState({ questions: value })}
-              value={this.state.questions}
-            />
-            <View style={{ flexDirection: "row" }}>
-              <View style={styles.squareBody}>
-                <Image
-                  style={styles.image}
-                  source={require("./../../assets/camera.png")}
-                />
-              </View>
-              <View style={styles.squareBody}>
-                <Image
-                  style={styles.image}
-                  source={require("./../../assets/camera.png")}
-                />
+      <Root>
+        <Container>
+          <Content>
+            <View style={styles.container}>
+              <TextInput
+                style={styles.pollsQuestionStyle}
+                placeholder="Ask a question"
+                onChangeText={value => this.setState({ questions: value })}
+                value={this.state.questions}
+              />
+              <View style={{ flexDirection: "row" }}>
+                <View style={styles.squareBody}>
+                  <Image
+                    style={styles.image}
+                    source={require("./../../assets/camera.png")}
+                  />
+                </View>
+                <View style={styles.squareBody}>
+                  <Image
+                    style={styles.image}
+                    source={require("./../../assets/camera.png")}
+                  />
+                </View>
               </View>
             </View>
-          </View>
-          <Button full style={styles.buttonDone}>
-            <Text style={styles.buttonText}>DONE</Text>
-          </Button>
-        </Content>
-      </Container>
+            <Button
+              full
+              style={styles.buttonDone}
+              onPress={this.onPressButtonDone}
+            >
+              <Text style={styles.buttonText}>DONE</Text>
+            </Button>
+            <BottomDialog />
+          </Content>
+        </Container>
+      </Root>
     );
   }
 }
