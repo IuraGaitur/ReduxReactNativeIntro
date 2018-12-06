@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { View, StyleSheet, TextInput, Image } from "react-native";
-import { Container, Button, Text, Content } from "native-base";
+import { Container, Button, Text, Content, Root } from "native-base";
 import { connect } from "react-redux";
+import BottomDialog from "./components/BottomDialog";
 import NewsCategoryToolbar from "../../components/NewsCategoryToolbar";
 import {Actions} from 'react-native-router-flux';
 
@@ -45,6 +46,7 @@ class AddPollsScreen extends Component {
           <Button full style={styles.buttonDone} onPress={() => this.actionBack()}>
             <Text style={styles.buttonText}>DONE</Text>
           </Button>
+         <BottomDialog />
         </View>
       </Container>
     );
