@@ -11,7 +11,11 @@ export default class LoginView extends Component {
 
     loginAction = () => { 
         this.props.actionLogin(this.state);
-    }
+    };
+
+    changeVisibility = () => {
+        this.setState({isSecure: !this.state.isSecure});
+    };
     
     render() {
         return(
@@ -21,8 +25,9 @@ export default class LoginView extends Component {
                     <Label style={style.textInputLabel}>Email</Label>
                     <Input style={style.textField}
                         autoCorrect={false}
-                        placeholderTextColor="#FFF" 
-                        onChangeText={(text) => this.setState({userEmail: text})}
+                        placeholderTextColor="#FFF"
+                           autoCapitalize='none'
+                           onChangeText={(text) => this.setState({userEmail: text})}
                     />
                 </Item>
                 {this.props.emailError && <Text style={{color: 'red'}}>{this.props.emailError}</Text>}
@@ -31,9 +36,13 @@ export default class LoginView extends Component {
                     <Label style={style.textInputLabel} >Password</Label>
                     <Input style={style.textField}
                             autoCorrect={false}
-                            placeholderTextColor="#FFF" 
+                            placeholderTextColor="#FFF"
+                            autoCapitalize='none'
+                            secureTextEntry={this.state.isSecure}
                             onChangeText={(text) => this.setState({userPass: text})}
                     />
+                    <Icon active name={this.state.isSecure ? 'eye-off': 'eye'}
+                          onPress={() => this.changeVisibility()} style={{ color: "white" }}/>
                 </Item>
                 {this.props.passError && <Text style={{color: 'red'}}>{this.props.passError}</Text>}
 
