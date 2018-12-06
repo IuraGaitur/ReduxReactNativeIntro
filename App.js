@@ -6,6 +6,7 @@ import MainScreen from './src/screens/main/mainScreen';
 import FindPlayersScreen from './src/screens/find_players/findPlayersScreen';
 import NewsDetailsScreen from './src/screens/newsDetails/newsDetailsScreen';
 import SettingsScreen from './src/screens/settings/settingsScreen'
+import CommentsScreen from './src/screens/comments/commentsScreen'
 import LandingScreen from './src/screens/landing/landingScreen'
 import store from './src/app/store';
 import { Provider } from "react-redux";
@@ -32,6 +33,7 @@ export default class App extends Component {
                         <Scene key="pollsUser" component={PollsUserScreen} title="PollsUserScreen" hideNavBar />
                         <Scene key="newsDetails" component={NewsDetailsScreen} title="NewsDetails" hideNavBar />
                         <Scene key="addPolls" component={AddPollsScreen} title="AddPolls" hideNavBar />
+                        <Scene key="comments" component={CommentsScreen} title="CommentsScreen" hideNavBar/>
                     </Stack>
                 </Router>
             </Provider>
