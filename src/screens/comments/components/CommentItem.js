@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, FlatList, Image, TouchableOpacity, Button, TextInput} from 'react-native';
-import {connect} from 'react-redux'
-import {Body, Header, Left} from "native-base";
+import {Text, View, StyleSheet, Image} from 'react-native';
 
 export default class CommentItem extends Component {
     constructor (props) {
