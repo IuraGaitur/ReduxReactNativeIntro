@@ -23,8 +23,8 @@ export default class App extends Component {
                 <Router>
                     <Stack key="root">
                         <Scene key="splash" component={SplashScreen} title="Splash" hideNavBar />
-                        <Scene key="authentication" component={AuthenticationScreen} title="Authentication" hideNavBar />
-                        <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar />
+                        <Scene key="authentication" component={AuthenticationScreen} title="Authentication" hideNavBar  />
+                        <Scene key="landing" component={LandingScreen} title="Landing" hideNavBar initial   />
                         <Scene key="main" component={MainScreen} title="Main" hideNavBar />
                         <Scene key="polls" component={PollsMainScreen} title="PollsScreen" hideNavBar />
                         <Scene key="findPlayers" component={FindPlayersScreen} title="FindPlayers" hideNavBar />
@@ -33,7 +33,7 @@ export default class App extends Component {
                         <Scene key="pollsUser" component={PollsUserScreen} title="PollsUserScreen" hideNavBar />
                         <Scene key="newsDetails" component={NewsDetailsScreen} title="NewsDetails" hideNavBar />
                         <Scene key="addPolls" component={AddPollsScreen} title="AddPolls" hideNavBar />
-                        <Scene key="webSearch" component={WebSearchScreen} title="Web Search" hideNavBar initial />
+                        <Scene key="webSearch" component={WebSearchScreen} title="Web Search" hideNavBar  />
                     </Stack>
                 </Router>
             </Provider>

@@ -74,7 +74,6 @@ export default class NewsCategoryScreen extends Component {
                         }
                         ItemSeparatorComponent={this.renderSeparator}
                         ListHeaderComponent={this.renderHeader}
-                        keyExtractor={(item) => item.id}
                     />
                 </View>
             </View>

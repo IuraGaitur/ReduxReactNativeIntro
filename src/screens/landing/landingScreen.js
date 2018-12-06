@@ -11,6 +11,7 @@ class LandingScreen extends Component {
     }
 
     _onPressFacebookButton() {
+        LoginManager.logOut();
         LoginManager.logInWithReadPermissions(['public_profile']).then(function (result) {
             if (result.isCancelled) {
                 console.log('Login was cancelled');
@@ -36,6 +37,25 @@ class LandingScreen extends Component {
                     <View style={styles.bottomViewStyle}>
                         <Text style={styles.loginWithStyle}>Login with</Text>
                         <View style={styles.buttonContainerStyle}>
+
+                            <LoginButton
+                                readPermissions={["public_profile"]}
+                                onLoginFinished={(error, result) => {
+                                    if (error) {
+
+                                    } else if (result.isCancelled) {
+
+                                    } else {
+                                        AccessToken.getCurrentAccessToken()
+                                            .then((data) => {
+                                                callback(data.accessToken)
+                                            })
+                                            .catch(error => {
+                                                console.log(error)
+                                            })
+                                    }
+                                }} />
+
                             <TouchableOpacity onPress={this._onPressFacebookButton} style={styles.circleContainer} >
                                 <Image
                                     style={styles.imageStyle}
