@@ -37,25 +37,6 @@ class LandingScreen extends Component {
                     <View style={styles.bottomViewStyle}>
                         <Text style={styles.loginWithStyle}>Login with</Text>
                         <View style={styles.buttonContainerStyle}>
-
-                            <LoginButton
-                                readPermissions={["public_profile"]}
-                                onLoginFinished={(error, result) => {
-                                    if (error) {
-
-                                    } else if (result.isCancelled) {
-
-                                    } else {
-                                        AccessToken.getCurrentAccessToken()
-                                            .then((data) => {
-                                                callback(data.accessToken)
-                                            })
-                                            .catch(error => {
-                                                console.log(error)
-                                            })
-                                    }
-                                }} />
-
                             <TouchableOpacity onPress={this._onPressFacebookButton} style={styles.circleContainer} >
                                 <Image
                                     style={styles.imageStyle}
