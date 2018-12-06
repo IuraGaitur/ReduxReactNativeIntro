@@ -28,6 +28,7 @@ export default class RegsterView extends Component {
                 <Item floatingLabel style={style.inputItem}>
                     <Label style={style.textInputLabel} >Password</Label>
                     <Input style={style.textField}
+                            autoCorrect={false}
                             placeholderTextColor="#FFF" 
                             onChangeText={(text) => this.setState({pass: text})}
                     />
@@ -37,6 +38,7 @@ export default class RegsterView extends Component {
                 <Item floatingLabel style={style.inputItem}>
                     <Label style={style.textInputLabel} >Name</Label>
                     <Input style={style.textField}
+                            autoCorrect={false}
                             placeholderTextColor="#FFF" 
                             onChangeText={(text) => this.setState({name: text})}
                     />

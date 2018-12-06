@@ -20,6 +20,7 @@ export default class LoginView extends Component {
                 <Item floatingLabel>
                     <Label style={style.textInputLabel}>Email</Label>
                     <Input style={style.textField}
+                        autoCorrect={false}
                         placeholderTextColor="#FFF" 
                         onChangeText={(text) => this.setState({userEmail: text})}
                     />
@@ -29,6 +30,7 @@ export default class LoginView extends Component {
                 <Item floatingLabel style={style.inputItem}>
                     <Label style={style.textInputLabel} >Password</Label>
                     <Input style={style.textField}
+                            autoCorrect={false}
                             placeholderTextColor="#FFF" 
                             onChangeText={(text) => this.setState({userPass: text})}
                     />
