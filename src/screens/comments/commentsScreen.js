@@ -1,23 +1,24 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, FlatList, Image, TouchableOpacity, Button, TextInput} from 'react-native';
-import {connect} from 'react-redux'
-import {Body, Header, Left} from "native-base";
+import {connect} from 'react-redux';
+import {Body, Header, Left, Right} from "native-base";
+import CommentItem from './components/CommentItem';
 
 class CommentsScreen extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            comments: [{name: "Ion", date: "5", comment: "fugi"},
-                {name: "ana", date: "5", comment: "stai"},
-                {name: "Iosdasn", date: "5", comment: "fugid dsdas  sa "}]
+            comments: [{profileImage: './../../../assets/rugby.jpg', name: "Ion", date: "5 mins ago", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."},
+                {profileImage: './../../../assets/rugby.jpg', name: "ana", date: "5 mins ago", comment: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+                {profileImage: './../../../assets/rugby.jpg', name: "Iosdasn", date: "5 mins ago", comment: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."}]
         }
     }
 
     componentDidMount() {
-        let comment = [{name: "Ion", date: "5", comment: "fugi"},
-            {name: "ana", date: "5", comment: "stai"},
-            {name: "Iosdasn", date: "5", comment: "fugid dsdas  sa "}]
+        let comment = [{profileImage: './../../../assets/rugby.jpg', name: "Ion", date: "5 mins ago", comment: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."},
+            {profileImage: './../../../assets/rugby.jpg', name: "ana", date: "5 mins ago", comment: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."},
+            {profileImage: './../../../assets/rugby.jpg', name: "Iosdasn", date: "5 mins ago", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}]
         this.setState({comments: comment})
     }
 
@@ -40,7 +41,9 @@ class CommentsScreen extends Component {
                     androidStatusBarColor="#66B2FF"
                     style={{ backgroundColor: "#66B2FF", color: '#66B2FF' }}>
                     <Left>
-                        <Button transparent title={"BACK"}>
+                        <Button 
+                            transparent title={"BACK"}
+                            style = { styles.headerBackButton }>
                         </Button>
                     </Left>
                     <Body>
@@ -48,25 +51,16 @@ class CommentsScreen extends Component {
                         <Text style={styles.titleNav}>Comments</Text>
                     </View>
                     </Body>
+                    <Right>
+                        <View></View>
+                    </Right>
                 </Header >
                 <FlatList
                     data={this.state.comments}
                     showsVerticalScrollIndicator={false}
                     renderItem={({item}) =>
-                        <View style={styles.secondContainer}>
-                            <View style={styles.topView}>
-                                <View style={styles.containerImg}>
-                                    <Image source={require('./../../../app_image/rugby.jpg')}
-                                           style={styles.userProfileImg}/>
-                                </View>
-                                <View style={styles.topView}>
-                                    <Text style={styles.name}> this.state.name </Text>
-                                    <Text style={styles.date}> this.state.comments.date </Text>
-                                </View>
-                            </View>
-                            <Text style={styles.comment}> this.state.comments.date eug9few807 tfe87te tg7tgeiw te nwfg
-                                wtg g tg0ow ft wgvav sdv d v sdgsgyd8o a </Text>
-                        </View>
+                        <CommentItem name = {item.name} date = {item.date} comment = {item.comment} image = {item.profileImage}/>
+
                     }
                     keyExtractor={item => item.keyExtractor}
                 />
@@ -90,6 +84,9 @@ class CommentsScreen extends Component {
 
 
 const styles = StyleSheet.create({
+    headerBackButton: {
+        color: 'white'
+    },
     container: {
         flexDirection: 'column',
         flex: 1,
@@ -107,7 +104,7 @@ const styles = StyleSheet.create({
     userProfileImg: {
         width: "100%",
         height: "100%",
-        borderRadius: 40,
+        borderRadius: 20,
     },
     name: {
         textAlign: "left",
@@ -173,7 +170,7 @@ const styles = StyleSheet.create({
     image: {
         width: 50,
         height: 50,
-        margin: 10
+        margin: 10,
     },
     touchable: {
         justifyContent: 'space-between',
@@ -183,7 +180,7 @@ const styles = StyleSheet.create({
 
     titleNav: {
         textAlign: "center",
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: "normal",
         color: "white"
     },
