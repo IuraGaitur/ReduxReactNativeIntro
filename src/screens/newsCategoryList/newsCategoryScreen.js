@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, FlatList, Image, TouchableOpacity, TouchableWithoutFeedback} from 'react-native';
 import NewsApi from '../../data/api/newsApi';
 import NewsCategoryToolbar from "../../components/NewsCategoryToolbar";
+import {Actions} from 'react-native-router-flux';
 
 export default class NewsCategoryScreen extends Component {
 
@@ -33,7 +34,7 @@ export default class NewsCategoryScreen extends Component {
     }
 
     _actionNesDetails() {
-        // TODO, add news details screen
+        Actions.newsDetails();
     }
 
     renderHeader = () => {
