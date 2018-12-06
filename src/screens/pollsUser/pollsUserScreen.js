@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, FlatList, Image, ActivityIndicator, TouchableWithoutFeedback } from 'react-native';
-import { Container } from 'native-base';
+import {Button, Container, Icon} from 'native-base';
 import { connect } from 'react-redux'
 import QuestionsApi from '../../data/api/questionsApi';
 import PollsScreenToolbar from '../../components/PollsScreenToolbar';
 import PollsUserItem from './pollsUserItem';
+import MainScreenToolbar from "../../components/MainScreenToolbar";
+import {Actions} from "react-native-router-flux";
 
 class PollsUserScreen extends Component {
 
@@ -14,25 +16,41 @@ class PollsUserScreen extends Component {
       questions: [],
       loading: false,
       items: null,
+      headerHeight: 88,
     }
   }
 
+  measureToolbar = (e) => {
+      this.setState({ headerHeight: e.nativeEvent.layout.height })
+  };
+
   async componentDidMount() {
     let questions = await new QuestionsApi().instance().getAllQuestions();
-    this.setState(questions)
+    this.setState({questions: questions})
   }
 
   fetchData = async () => {
-    this.setState({ loading: true });
+    this.setState(  { loading: true });
     let questions = await new QuestionsApi().instance().getAllQuestions();
     this.setState(state => ({ questions: [...state.questions, ...questions], loading: false }));
   };
 
+    _actionAdd() {
+        Actions.addPolls();
+    }
+
   render() {
     return (
       <Container>
-        <PollsScreenToolbar />
-        <View style={styles.container}>
+        <View style={{ flex: 0 }} >
+            <MainScreenToolbar showTitle={false}
+                               rightActions={
+                                    <Button transparent onPress={this._actionAdd}>
+                                     <Icon style={{ color: "white" }} name="add" />
+                                    </Button>}
+                               actionOnMeasure={this.measureToolbar}/>
+        </View>
+        <View style={[styles.container, { height: '100%', position: 'absolute', zIndex: -1, paddingTop: this.state.headerHeight }]}>
           <FlatList
             data={this.state.questions}
             showsVerticalScrollIndicator={false}
@@ -41,7 +59,7 @@ class PollsUserScreen extends Component {
             renderItem={({ item }) =>
               <PollsUserItem item={item} />
             }
-            keyExtractor={item => item.keyExtractor}
+            keyExtractor = { (item, index) => { return index.toString() }}
           />
         </View>
       </Container>
@@ -52,8 +70,6 @@ class PollsUserScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingStart: 12,
-    paddingEnd: 12,
     paddingBottom: 10,
     backgroundColor: 'white',
   },

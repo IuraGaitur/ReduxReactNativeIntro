@@ -36,7 +36,7 @@ class NewsDetailsScreen extends Component {
 
         return (
             <View style = { style.screenView }>
-                <NewsCategoryToolbar/>
+                <NewsCategoryToolbar showTitle={true} title={"Details"}/>
                 <ScrollView style = { style.container } >
                     <View style = { style.header } >
                         <Image 

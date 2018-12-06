@@ -23,3 +23,6 @@ export const LOAD_MY_NEWS = 'LOAD_MY_NEWS'
 export const ADD_NFL_NEWS = 'ADD_NFL_NEWS'
 export const ADD_MLB_NEWS = 'ADD_MLB_NEWS'
 export const ADD_MY_NEWS = 'ADD_MY_NEWS'
+
+// Web search Actions
+export const LOAD_WEB_CONTENT = 'LOAD_WEB_CONTENT';

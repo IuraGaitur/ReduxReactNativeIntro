@@ -25,6 +25,7 @@ class PollsFavoriteScreen extends Component {
         <FlatList
           data={this.state.fav_polls}
           showsVerticalScrollIndicator={false}
+          keyExtractor = { (item, index) => { return index.toString() }}
           renderItem={({ item }) =>
             <View style={styles.secondContainer}>
               <Image source={{ uri: item.imageUrl }} style={styles.pollsListImageStyle} />
@@ -39,7 +40,6 @@ class PollsFavoriteScreen extends Component {
               </View>
             </View>
           }
-          keyExtractor={item => item.keyExtractor}
         />
       </View>
     );

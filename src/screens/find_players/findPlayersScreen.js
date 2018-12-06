@@ -41,7 +41,7 @@ class FindPlayersScreen extends Component {
     }
   }
 
-  _onChangeSearchText = searchText => {
+  _onChangeSearchText = (searchText) => {
     let filteredList = {};
     let text = searchText.toLowerCase();
 
@@ -82,40 +82,43 @@ class FindPlayersScreen extends Component {
     return (
       <Container>
           <HeaderMenu title="Find Players" right={<View/>} actionOnMeasure={this.measureToolbar}/>
-        <View style={{backgroundColor:"#ddd", padding: 8}}>
-          <View
-            style={{ backgroundColor: "white", marginHorizontal: 14, marginVertical: 8, borderRadius: 8, paddingHorizontal: 8  }}
-            searchBar
-            rounded
-            autoCorrect={false}
-          >
-            <Item style={{ borderRadius: 6 }}>
-              <Icon name="ios-search" />
-              <Input
-                onChangeText={text => this._onChangeSearchText(text)}
-                placeholder="Search"
-              />
-            </Item>
-          </View>
-        </View>
-        <View>
-          {!this.state.noData && (
-            <FlatList
-              data={this.state.renderedListData}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  onPress={() => this._onItemPress(item.player)}
-                >
-                  <FindPlayersListItem item={item} />
-                </TouchableOpacity>
-              )}
-            />
-          )}
-          {this.state.noData && (
-            <View style={{ alignItems: "center", marginTop: 20 }}>
-              <Text style={{fontSize:20}}>Not Found</Text>
+        <View style={{ width: '100%',height: '100%', position: 'absolute', zIndex: -1, paddingTop: this.state.headerHeight }}>
+          <View style={{backgroundColor:"#ddd", padding: 8}}>
+            <View
+              style={{ backgroundColor: "white", marginHorizontal: 14, marginVertical: 8, borderRadius: 8, paddingHorizontal: 8  }}
+              searchBar
+              rounded
+              autoCorrect={false}
+            >
+              <Item style={{ borderRadius: 6 }}>
+                <Icon name="ios-search" />
+                <Input
+                  onChangeText={text => this._onChangeSearchText(text)}
+                  placeholder="Search"
+                />
+              </Item>
             </View>
-          )}
+          </View>
+          <View>
+            {!this.state.noData && (
+              <FlatList
+                data={this.state.renderedListData}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    onPress={() => this._onItemPress(item.player)}
+                  >
+                    <FindPlayersListItem item={item} />
+                  </TouchableOpacity>
+                )}
+                keyExtractor = { (item, index) => { return index.toString() }}
+              />
+            )}
+            {this.state.noData && (
+              <View style={{ alignItems: "center", marginTop: 20 }}>
+                <Text style={{fontSize:20}}>Not Found</Text>
+              </View>
+            )}
+          </View>
         </View>
       </Container>
     );

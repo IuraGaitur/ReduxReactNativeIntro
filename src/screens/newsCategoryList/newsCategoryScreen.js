@@ -46,7 +46,7 @@ export default class NewsCategoryScreen extends Component {
                 alignItems: 'center',
                 justifyContent: 'space-between'
             }}>
-                <Image source={require('../../assets/rugby.jpg')} style={styles.newsCategoryLogo}/>
+                <Image source={{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3Y-fCVDkx7gkRD3NPPkdVgHd3elPFt2CZWFXHcHNQdiK59-FAdQ"}} style={styles.newsCategoryLogo}/>
                 <Text style={styles.newsCategoryTitle}>DeMarco Murray RB</Text>
                 <TouchableOpacity onPress={this._actionFavorite}>
                     <Image source={require('../../assets/news_star_icon.png')} style={styles.newsFavoriteIcon}/>
@@ -57,11 +57,12 @@ export default class NewsCategoryScreen extends Component {
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'column'}}>
-                <NewsCategoryToolbar/>
+                <NewsCategoryToolbar showTitle={true} title={"News"}/>
                 <View style={styles.container}>
                     <FlatList
                         data={this.state.news}
                         showsVerticalScrollIndicator={false}
+                        keyExtractor = { (item, index) => { return index.toString() }}
                         renderItem={({item}) =>
                             <TouchableWithoutFeedback onPress={this._actionNesDetails}>
                                 <View style={styles.secondContainer}>
