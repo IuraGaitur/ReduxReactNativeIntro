@@ -13,7 +13,8 @@ import './config/Reactotron';
 import PollsMainScreen from './src/screens/polls/pollsMainScreen';
 import PollsUserScreen from './src/screens/pollsUser/pollsUserScreen';
 import NewsCategoryScreen from './src/screens/newsCategoryList/newsCategoryScreen';
-import AddPollsScreen from './src/screens/addPolls/addPollsScreen'
+import AddPollsScreen from './src/screens/addPolls/addPollsScreen';
+import PhotoUpload from './src/components/PhotoUpload'
 
 export default class App extends Component {
     render() {
@@ -32,6 +33,7 @@ export default class App extends Component {
                         <Scene key="pollsUser" component={PollsUserScreen} title="PollsUserScreen" hideNavBar />
                         <Scene key="newsDetails" component={NewsDetailsScreen} title="NewsDetails" hideNavBar />
                         <Scene key="addPolls" component={AddPollsScreen} title="AddPolls" hideNavBar />
+                        <Scene key="photo" component={PhotoUpload} title="PhotoUpload"  hideNavBar/>
                     </Stack>
                 </Router>
             </Provider>
