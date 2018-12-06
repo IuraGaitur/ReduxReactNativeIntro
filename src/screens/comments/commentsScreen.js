@@ -72,14 +72,14 @@ class CommentsScreen extends Component {
                 />
                 <View style={styles.bottomView}>
                     <TextInput placeholder="Write a comment..."
-                               placeholderTextColor="grey"
+                               placeholderTextColor="#BFBFBF"
                         // onChangeText={(text) => this.setState({user: {name: {text}}})}
                                style={styles.searchTxt}></TextInput>
                     <TouchableOpacity
                         style={styles.addBtn}
                         onPress={this.addComment}>
                         <Image
-                            source={require('./../../../app_image/add.png')}
+                            source={require('./../../assets/plus.png')}
                             style={styles.image}/>
                     </TouchableOpacity>
                 </View>
@@ -147,17 +147,18 @@ const styles = StyleSheet.create({
     bottomView: {
         flexDirection: "row",
         backgroundColor: "white",
-        height: 70,
         marginBottom: 0,
         width: "100%",
         borderTopWidth: 1,
-        borderTopColor: "grey"
+        paddingLeft: 20,
+        borderTopColor: "#E5E5E5",
+        alignItems: 'center',
     },
     searchTxt: {
         flex: 1,
         textAlign: "left",
         fontSize: 25,
-        marginTop: 10,
+        fontWeight: 'bold',
         marginEnd: 10,
         marginStart: 5,
         color: "black"
@@ -167,12 +168,12 @@ const styles = StyleSheet.create({
         textAlign: "left",
         width: 70,
         height: 70,
-        backgroundColor: "#66B2FF",
+        backgroundColor: "#3787D9",
     },
 
     image: {
-        width: 50,
-        height: 50,
+        width: 47,
+        height: 47,
         margin: 10
     },
     touchable: {
